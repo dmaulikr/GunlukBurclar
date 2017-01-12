@@ -84,7 +84,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     // Get Uri
-                    String path = Environment.getExternalStorageDirectory().toString() + "/GÃ¼nlÃ¼k BurÃ§lar";
+                    String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar";
                     File f = new File(path);
                     File file[] = f.listFiles();
                     Intent intent = new Intent();
