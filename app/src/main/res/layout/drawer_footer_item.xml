@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ImageView
+        android:id="@+id/footerGooglePlay"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/footerBurclar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="3dp"
+        android:src="@drawable/ic_googleplay" />
+
+    <ImageView
+        android:id="@+id/footerTwitter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/footerBurclar"
+        android:layout_margin="3dp"
+        android:layout_toLeftOf="@+id/footerGooglePlay"
+        android:src="@drawable/ic_social_twitter" />
+
+    <ImageView
+        android:id="@+id/footerYoutube"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/footerBurclar"
+        android:layout_margin="3dp"
+        android:layout_toRightOf="@+id/footerGooglePlay"
+        android:src="@drawable/ic_social_youtube" />
+
+    <ImageView
+        android:id="@+id/footerGooglePlus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/footerBurclar"
+        android:layout_margin="3dp"
+        android:layout_toRightOf="@+id/footerYoutube"
+        android:src="@drawable/ic_social_google" />
+
+    <ImageView
+        android:id="@+id/footerFacebook"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/footerBurclar"
+        android:layout_margin="3dp"
+        android:layout_toLeftOf="@+id/footerTwitter"
+        android:src="@drawable/ic_social_facebook" />
+
+    <ImageView
+        android:id="@+id/footerBurclar"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_burclar" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/footerGooglePlay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:alpha="0.54"
+        android:text="Copyright © 2016 U&amp;U Software"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000"
+        android:textSize="8sp" />
+
+</RelativeLayout>

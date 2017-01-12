@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_home">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/adMob">
+
+        <TextView
+            android:id="@+id/textView1yukselen"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#212121"
+            android:gravity="center"
+            android:text="Burcunuz"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+            app:layout_heightPercent="30%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="45%" />
+
+        <TextView
+            android:id="@+id/textView2yukselen"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#FAFAFA"
+            android:gravity="center"
+            android:text="Doğum saatiniz"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
+            app:layout_heightPercent="30%"
+            app:layout_marginRightPercent="5%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="45%" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1yukselen"
+            android:background="@null"
+            android:gravity="center"
+            android:prompt="@string/spinnerdialog"
+            android:spinnerMode="dialog"
+            app:layout_heightPercent="40%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="45%" />
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_alignBottom="@+id/spinner1"
+            android:layout_alignRight="@+id/spinner1"
+            android:progressDrawable="@drawable/whiteprogress"
+            app:layout_heightPercent="2%"
+            app:layout_marginLeftPercent="15%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="100%" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView2yukselen"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
+            app:layout_heightPercent="40%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginRightPercent="5%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="45%"
+            android:text="23:59" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignLeft="@+id/textView2"
+            android:progressDrawable="@drawable/whiteprogress"
+            app:layout_heightPercent="2%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="100%" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/spinner1"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/button_yukselenburc"
+            app:layout_heightPercent="20%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="70%" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adMob"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-1576175228836763/1808364538">
+
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>
