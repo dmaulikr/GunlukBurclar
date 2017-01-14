@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -49,7 +50,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
     ImageView imageerkek, imagekadin;
 
     //Facebook Audience Network
-    private com.facebook.ads.AdView adView;
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
