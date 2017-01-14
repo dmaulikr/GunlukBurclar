@@ -18,12 +18,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -37,7 +39,6 @@ public class FragmentThird extends Fragment {
     int color2 = Color.parseColor("#313131");
     Window window;
     ActionBar bar;
-    AdView adView;
     TextView txt;
     ImageView imagebutton;
     Spinner spinner1;
@@ -55,19 +56,24 @@ public class FragmentThird extends Fragment {
     Calendar mcurrentTime;
     int hour, minute;
 
+    //Facebook Audience Network
+    private AdView adView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_third, container, false);
 
-        // Premium & AdMob
+        // Premium & Facebook Audience Network
         boolean premium = MainActivity.premium;
-        AdView adView = (AdView) rootView.findViewById(R.id.adMob);
         if (premium) {
-            adView.setVisibility(View.GONE);
+            //Do nothing
         } else {
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
-            adView.loadAd(adRequest);
+            RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
+            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
+            adViewContainer.addView(adView);
+            adView.loadAd();
         }
 
         // Colored bars
@@ -656,6 +662,14 @@ public class FragmentThird extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
+    }
+
     public class SpinnerAdapter extends ArrayAdapter<String> {
 
         public SpinnerAdapter(Context context, int textViewResourceId, String[] objects) {
@@ -689,5 +703,4 @@ public class FragmentThird extends Fragment {
             return row2;
         }
     }
-
 }

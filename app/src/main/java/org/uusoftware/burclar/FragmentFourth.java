@@ -15,9 +15,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -48,18 +50,23 @@ public class FragmentFourth extends Fragment {
     String domuz = "Domuz insanı Çin Zodyakı’nda güvenilirliğiyle tanınır. Son derece duyarlı, duygusal, insanlara ve insan ilişkilerine önem veren bir yapısı vardır. Evliliğe, bağlanmaya ve tek eşliliğe çok yatkındır Domuz insanı. Domuz insanı başkalarının isteklerine göre kendi isteklerini ve programlarını değiştirmeye yatkındır. Özellikle sevdiği insanların ricalarını bile bir emir gibi algılayarak, hiç sorgulamaksızın yerine getirmeye gayret eder. Bu özelliği pek çok zaman kendisi için yaşayamamasına, kendi gereksinimlerini göz ardı etmesine ve gelişimini tamamlamakta gecikmesine nedendir. Aynı özellik pek çok kere manipülatif bir yapının ortaya çıkmasına ve suistimaller yaşamasına da neden olur. Mesleki alanda oldukça başarılı bir insandır Domuz. Son derece duygusal ve verici olmasına rağmen, iş hayatına geldiğinde gözünü açar. Gerekenleri yaparak, kendisini amaçlarına ulaşmakta engelleyebilecek tüm unsurları ortadan kaldırmak için mücadele eder. Kültür ve sanata yatkınlığı, özellikle bu konularla bağlantılı mesleklerde başarılı olmasının temel nedenidir. Yine de huzura ve sukünete duyduğu ihtiyaç, yoğun mücadelelerin ve rekabetin bünyesini ve sinir sistemini zayıflatmasına neden olur. Hayatı ve kendisi için yüksek standartlar koyan Domuz insanı, iş yaşamında da aynı beklentiler içindedir. Dolayısıyla her hangi bir pozisyonda olmak kendisini rahatsız eder. Statüye verdiği önem, farkedilen bir pozisyonda olmak istemesinin temel gerekçesidir. Aşka ve sevgiye son derece düşkün olan Domuz insanı, geleneklerin dışına çıkmak istemez. Birlikteliklerinde normlar dahilinde hareket etmeyi ve standardları aşmamayı hedef haline getirir. Bu özelliği Domuz’un erken yaşlarda evlenmesine nedendir. Karşısındaki insanı olduğu gibi kabul Eden Domuz insanı, aslında fiziksel çekiciliğe ve ruh güzelliğine karşı da duyarlıdır. Eşinin farkedilen birisi olmasından gurur duyar ama, kıskanmaktan da kendisini alıkoyamaz. Kıskançlığının sonucunda karşısındaki insanı kısıtlamak ya da denetlemek istediği zamanlar da olabilir. Domuz kadını, kalıcılığa önem veren, inasanları seven, onlar için bir şeyler yapmaktan keyif olan bir insandır. Sevdiklerine en güzel şeyleri yaşatmak için elindeki tüm kaynaklarını kullanabilir. Domuz kadını birlikte olduğu erkeğin, elit bir tabakadan ve güçlü olmasını ister. ıyi döşenmiş ve güvenliği sağlanmış bir ev, güzel giyecekler ve misafirlerine sunabileceği nadide yiyecekler Domuz kadınının mutluluğunda önemli role sahiptir. Domuz kadını birlikte olduğu erkeğin, elit bir tabakadan ve güçlü olmasını ister. ıyi döşenmiş ve güvenliği sağlanmış bir ev, güzel giyecekler ve misafirlerine sunabileceği nadide yiyecekler Domuz kadınının mutluluğunda önemli role sahiptir. Domuz erkeğinin iş yaşamıyla alakalı büyük hedefleri vardır. Ancak duygusallığa yatkın doğası, büyük hedeflere ulaşamamasındaki en önemli etkendir. Zaman zaman kendi duygusallığından ürken Domuz erkeği, kendini ne kadar kontrol etmeye çalışsa da yine de hisler dünyasından kopamaz.";
     String unknown = "Burcunuzu tespit edemedik. Doğum tarihinizi doğru girdiğinizden emin misiniz? Lütfen tekrar deneyin.";
 
+    //Facebook Audience Network
+    private AdView adView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_fourth, container, false);
 
-        // Premium & AdMob
+        // Premium & Facebook Audience Network
         boolean premium = MainActivity.premium;
-        AdView adView = (AdView) rootView.findViewById(R.id.adMob);
         if (premium) {
-            adView.setVisibility(View.GONE);
+            //Do nothing
         } else {
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
-            adView.loadAd(adRequest);
+            RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
+            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
+            adViewContainer.addView(adView);
+            adView.loadAd();
         }
 
         // Colored bars
@@ -637,5 +644,13 @@ public class FragmentFourth extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/adMob">
+        android:layout_above="@+id/adFacebook">
 
         <ImageView
             android:id="@+id/imageView1"
@@ -34,13 +33,11 @@
             app:layout_widthPercent="100%" />
     </android.support.percent.PercentRelativeLayout>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adMob"
+    <RelativeLayout
+        android:id="@+id/adFacebook"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-1576175228836763/1808364538" />
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

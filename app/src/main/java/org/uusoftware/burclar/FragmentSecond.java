@@ -17,11 +17,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -204,27 +206,30 @@ public class FragmentSecond extends Fragment {
     ActionBar bar;
     Spinner spinner, spinner2;
     Intent intent;
-
     String[] strings = {"21 Mart–19 Nisan", "20 Nisan–20 Mayıs", "21 Mayıs–21 Haziran", "22 Haziran–22 Temmuz",
             "23 Temmuz–22 Ağustos", "23 Ağustos–22 Eylül", "23 Eylül–22 Ekim", "23 Ekim–21 Kasım", "23 Kasım–21 Aralık",
             "22 Aralık–19 Ocak", "20 Ocak–18 Şubat", "19 Şubat–20 Mart"};
     int images[] = {R.drawable.burc_koc, R.drawable.burc_boga, R.drawable.burc_ikizler, R.drawable.burc_yengec,
             R.drawable.burc_aslan, R.drawable.burc_basak, R.drawable.burc_terazi, R.drawable.burc_akrep,
             R.drawable.burc_yay, R.drawable.burc_oglak, R.drawable.burc_kova, R.drawable.burc_balik};
+    //Facebook Audience Network
+    private AdView adView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_second, container, false);
 
-        // Premium & AdMob
+        // Premium & Facebook Audience Network
         boolean premium = MainActivity.premium;
-        AdView adView = (AdView) rootView.findViewById(R.id.adMob);
         if (premium) {
-            adView.setVisibility(View.GONE);
+            //Do nothing
         } else {
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
-            adView.loadAd(adRequest);
+            RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
+            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
+            adViewContainer.addView(adView);
+            adView.loadAd();
         }
 
         // Colored bars
@@ -823,6 +828,14 @@ public class FragmentSecond extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 
     public class SpinnerAdapter extends ArrayAdapter<String> {

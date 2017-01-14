@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -43,18 +44,13 @@ public class SecondActivity extends AppCompatActivity {
     ActionBar bar;
     Tracker t;
 
+    //Facebook Audience Network
+    private AdView adView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
-        // Premium & AdMob
-        boolean premium = MainActivity.premium;
-        if (premium) {
-            // Do nothing
-        } else {
-            // Do nothing
-        }
 
         // Analytics
         t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
@@ -185,5 +181,13 @@ public class SecondActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

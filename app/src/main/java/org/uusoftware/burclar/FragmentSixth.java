@@ -8,28 +8,35 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 
 public class FragmentSixth extends Fragment {
 
     int selectedburc;
     String link;
 
+    //Facebook Audience Network
+    private AdView adView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_general, container, false);
 
-        // Premium & AdMob
+        // Premium & Facebook Audience Network
         boolean premium = MainActivity.premium;
-        AdView adView = (AdView) v.findViewById(R.id.adMob);
         if (premium) {
-            adView.setVisibility(View.GONE);
+            //Do nothing
         } else {
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
-            adView.loadAd(adRequest);
+            RelativeLayout adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
+            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
+            adViewContainer.addView(adView);
+            adView.loadAd();
         }
 
         selectedburc = SecondActivity.burcid;
@@ -78,5 +85,13 @@ public class FragmentSixth extends Fragment {
         myWebView.loadUrl(link);
 
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

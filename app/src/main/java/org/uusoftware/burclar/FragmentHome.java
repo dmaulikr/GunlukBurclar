@@ -13,9 +13,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -29,19 +30,24 @@ public class FragmentHome extends Fragment {
     ActionBar bar;
     boolean premium;
 
+    //Facebook Audience Network
+    private com.facebook.ads.AdView adView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Premium & AdMob
+        // Premium & Facebook Audience Network
         premium = MainActivity.premium;
-        AdView adView = (AdView) v.findViewById(R.id.adMob);
         if (premium) {
-            adView.setVisibility(View.GONE);
+            //Do nothing
         } else {
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
-            adView.loadAd(adRequest);
+            RelativeLayout adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
+            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
+            adViewContainer.addView(adView);
+            adView.loadAd();
         }
 
         // Colored bars
@@ -119,10 +125,10 @@ public class FragmentHome extends Fragment {
                         intent.putExtra("burcid", 11);
                         break;
                 }
-                if (!premium) {
-                    showAds();
-                } else {
+                if (premium) {
                     startActivity(intent);
+                } else {
+                    showAds();
                 }
             }
 
@@ -135,16 +141,16 @@ public class FragmentHome extends Fragment {
                 long a = MainActivity.start;
                 long b = System.currentTimeMillis();
 
-                if (b - a >= 7500 && !displayed) {
+                if (b - a >= 2500 && !displayed) {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     MainActivity.displayAds();
-                } else if (b - a >= 45000 && !displayed2) {
+                } else if (b - a >= 30000 && !displayed2) {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     MainActivity.displayAds2();
-                } else if (b - a >= 180000 && !displayed3) {
+                } else if (b - a >= 90000 && !displayed3) {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     MainActivity.displayAds3();
-                } else if (b - a >= 360000 && !displayed4) {
+                } else if (b - a >= 180000 && !displayed4) {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     MainActivity.displayAds4();
                 } else {
@@ -167,5 +173,13 @@ public class FragmentHome extends Fragment {
         img12.setOnClickListener(buttonListener);
 
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

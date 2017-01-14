@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background_home">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/background_home">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/adMob">
+        android:layout_above="@+id/adFacebook">
 
         <TextView
             android:id="@+id/textView1yukselen"
@@ -79,14 +78,14 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/textView2yukselen"
             android:gravity="center"
+            android:text="23:59"
             android:textColor="#FFFFFF"
             android:textSize="50sp"
             app:layout_heightPercent="40%"
             app:layout_marginBottomPercent="2.5%"
             app:layout_marginRightPercent="5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="45%"
-            android:text="23:59" />
+            app:layout_widthPercent="45%"/>
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -111,15 +110,11 @@
             app:layout_widthPercent="70%" />
     </android.support.percent.PercentRelativeLayout>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adMob"
+    <RelativeLayout
+        android:id="@+id/adFacebook"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-1576175228836763/1808364538">
-
-    </com.google.android.gms.ads.AdView>
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

@@ -8,8 +8,7 @@
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/adMob" />
+        android:layout_height="match_parent"/>
 
     <!-- Listview to display slider menu -->
 
