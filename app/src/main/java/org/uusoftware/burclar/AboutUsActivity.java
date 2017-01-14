@@ -14,10 +14,12 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -39,19 +41,26 @@ public class AboutUsActivity extends AppCompatActivity {
     ImageView image1, image2, image3, image4, image5, image6, image7;
     Intent intent1, intent2, intent3, intent4, intent5, intent6;
 
+    //Facebook
+    private AdView adView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
 
         // Premium & AdMob
+        RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
+        adView = new AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+        AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
+        adViewContainer.addView(adView);
+
         boolean premium = MainActivity.premium;
-        AdView adView = (AdView) findViewById(R.id.adMob);
+
         if (premium) {
-            adView.setVisibility(View.GONE);
+            adViewContainer.setVisibility(View.GONE);
         } else {
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
-            adView.loadAd(adRequest);
+            adView.loadAd();
         }
 
         // Colored bars
@@ -162,5 +171,13 @@ public class AboutUsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }
