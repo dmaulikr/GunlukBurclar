@@ -32,8 +32,8 @@
                 android:layout_below="@+id/imageViewgenelozellikler"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="21 Mart - 19 Nisan"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#FFFFFF"
                 android:textSize="22sp" />
 

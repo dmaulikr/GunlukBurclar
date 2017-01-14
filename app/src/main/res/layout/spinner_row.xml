@@ -7,24 +7,24 @@
     <ImageView
         android:id="@+id/imageView1"
         style="?android:attr/spinnerItemStyle"
-        app:layout_heightPercent="70%"
-        app:layout_marginTopPercent="5%"
-        app:layout_widthPercent="100%"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:contentDescription="Spinner burç iconu"
-        android:src="@drawable/burc_koc" />
+        android:src="@drawable/burc_koc"
+        app:layout_heightPercent="70%"
+        app:layout_marginTopPercent="5%"
+        app:layout_widthPercent="100%" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        app:layout_heightPercent="20%"
-        app:layout_marginBottomPercent="5%"
-        app:layout_widthPercent="100%"
         android:gravity="center"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        app:layout_heightPercent="20%"
+        app:layout_marginBottomPercent="5%"
+        app:layout_widthPercent="100%" />
 
 </android.support.percent.PercentRelativeLayout>

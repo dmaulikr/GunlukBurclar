@@ -47,7 +47,25 @@ import jp.co.recruit_mp.android.rmp_appirater.RmpAppirater;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_ID_PERMISSION = 1;
+    public static Context mContext;
+    public static boolean premium = false;
+    public static long start = System.currentTimeMillis();
+    public static boolean displayed = false;
+    public static boolean displayed2 = false;
+    public static boolean displayed3 = false;
+    public static boolean displayed4 = false;
     static InterstitialAd interstitial;
+    private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE};
+    Fragment fragment = null;
+    FragmentTransaction ft;
+    boolean doubleBackToExitPressedOnce = false;
+    PendingIntent pendingIntent;
+    IInAppBillingService mService;
+    ServiceConnection mServiceConn;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -57,24 +75,47 @@ public class MainActivity extends AppCompatActivity {
     private TypedArray navMenuIcons;
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
-    Fragment fragment = null;
-    public static Context mContext;
-    FragmentTransaction ft;
-    boolean doubleBackToExitPressedOnce = false;
-    PendingIntent pendingIntent;
-    public static boolean premium = false;
-    public static long start = System.currentTimeMillis();
-    public static boolean displayed = false;
-    public static boolean displayed2 = false;
-    public static boolean displayed3 = false;
-    public static boolean displayed4 = false;
-    IInAppBillingService mService;
-    ServiceConnection mServiceConn;
-    SharedPreferences prefs;
-    SharedPreferences.Editor editor;
-    private static final int REQUEST_ID_PERMISSION = 1;
-    private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE};
+
+    public static void displayAds() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+            displayed = true;
+        } else {
+            mContext.startActivity(FragmentHome.intent);
+        }
+    }
+
+    public static void displayAds2() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+            displayed2 = true;
+        } else {
+            mContext.startActivity(FragmentHome.intent);
+        }
+    }
+
+    public static void displayAds3() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+            displayed3 = true;
+        } else {
+            mContext.startActivity(FragmentHome.intent);
+        }
+    }
+
+    public static void displayAds4() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+            displayed4 = true;
+        } else {
+            mContext.startActivity(FragmentHome.intent);
+        }
+    }
+
+    public static void createFolder() {
+        File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
+        folder.mkdirs();
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,42 +286,6 @@ public class MainActivity extends AppCompatActivity {
         interstitial.loadAd(adRequest);
     }
 
-    public static void displayAds() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
-
-    public static void displayAds2() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed2 = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
-
-    public static void displayAds3() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed3 = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
-
-    public static void displayAds4() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed4 = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
-
     public void AlarmManager() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
@@ -315,18 +320,6 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             createFolder();
-        }
-    }
-
-    public static void createFolder() {
-        File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
-        folder.mkdirs();
-    }
-
-    private class SlideMenuClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            displayView(position);
         }
     }
 
@@ -562,6 +555,13 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         if (mService != null) {
             unbindService(mServiceConn);
+        }
+    }
+
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            displayView(position);
         }
     }
 }

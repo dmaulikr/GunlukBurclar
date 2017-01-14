@@ -6,8 +6,8 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
 public class AnalyticsApplication extends Application {
-    private Tracker mTracker;
     String trackingId = "UA-66337763-5";
+    private Tracker mTracker;
 
     synchronized public Tracker getDefaultTracker() {
         if (mTracker == null) {

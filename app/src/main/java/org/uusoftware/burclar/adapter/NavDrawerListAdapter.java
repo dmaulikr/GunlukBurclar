@@ -19,8 +19,6 @@ import java.util.ArrayList;
 
 public class NavDrawerListAdapter extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<NavDrawerItem> navDrawerItems;
     String str1 = "https://www.facebook.com/uusoftware";
     String str2 = "https://twitter.com/uusoftware1";
     String str3 = "https://play.google.com/store/apps/dev?id=9176605091546815752";
@@ -28,6 +26,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
     String str5 = "https://plus.google.com/115518080824239135242/posts";
     boolean premium;
     int position2;
+    private Context context;
+    private ArrayList<NavDrawerItem> navDrawerItems;
 
     public NavDrawerListAdapter(Context context, ArrayList<NavDrawerItem> navDrawerItems) {
         this.context = context;

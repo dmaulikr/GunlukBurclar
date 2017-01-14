@@ -31,16 +31,16 @@ import java.util.Date;
 
 public class SecondActivity extends AppCompatActivity {
 
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    public static int burcid;
+    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
     int color = Color.parseColor("#1976D2");
     int color2 = Color.parseColor("#2196F3");
     Window window;
     ActionBar bar;
-    public static int burcid;
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
     Tracker t;
 
     @Override

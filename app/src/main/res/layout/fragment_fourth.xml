@@ -19,8 +19,8 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/cin_yingyang"
             app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="2.5%"
             app:layout_marginBottomPercent="2.5%"
+            app:layout_marginTopPercent="2.5%"
             app:layout_widthPercent="50%" />
 
         <TextView

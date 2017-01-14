@@ -34,7 +34,6 @@ public class FavoritesActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     GridLayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
-    private List<GridItem> feedsList;
     Tracker t;
     int color = Color.parseColor("#424242");
     int color2 = Color.parseColor("#757575");
@@ -42,6 +41,7 @@ public class FavoritesActivity extends AppCompatActivity {
     ActionBar bar;
     GridItem item;
     BitmapFactory.Options options;
+    private List<GridItem> feedsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

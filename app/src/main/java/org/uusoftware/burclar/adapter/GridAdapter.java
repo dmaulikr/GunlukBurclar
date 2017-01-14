@@ -24,6 +24,46 @@ import java.util.List;
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     private List<GridItem> feedItemList;
     private Context mContext;
+    View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ViewHolder holder = (ViewHolder) view.getTag();
+            final int position = holder.getPosition();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle(R.string.chooseaction);
+            builder.setItems(R.array.choose_actions, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Get Uri
+                    String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar";
+                    File f = new File(path);
+                    File file[] = f.listFiles();
+                    Intent intent = new Intent();
+                    if (which == 0) {
+                        // Show
+                        intent.setAction(android.content.Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.fromFile(file[position]), "image/*");
+                        mContext.startActivity(intent);
+                    } else if (which == 1) {
+                        // Share
+                        intent.setAction(Intent.ACTION_SEND);
+                        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file[position]));
+                        intent.setType("image/*");
+                        mContext.startActivity(intent);
+                    } else {
+                        // Delete
+                        file[position].delete();
+                        Toast.makeText(mContext, R.string.deleted, Toast.LENGTH_SHORT).show();
+                        intent = new Intent(mContext, FavoritesActivity.class);
+                        mContext.startActivity(intent);
+                        ((FavoritesActivity) mContext).finish();
+                    }
+                }
+            });
+            builder.show();
+        }
+    };
 
     public GridAdapter(Context context, List<GridItem> feedItemList) {
         this.feedItemList = feedItemList;
@@ -71,45 +111,4 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             text = (TextView) itemView.findViewById(R.id.txt_text);
         }
     }
-
-    View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            ViewHolder holder = (ViewHolder) view.getTag();
-            final int position = holder.getPosition();
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setTitle(R.string.chooseaction);
-            builder.setItems(R.array.choose_actions, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // Get Uri
-                    String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar";
-                    File f = new File(path);
-                    File file[] = f.listFiles();
-                    Intent intent = new Intent();
-                    if (which == 0) {
-                        // Show
-                        intent.setAction(android.content.Intent.ACTION_VIEW);
-                        intent.setDataAndType(Uri.fromFile(file[position]), "image/*");
-                        mContext.startActivity(intent);
-                    } else if (which == 1) {
-                        // Share
-                        intent.setAction(Intent.ACTION_SEND);
-                        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file[position]));
-                        intent.setType("image/*");
-                        mContext.startActivity(intent);
-                    } else {
-                        // Delete
-                        file[position].delete();
-                        Toast.makeText(mContext, R.string.deleted, Toast.LENGTH_SHORT).show();
-                        intent = new Intent(mContext, FavoritesActivity.class);
-                        mContext.startActivity(intent);
-                        ((FavoritesActivity) mContext).finish();
-                    }
-                }
-            });
-            builder.show();
-        }
-    };
 }

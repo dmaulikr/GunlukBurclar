@@ -32,6 +32,9 @@ import java.util.Date;
 
 public class CinAstrolojisiActivity extends AppCompatActivity {
 
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
     TextView text1, text2;
     ImageView image1;
     Tracker t;
@@ -41,9 +44,6 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     ActionBar bar;
     String burc, burcyazisi;
     int burciconu;
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

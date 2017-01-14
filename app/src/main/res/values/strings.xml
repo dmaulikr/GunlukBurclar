@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="facebook_app_id">155235578298611</string>
+    <string name="fb_login_protocol_scheme">fb155235578298611</string>
     <string name="app_name">Günlük Burçlar</string>
     <string name="action_support">Bizi destekleyin!</string>
     <string name="action_about">Hakkımızda</string>

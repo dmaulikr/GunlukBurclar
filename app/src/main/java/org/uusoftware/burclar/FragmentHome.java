@@ -21,12 +21,12 @@ import com.google.android.gms.analytics.Tracker;
 
 public class FragmentHome extends Fragment {
 
+    public static Intent intent;
     Tracker t;
     int color = Color.parseColor("#000000");
     int color2 = Color.parseColor("#313131");
     Window window;
     ActionBar bar;
-    public static Intent intent;
     boolean premium;
 
     @Override
