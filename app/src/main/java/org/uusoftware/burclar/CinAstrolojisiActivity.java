@@ -4,12 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -39,8 +39,6 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     TextView text1, text2;
     ImageView image1;
     Tracker t;
-    int color = Color.parseColor("#1B5E20");
-    int color2 = Color.parseColor("#388E3C");
     Window window;
     ActionBar bar;
     String burc, burcyazisi;
@@ -71,13 +69,13 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
             window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(color);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorCinDark));
 
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorCinPrimary)));
         } else {
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorCinPrimary)));
         }
 
         // Analytics

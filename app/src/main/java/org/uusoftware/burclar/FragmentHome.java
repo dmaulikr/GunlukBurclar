@@ -1,17 +1,12 @@
 package org.uusoftware.burclar;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -24,10 +19,6 @@ public class FragmentHome extends Fragment {
 
     public static Intent intent;
     Tracker t;
-    int color = Color.parseColor("#000000");
-    int color2 = Color.parseColor("#313131");
-    Window window;
-    ActionBar bar;
     boolean premium;
 
     //Facebook Audience Network
@@ -48,20 +39,6 @@ public class FragmentHome extends Fragment {
             AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
             adViewContainer.addView(adView);
             adView.loadAd();
-        }
-
-        // Colored bars
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            window = getActivity().getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(color);
-
-            bar = ((MainActivity) getActivity()).getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
-        } else {
-            bar = ((MainActivity) getActivity()).getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
         }
 
         // Analytics

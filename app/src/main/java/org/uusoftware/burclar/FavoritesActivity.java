@@ -2,10 +2,10 @@ package org.uusoftware.burclar;
 
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -35,8 +35,6 @@ public class FavoritesActivity extends AppCompatActivity {
     GridLayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
     Tracker t;
-    int color = Color.parseColor("#424242");
-    int color2 = Color.parseColor("#757575");
     Window window;
     ActionBar bar;
     GridItem item;
@@ -68,13 +66,13 @@ public class FavoritesActivity extends AppCompatActivity {
             window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(color);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorAboutDark));
 
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
         } else {
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
         }
 
         // Analytics

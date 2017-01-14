@@ -16,10 +16,10 @@ public class Utils {
     public static void generateNotification(Context context) {
         Intent intent = new Intent(context, SplashActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_icon);
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
         SimpleDateFormat sdf = new SimpleDateFormat("d MMMM yyyy EEEE");
         Notification noti = new NotificationCompat.Builder(context).setContentTitle("Günlük Burçlar")
-                .setContentText(sdf.format(new Date()) + ": " + "Günlük burç yorumunuz").setSmallIcon(R.drawable.ic_icon)
+                .setContentText(sdf.format(new Date()) + ": " + "Günlük burç yorumunuz").setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pIntent).setLargeIcon(bm).setDefaults(Notification.DEFAULT_ALL).setPriority(2).build();
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);

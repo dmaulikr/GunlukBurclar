@@ -1,8 +1,8 @@
 package org.uusoftware.burclar;
 
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -18,8 +18,6 @@ import com.google.android.gms.analytics.Tracker;
 
 public class HelpingActivity extends AppCompatActivity {
 
-    int color = Color.parseColor("#424242");
-    int color2 = Color.parseColor("#757575");
     Window window;
     ActionBar bar;
     Tracker t;
@@ -49,13 +47,13 @@ public class HelpingActivity extends AppCompatActivity {
             window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(color);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorAboutDark));
 
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
         } else {
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
         }
 
         // Analytics

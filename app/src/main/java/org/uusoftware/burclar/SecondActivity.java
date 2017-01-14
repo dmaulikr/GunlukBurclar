@@ -4,12 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +20,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -38,14 +37,9 @@ public class SecondActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-    int color = Color.parseColor("#1976D2");
-    int color2 = Color.parseColor("#2196F3");
     Window window;
     ActionBar bar;
     Tracker t;
-
-    //Facebook Audience Network
-    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +57,13 @@ public class SecondActivity extends AppCompatActivity {
             window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(color);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorYorumDark));
 
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorYorumPrimary)));
         } else {
             bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorYorumPrimary)));
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -181,13 +175,5 @@ public class SecondActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 }

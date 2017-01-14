@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,12 +21,16 @@ import android.os.RemoteException;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -66,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     ServiceConnection mServiceConn;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+    Window window;
+    ActionBar bar;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -124,6 +131,20 @@ public class MainActivity extends AppCompatActivity {
         mContext = this.getApplicationContext();
         InAppBilling();
         editor = getSharedPreferences("Preferences", Context.MODE_PRIVATE).edit();
+
+        // Colored bars
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
+
+            bar = this.getSupportActionBar();
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
+        } else {
+            bar = this.getSupportActionBar();
+            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
+        }
 
         // Create Günlük Burçlar folder
         verifyStoragePermissions();

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorMainDark">#000000</color>
+    <color name="colorMainPrimary">#313131</color>
+
+    <color name="colorAboutDark">#424242</color>
+    <color name="colorAboutPrimary">#757575</color>
+
+    <color name="colorUyumDark">#C2185B</color>
+    <color name="colorUyumPrimary">#E91E63</color>
+
+    <color name="colorCinDark">#1B5E20</color>
+    <color name="colorCinPrimary">#388E3C</color>
+
+    <color name="colorYorumDark">#1976D2</color>
+    <color name="colorYorumPrimary">#2196F3</color>
+
+    <color name="colorYukselenDark">#E64A19</color>
+    <color name="colorYukselenPrimary">#FF5722</color>
+
+</resources>
