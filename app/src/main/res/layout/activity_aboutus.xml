@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background_home">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/background_home">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="fill_parent"
@@ -20,7 +20,7 @@
             app:layout_heightPercent="30%"
             app:layout_marginBottomPercent="2.5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="50%" />
+            app:layout_widthPercent="50%"/>
 
         <ImageView
             android:id="@+id/imageView2"
@@ -34,7 +34,7 @@
             app:layout_heightPercent="15%"
             app:layout_marginLeftPercent="20%"
             app:layout_marginTopPercent="3.75%"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="20%"/>
 
         <ImageView
             android:id="@+id/imageView3"
@@ -46,7 +46,7 @@
             android:src="@drawable/ic_social_twitter"
             app:layout_heightPercent="15%"
             app:layout_marginTopPercent="3.75%"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="20%"/>
 
         <ImageView
             android:id="@+id/imageView4"
@@ -58,7 +58,7 @@
             android:src="@drawable/ic_social_youtube"
             app:layout_heightPercent="15%"
             app:layout_marginTopPercent="3.75%"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="20%"/>
 
         <ImageView
             android:id="@+id/imageView5"
@@ -71,7 +71,7 @@
             android:src="@drawable/ic_social_instagram"
             app:layout_heightPercent="15%"
             app:layout_marginLeftPercent="20%"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="20%"/>
 
         <ImageView
             android:id="@+id/imageView6"
@@ -82,7 +82,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_social_google"
             app:layout_heightPercent="15%"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="20%"/>
 
         <ImageView
             android:id="@+id/imageView7"
@@ -93,7 +93,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_about_mail"
             app:layout_heightPercent="15%"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="20%"/>
 
         <TextView
             android:id="@+id/textView1"
@@ -107,7 +107,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF"
             app:layout_heightPercent="22.5%"
-            app:layout_widthPercent="95%" />
+            app:layout_widthPercent="95%"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -121,15 +121,14 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#FFFFFF"
             app:layout_heightPercent="5%"
-            app:layout_widthPercent="90%" />
+            app:layout_widthPercent="90%"/>
 
     </android.support.percent.PercentRelativeLayout>
-
 
     <RelativeLayout
         android:id="@+id/adFacebook"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

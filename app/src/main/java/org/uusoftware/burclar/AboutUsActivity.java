@@ -41,7 +41,7 @@ public class AboutUsActivity extends AppCompatActivity {
     ImageView image1, image2, image3, image4, image5, image6, image7;
     Intent intent1, intent2, intent3, intent4, intent5, intent6;
 
-    //Facebook
+    //Facebook Audience Network
     private AdView adView;
 
     @Override
@@ -49,17 +49,15 @@ public class AboutUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
 
-        // Premium & AdMob
-        RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-        adView = new AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-        AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
-        adViewContainer.addView(adView);
-
+        // Premium & Facebook Audience Network
         boolean premium = MainActivity.premium;
-
         if (premium) {
-            adViewContainer.setVisibility(View.GONE);
+            //Do nothing
         } else {
+            RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
+            adView = new AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
+            adViewContainer.addView(adView);
             adView.loadAd();
         }
 
