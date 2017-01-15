@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,8 +38,6 @@ public class BurcUyumuActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    Window window;
-    ActionBar bar;
     String uyum;
     int skor, burckadin, burcerkek;
     TextView text, number;
@@ -68,17 +66,18 @@ public class BurcUyumuActivity extends AppCompatActivity {
         }
 
         // Colored bars
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            window = this.getWindow();
+            Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorUyumDark));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
 
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorUyumPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
         } else {
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorUyumPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
         }
 
         // Analytics

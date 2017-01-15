@@ -5,8 +5,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,8 +33,6 @@ public class AboutUsActivity extends AppCompatActivity {
     String str6 = "https://plus.google.com/115518080824239135242";
 
     Tracker t;
-    Window window;
-    ActionBar bar;
 
     ImageView image1, image2, image3, image4, image5, image6, image7;
     Intent intent1, intent2, intent3, intent4, intent5, intent6;
@@ -60,17 +58,18 @@ public class AboutUsActivity extends AppCompatActivity {
         }
 
         // Colored bars
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            window = this.getWindow();
+            Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorAboutDark));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
 
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
         } else {
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
         }
 
         // Analytics

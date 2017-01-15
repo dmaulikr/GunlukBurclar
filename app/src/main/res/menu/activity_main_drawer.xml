@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_slider_home"
+            android:title="@string/nav_home"/>
+        <item
+            android:id="@+id/nav_uyum"
+            android:icon="@drawable/ic_slider_home2"
+            android:title="@string/nav_uyum"/>
+        <item
+            android:id="@+id/nav_yukselen"
+            android:icon="@drawable/ic_slider_home3"
+            android:title="@string/nav_yukselen"/>
+        <item
+            android:id="@+id/nav_cin"
+            android:icon="@drawable/ic_slider_home4"
+            android:title="@string/nav_cin"/>
+    </group>
+
+    <item android:title="Ekstralar">
+        <menu>
+            <item
+                android:id="@+id/nav_favoriler"
+                android:icon="@drawable/ic_slider_home5"
+                android:title="@string/nav_favoriler"/>
+            <item
+                android:id="@+id/nav_premium"
+                android:icon="@drawable/ic_slider_premium"
+                android:title="@string/nav_premium"/>
+
+            <item
+                android:id="@+id/nav_puanla"
+                android:icon="@drawable/ic_slider_premium"
+                android:title="@string/nav_puanla"/>
+
+            <item
+                android:id="@+id/nav_beta"
+                android:icon="@drawable/ic_slider_premium"
+                android:title="@string/nav_beta"/>
+        </menu>
+    </item>
+
+</menu>

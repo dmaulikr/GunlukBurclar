@@ -4,27 +4,23 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AdSize;
-import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -36,43 +32,30 @@ public class YukselenBurcActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    Window window;
-    ActionBar bar;
     int selectedburc;
     Tracker t;
-
-    //Facebook Audience Network
-    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yukselen);
 
-        // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
-        if (premium) {
-            //Do nothing
-        } else {
-            RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-            adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
-            adViewContainer.addView(adView);
-            adView.loadAd();
-        }
-
         // Colored bars
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
+
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            window = this.getWindow();
+            Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorAboutDark));
+            window.setStatusBarColor(Color.TRANSPARENT);
 
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         } else {
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorAboutPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
         // Analytics
@@ -84,68 +67,68 @@ public class YukselenBurcActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         selectedburc = extras.getInt("burcid");
 
-        ImageView image = (ImageView) findViewById(R.id.imageViewgenelozellikler);
-        TextView textview2 = (TextView) findViewById(R.id.textView2genelozellikler);
-        TextView textview3 = (TextView) findViewById(R.id.textView3genelozellikler);
+        ImageView image = (ImageView) findViewById(R.id.burc_header);
+        // TextView textview2 = (TextView) findViewById(R.id.textView2genelozellikler);
+        TextView textview3 = (TextView) findViewById(R.id.burc_exp);
 
         if (selectedburc == 0) {
             image.setImageResource(R.drawable.burc_koc);
-            textview2.setText("21 Mart - 20 Nisan");
+            //textview2.setText("21 Mart - 20 Nisan");
             textview3.setText(R.string.koc);
         }
         if (selectedburc == 1) {
             image.setImageResource(R.drawable.burc_boga);
-            textview2.setText("21 Nisan - 20 Mayıs");
+            //textview2.setText("21 Nisan - 20 Mayıs");
             textview3.setText(R.string.boga);
         }
         if (selectedburc == 2) {
             image.setImageResource(R.drawable.burc_ikizler);
-            textview2.setText("21 Mayıs - 20 Haziran");
+            // textview2.setText("21 Mayıs - 20 Haziran");
             textview3.setText(R.string.ikizler);
         }
         if (selectedburc == 3) {
             image.setImageResource(R.drawable.burc_yengec);
-            textview2.setText("21 Haziran - 20 Temmuz");
+            // textview2.setText("21 Haziran - 20 Temmuz");
             textview3.setText(R.string.yengec);
         }
         if (selectedburc == 4) {
             image.setImageResource(R.drawable.burc_aslan);
-            textview2.setText("23 Temmuz - 23 Ağustos");
+            // textview2.setText("23 Temmuz - 23 Ağustos");
             textview3.setText(R.string.aslan);
         }
         if (selectedburc == 5) {
             image.setImageResource(R.drawable.burc_basak);
-            textview2.setText("24 Ağustos - 23 Eylül");
+            // textview2.setText("24 Ağustos - 23 Eylül");
             textview3.setText(R.string.basak);
         }
         if (selectedburc == 6) {
             image.setImageResource(R.drawable.burc_terazi);
-            textview2.setText("24 Eylül - 23 Ekim");
+            //textview2.setText("24 Eylül - 23 Ekim");
             textview3.setText(R.string.terazi);
         }
         if (selectedburc == 7) {
             image.setImageResource(R.drawable.burc_akrep);
-            textview2.setText("24 Ekim - 22 Kasım");
+            //textview2.setText("24 Ekim - 22 Kasım");
             textview3.setText(R.string.akrep);
         }
         if (selectedburc == 8) {
             image.setImageResource(R.drawable.burc_yay);
-            textview2.setText("23 Kasım - 21 Aralık");
+            // textview2.setText("23 Kasım - 21 Aralık");
             textview3.setText(R.string.yay);
         }
         if (selectedburc == 9) {
             image.setImageResource(R.drawable.burc_oglak);
-            textview2.setText("22 Aralık - 20 Ocak");
+            // textview2.setText("22 Aralık - 20 Ocak");
             textview3.setText(R.string.oglak);
         }
         if (selectedburc == 10) {
             image.setImageResource(R.drawable.burc_kova);
-            textview2.setText("21 Ocak - 18 Şubat");
+            //  textview2.setText("21 Ocak - 18 Şubat");
             textview3.setText(R.string.kova);
         }
         if (selectedburc == 11) {
             image.setImageResource(R.drawable.burc_balik);
-            textview2.setText("19 Şubat - 20 Mart");
+            //  textview2.setText("19 Şubat - 20 Mart");
             textview3.setText(R.string.balik);
         }
     }
@@ -247,13 +230,5 @@ public class YukselenBurcActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 }

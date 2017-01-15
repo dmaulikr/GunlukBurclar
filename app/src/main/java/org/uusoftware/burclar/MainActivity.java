@@ -10,38 +10,32 @@ import android.content.IntentSender.SendIntentException;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-
-import org.uusoftware.burclar.adapter.NavDrawerListAdapter;
-import org.uusoftware.burclar.model.NavDrawerItem;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,7 +44,7 @@ import java.util.Date;
 
 import jp.co.recruit_mp.android.rmp_appirater.RmpAppirater;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int REQUEST_ID_PERMISSION = 1;
     public static Context mContext;
@@ -71,17 +65,7 @@ public class MainActivity extends AppCompatActivity {
     ServiceConnection mServiceConn;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    Window window;
-    ActionBar bar;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
-    private String[] navMenuTitles;
-    private TypedArray navMenuIcons;
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
+    Toolbar toolbar;
 
     public static void displayAds() {
         if (interstitial.isLoaded()) {
@@ -132,18 +116,33 @@ public class MainActivity extends AppCompatActivity {
         InAppBilling();
         editor = getSharedPreferences("Preferences", Context.MODE_PRIVATE).edit();
 
+        // Other codes
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ft = getSupportFragmentManager().beginTransaction();
+        fragment = new FragmentHome();
+        ft.replace(R.id.frame_container, fragment, "Home").commit();
+        toolbar.setTitle(R.string.nav_home);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         // Colored bars
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            window = this.getWindow();
+            Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
 
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
         } else {
-            bar = this.getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
+            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
         }
 
         // Create Günlük Burçlar folder
@@ -172,68 +171,6 @@ public class MainActivity extends AppCompatActivity {
         // AlarmManager
         prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
         AlarmManager();
-
-        // Other codes
-        mTitle = mDrawerTitle = getTitle();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-        // load slide menu items
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
-        // nav drawer icons from resources
-        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-
-        navDrawerItems = new ArrayList<NavDrawerItem>();
-        // Home
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-        // Home2
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        // Home3
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // Home4
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-        // Home5
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // Premium
-        if (premium) {
-            // Do nothing
-        } else {
-            // Call AdMob
-            AdMob();
-            navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-        }
-        // Footer
-        navDrawerItems.add(new NavDrawerItem("", 0));
-
-        // Recycle the typed array
-        navMenuIcons.recycle();
-        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-
-        // setting the nav drawer list adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
-        mDrawerList.setAdapter(adapter);
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_slider_drawer, R.string.app_name) {
-            public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(mTitle);
-                supportInvalidateOptionsMenu();
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(mDrawerTitle);
-                supportInvalidateOptionsMenu();
-            }
-
-        };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        if (savedInstanceState == null) {
-            displayView(0);
-        }
     }
 
     private void InAppBilling() {
@@ -267,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putBoolean("Premium", true).apply();
             } else {
                 editor.putBoolean("Premium", false).apply();
+                AdMob();
             }
         }
     }
@@ -352,9 +290,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
         switch (item.getItemId()) {
             case R.id.action_help:
                 Intent intent2 = new Intent(this, HelpingActivity.class);
@@ -382,82 +317,52 @@ public class MainActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    public void displayView(int position) {
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
         ft = getSupportFragmentManager().beginTransaction();
+        int id = item.getItemId();
 
-        // Fragments
-        FragmentHome fragment0 = (FragmentHome) getSupportFragmentManager().findFragmentByTag("Home");
-        FragmentSecond fragment1 = (FragmentSecond) getSupportFragmentManager().findFragmentByTag("Second");
-        FragmentThird fragment2 = (FragmentThird) getSupportFragmentManager().findFragmentByTag("Third");
-        FragmentFourth fragment3 = (FragmentFourth) getSupportFragmentManager().findFragmentByTag("Fourth");
-
-        switch (position) {
-            case 0:
-                if (fragment0 != null && fragment0.isVisible()) {
-                    mDrawerLayout.closeDrawer(mDrawerList);
-                } else {
-                    setTitle(navMenuTitles[0]);
-                    mDrawerLayout.closeDrawer(mDrawerList);
-
-                    fragment = new FragmentHome();
-                    ft.replace(R.id.frame_container, fragment, "Home").commit();
+        if (id == R.id.nav_home) {
+            fragment = new FragmentHome();
+            ft.replace(R.id.frame_container, fragment, "Home").commit();
+            toolbar.setTitle(R.string.nav_home);
+        } else if (id == R.id.nav_uyum) {
+            fragment = new FragmentSecond();
+            ft.replace(R.id.frame_container, fragment, "Second").commit();
+            toolbar.setTitle(R.string.nav_uyum);
+        } else if (id == R.id.nav_yukselen) {
+            fragment = new FragmentThird();
+            ft.replace(R.id.frame_container, fragment, "Third").commit();
+            toolbar.setTitle(R.string.nav_yukselen);
+        } else if (id == R.id.nav_cin) {
+            fragment = new FragmentFourth();
+            ft.replace(R.id.frame_container, fragment, "Fourth").commit();
+            toolbar.setTitle(R.string.nav_cin);
+        } else if (id == R.id.nav_favoriler) {
+            Intent intent = new Intent(this, FavoritesActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_premium) {
+            if (premium) {
+                // Do nothing
+            } else {
+                try {
+                    buyPremium();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                } catch (SendIntentException e) {
+                    e.printStackTrace();
                 }
-                break;
-            case 1:
-                if (fragment1 != null && fragment1.isVisible()) {
-                    mDrawerLayout.closeDrawer(mDrawerList);
-                } else {
-                    setTitle(navMenuTitles[1]);
-                    mDrawerLayout.closeDrawer(mDrawerList);
-
-                    fragment = new FragmentSecond();
-                    ft.replace(R.id.frame_container, fragment, "Second").commit();
-                }
-                break;
-            case 2:
-                if (fragment2 != null && fragment2.isVisible()) {
-                    mDrawerLayout.closeDrawer(mDrawerList);
-                } else {
-                    setTitle(navMenuTitles[2]);
-                    mDrawerLayout.closeDrawer(mDrawerList);
-
-                    fragment = new FragmentThird();
-                    ft.replace(R.id.frame_container, fragment, "Third").commit();
-                }
-                break;
-            case 3:
-                if (fragment3 != null && fragment3.isVisible()) {
-                    mDrawerLayout.closeDrawer(mDrawerList);
-                } else {
-                    setTitle(navMenuTitles[3]);
-                    mDrawerLayout.closeDrawer(mDrawerList);
-
-                    fragment = new FragmentFourth();
-                    ft.replace(R.id.frame_container, fragment, "Fourth").commit();
-                }
-                break;
-            case 4:
-                setTitle(navMenuTitles[4]);
-                mDrawerLayout.closeDrawer(mDrawerList);
-                Intent intent = new Intent(this, FavoritesActivity.class);
-                startActivity(intent);
-                break;
-            case 5:
-                if (premium) {
-                    // Do nothing
-                } else {
-                    try {
-                        buyPremium();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    } catch (SendIntentException e) {
-                        e.printStackTrace();
-                    }
-                }
-                break;
-            default:
-                break;
+            }
+        } else if (id == R.id.nav_puanla) {
+            //PUANLA
+        } else {
+            //BETA
         }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -499,90 +404,74 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void setTitle(CharSequence title) {
-        mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
     public void onBackPressed() {
-        ft = getSupportFragmentManager().beginTransaction();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            ft = getSupportFragmentManager().beginTransaction();
 
-        // Fragments
-        FragmentHome fragment0 = (FragmentHome) getSupportFragmentManager().findFragmentByTag("Home");
-        FragmentSecond fragment1 = (FragmentSecond) getSupportFragmentManager().findFragmentByTag("Second");
-        FragmentThird fragment2 = (FragmentThird) getSupportFragmentManager().findFragmentByTag("Third");
-        FragmentFourth fragment3 = (FragmentFourth) getSupportFragmentManager().findFragmentByTag("Fourth");
+            // Fragments
+            FragmentHome fragment0 = (FragmentHome) getSupportFragmentManager().findFragmentByTag("Home");
+            FragmentSecond fragment1 = (FragmentSecond) getSupportFragmentManager().findFragmentByTag("Second");
+            FragmentThird fragment2 = (FragmentThird) getSupportFragmentManager().findFragmentByTag("Third");
+            FragmentFourth fragment3 = (FragmentFourth) getSupportFragmentManager().findFragmentByTag("Fourth");
 
-        // FragmentHome OnBackPressed
-        if (fragment0 != null) {
-            if (fragment0.isVisible()) {
-                if (doubleBackToExitPressedOnce) {
-                    super.onBackPressed();
-                    return;
-                }
-
-                this.doubleBackToExitPressedOnce = true;
-                Toast.makeText(this, getString(R.string.exit), Toast.LENGTH_SHORT).show();
-
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        doubleBackToExitPressedOnce = false;
+            // FragmentHome OnBackPressed
+            if (fragment0 != null) {
+                if (fragment0.isVisible()) {
+                    if (doubleBackToExitPressedOnce) {
+                        super.onBackPressed();
+                        return;
                     }
-                }, 2000);
+
+                    this.doubleBackToExitPressedOnce = true;
+                    Toast.makeText(this, getString(R.string.exit), Toast.LENGTH_SHORT).show();
+
+                    new Handler().postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            doubleBackToExitPressedOnce = false;
+                        }
+                    }, 2000);
+                }
+            }
+
+            // FragmentSecond OnBackPressed
+            if (fragment1 != null) {
+                if (fragment1.isVisible()) {
+                    fragment = new FragmentHome();
+                    ft.replace(R.id.frame_container, fragment, "Home").commit();
+                    toolbar.setTitle(R.string.nav_home);
+                }
+            }
+
+            // FragmentThird OnBackPressed
+            if (fragment2 != null) {
+                if (fragment2.isVisible()) {
+                    fragment = new FragmentHome();
+                    ft.replace(R.id.frame_container, fragment, "Home").commit();
+                    toolbar.setTitle(R.string.nav_home);
+                }
+            }
+
+            // FragmentFourth OnBackPressed
+            if (fragment3 != null) {
+                if (fragment3.isVisible()) {
+                    fragment = new FragmentHome();
+                    ft.replace(R.id.frame_container, fragment, "Home").commit();
+                    toolbar.setTitle(R.string.nav_home);
+                }
             }
         }
-
-        // FragmentSecond OnBackPressed
-        if (fragment1 != null) {
-            if (fragment1.isVisible()) {
-                displayView(0);
-            }
-        }
-
-        // FragmentThird OnBackPressed
-        if (fragment2 != null) {
-            if (fragment2.isVisible()) {
-                displayView(0);
-            }
-        }
-
-        // FragmentFourth OnBackPressed
-        if (fragment3 != null) {
-            if (fragment3.isVisible()) {
-                displayView(0);
-            }
-        }
-
-        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mService != null) {
+        if (mServiceConn != null) {
             unbindService(mServiceConn);
-        }
-    }
-
-    private class SlideMenuClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            displayView(position);
         }
     }
 }

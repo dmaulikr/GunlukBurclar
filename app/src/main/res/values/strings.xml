@@ -36,26 +36,18 @@
     </string-array>
 
     <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
-        <item>Burçlar</item>
-        <item>Burç uyumu</item>
-        <item>Yükselen burç</item>
-        <item>Çin astrolojisi</item>
-        <item>Favoriler</item>
-        <item>Premium sürüme geçin</item>
-    </string-array>
-
-    <!-- Nav Drawer List Item Icons -->
-    <array name="nav_drawer_icons">
-        <item>@drawable/ic_slider_home</item>
-        <item>@drawable/ic_slider_home2</item>
-        <item>@drawable/ic_slider_home3</item>
-        <item>@drawable/ic_slider_home4</item>
-        <item>@drawable/ic_slider_home5</item>
-        <item>@drawable/ic_slider_premium</item>
-    </array>
+    <string name="nav_home">Burçlar</string>
+    <string name="nav_uyum">Burç uyumunu</string>
+    <string name="nav_yukselen">Yükselen burç</string>
+    <string name="nav_cin">Çin astrolojisi</string>
+    <string name="nav_favoriler">Favoriler</string>
+    <string name="nav_premium">Premium sürüme geçin</string>
+    <string name="nav_puanla">Uygulamayı puanla</string>
+    <string name="nav_beta">Beta testine kaydolun</string>
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Öğe ikonu</string>
+    <string name="navigation_drawer_open">Yan menü açıldı</string>
+    <string name="navigation_drawer_close">Yan menü kapandı</string>
 
 </resources>

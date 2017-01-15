@@ -1,8 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/background_home">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_home">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="fill_parent"
@@ -17,7 +19,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_koc"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView2"
@@ -27,7 +29,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_boga"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView3"
@@ -37,7 +39,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_ikizler"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView4"
@@ -48,7 +50,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_yengec"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView5"
@@ -59,7 +61,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_aslan"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView6"
@@ -70,7 +72,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_basak"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView7"
@@ -81,7 +83,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_terazi"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView8"
@@ -92,7 +94,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_akrep"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView9"
@@ -103,7 +105,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_yay"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView10"
@@ -114,7 +116,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_oglak"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView11"
@@ -125,7 +127,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_kova"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
 
         <ImageView
             android:id="@+id/imageView12"
@@ -136,13 +138,13 @@
             android:contentDescription="TODO"
             android:src="@drawable/burc_balik"
             app:layout_heightPercent="25%"
-            app:layout_widthPercent="33.3%" />
+            app:layout_widthPercent="33.3%"/>
     </android.support.percent.PercentRelativeLayout>
 
     <RelativeLayout
         android:id="@+id/adFacebook"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
