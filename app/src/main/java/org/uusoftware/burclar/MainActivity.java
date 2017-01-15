@@ -26,7 +26,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -282,41 +281,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_help:
-                Intent intent2 = new Intent(this, HelpingActivity.class);
-                startActivity(intent2);
-                return true;
-            case R.id.action_about:
-                Intent intent3 = new Intent(this, AboutUsActivity.class);
-                startActivity(intent3);
-                return true;
-            case R.id.action_support:
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String shareBody = "Günlük Burçlar uygulaması Google Play'de https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Paylaş"));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -342,6 +306,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_favoriler) {
             Intent intent = new Intent(this, FavoritesActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_help) {
+            Intent intent2 = new Intent(this, HelpingActivity.class);
+            startActivity(intent2);
         } else if (id == R.id.nav_premium) {
             if (premium) {
                 // Do nothing
@@ -354,6 +321,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     e.printStackTrace();
                 }
             }
+        } else if (id == R.id.nav_about) {
+            Intent intent3 = new Intent(this, AboutUsActivity.class);
+            startActivity(intent3);
         } else if (id == R.id.nav_puanla) {
             //PUANLA
         } else {

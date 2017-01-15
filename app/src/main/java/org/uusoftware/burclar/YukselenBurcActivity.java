@@ -59,7 +59,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
         collapsingToolbarLayout.setTitle("Yükselen burç");
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.TRANSPARENT);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
         window = this.getWindow();
 
@@ -76,8 +76,6 @@ public class YukselenBurcActivity extends AppCompatActivity {
                     } else {
                         toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(mContext, R.color.colorYukselenPrimary)));
                     }
-                    collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
                 } else if (verticalOffset == 0) {
                     if (android.os.Build.VERSION.SDK_INT >= 21) {
                         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -87,8 +85,6 @@ public class YukselenBurcActivity extends AppCompatActivity {
                     } else {
                         toolbar.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     }
-                    collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.TRANSPARENT);
                 } else {
                     if (android.os.Build.VERSION.SDK_INT >= 21) {
                         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -98,8 +94,6 @@ public class YukselenBurcActivity extends AppCompatActivity {
                     } else {
                         toolbar.setBackgroundDrawable(new ColorDrawable(Color.argb(255 - verticalOffset / 2, 255, 87, 34)));
                     }
-                    collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.TRANSPARENT);
                 }
             }
         });
@@ -114,68 +108,55 @@ public class YukselenBurcActivity extends AppCompatActivity {
         selectedburc = extras.getInt("burcid");
 
         ImageView image = (ImageView) findViewById(R.id.burc_header);
-        // TextView textview2 = (TextView) findViewById(R.id.textView2genelozellikler);
-        TextView textview3 = (TextView) findViewById(R.id.burc_exp);
+        TextView textview = (TextView) findViewById(R.id.burc_exp);
 
         if (selectedburc == 0) {
             image.setImageResource(R.drawable.burc_koc);
-            //textview2.setText("21 Mart - 20 Nisan");
-            textview3.setText(R.string.koc);
+            textview.setText(R.string.koc);
         }
         if (selectedburc == 1) {
             image.setImageResource(R.drawable.burc_boga);
-            //textview2.setText("21 Nisan - 20 Mayıs");
-            textview3.setText(R.string.boga);
+            textview.setText(R.string.boga);
         }
         if (selectedburc == 2) {
             image.setImageResource(R.drawable.burc_ikizler);
-            // textview2.setText("21 Mayıs - 20 Haziran");
-            textview3.setText(R.string.ikizler);
+            textview.setText(R.string.ikizler);
         }
         if (selectedburc == 3) {
             image.setImageResource(R.drawable.burc_yengec);
-            // textview2.setText("21 Haziran - 20 Temmuz");
-            textview3.setText(R.string.yengec);
+            textview.setText(R.string.yengec);
         }
         if (selectedburc == 4) {
             image.setImageResource(R.drawable.burc_aslan);
-            // textview2.setText("23 Temmuz - 23 Ağustos");
-            textview3.setText(R.string.aslan);
+            textview.setText(R.string.aslan);
         }
         if (selectedburc == 5) {
             image.setImageResource(R.drawable.burc_basak);
-            // textview2.setText("24 Ağustos - 23 Eylül");
-            textview3.setText(R.string.basak);
+            textview.setText(R.string.basak);
         }
         if (selectedburc == 6) {
             image.setImageResource(R.drawable.burc_terazi);
-            //textview2.setText("24 Eylül - 23 Ekim");
-            textview3.setText(R.string.terazi);
+            textview.setText(R.string.terazi);
         }
         if (selectedburc == 7) {
             image.setImageResource(R.drawable.burc_akrep);
-            //textview2.setText("24 Ekim - 22 Kasım");
-            textview3.setText(R.string.akrep);
+            textview.setText(R.string.akrep);
         }
         if (selectedburc == 8) {
             image.setImageResource(R.drawable.burc_yay);
-            // textview2.setText("23 Kasım - 21 Aralık");
-            textview3.setText(R.string.yay);
+            textview.setText(R.string.yay);
         }
         if (selectedburc == 9) {
             image.setImageResource(R.drawable.burc_oglak);
-            // textview2.setText("22 Aralık - 20 Ocak");
-            textview3.setText(R.string.oglak);
+            textview.setText(R.string.oglak);
         }
         if (selectedburc == 10) {
             image.setImageResource(R.drawable.burc_kova);
-            //  textview2.setText("21 Ocak - 18 Şubat");
-            textview3.setText(R.string.kova);
+            textview.setText(R.string.kova);
         }
         if (selectedburc == 11) {
             image.setImageResource(R.drawable.burc_balik);
-            //  textview2.setText("19 Şubat - 20 Mart");
-            textview3.setText(R.string.balik);
+            textview.setText(R.string.balik);
         }
     }
 

@@ -20,21 +20,34 @@
             android:title="@string/nav_cin"/>
     </group>
 
-    <item android:title="Ekstralar">
+    <item android:title="Size özel">
         <menu>
             <item
                 android:id="@+id/nav_favoriler"
                 android:icon="@drawable/ic_slider_home5"
                 android:title="@string/nav_favoriler"/>
             <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_slider_premium"
+                android:title="@string/nav_help"/>
+            <item
                 android:id="@+id/nav_premium"
                 android:icon="@drawable/ic_slider_premium"
                 android:title="@string/nav_premium"/>
+        </menu>
+    </item>
 
+    <item android:title="Ekstralar">
+        <menu>
             <item
                 android:id="@+id/nav_puanla"
                 android:icon="@drawable/ic_slider_premium"
                 android:title="@string/nav_puanla"/>
+
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_slider_premium"
+                android:title="@string/nav_about"/>
 
             <item
                 android:id="@+id/nav_beta"
