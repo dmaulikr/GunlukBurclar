@@ -128,7 +128,7 @@ public class FragmentHome extends Fragment {
 
             public void showAds() {
                 Random generator = new Random();
-                int random = generator.nextInt(3);
+                int random = generator.nextInt(2);
                 System.out.println(random);
                 if (MainActivity.interstitial.isLoaded() && random == 1) {
                     MainActivity.interstitial.show();
