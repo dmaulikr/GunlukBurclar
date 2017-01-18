@@ -3,10 +3,10 @@ package org.uusoftware.burclar;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,11 +34,9 @@ import java.util.Calendar;
 public class FragmentThird extends Fragment {
 
     int burc, dogumsaati;
-    Tracker t;
-    int color = Color.parseColor("#000000");
-    int color2 = Color.parseColor("#313131");
     Window window;
-    ActionBar bar;
+    ActionBar actionbar;
+    Context mContext;
     TextView txt;
     ImageView imagebutton;
     Spinner spinner1;
@@ -74,22 +72,14 @@ public class FragmentThird extends Fragment {
             adView.loadAd();
         }
 
-        // Colored bars
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            window = getActivity().getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(color);
-
-            bar = ((MainActivity) getActivity()).getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
-        } else {
-            bar = ((MainActivity) getActivity()).getSupportActionBar();
-            bar.setBackgroundDrawable(new ColorDrawable(color2));
-        }
+        /* Colored bars */
+        mContext = getActivity().getApplicationContext();
+        window = getActivity().getWindow();
+        actionbar = ((MainActivity) getActivity()).getSupportActionBar();
+        coloredBars(ContextCompat.getColor(mContext, R.color.colorMainDark), ContextCompat.getColor(mContext, R.color.colorMainPrimary));
 
         // Analytics
-        t = ((AnalyticsApplication) getActivity().getApplication()).getDefaultTracker();
+        Tracker t = ((AnalyticsApplication) getActivity().getApplication()).getDefaultTracker();
         t.setScreenName("Yükselen burç");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
@@ -179,7 +169,6 @@ public class FragmentThird extends Fragment {
     }
 
     public void sendIntent() {
-
         if (burc == 0) {
             //KOÇ
             if (dogumsaati == 0) {
@@ -504,6 +493,17 @@ public class FragmentThird extends Fragment {
             } else {
                 intent.putExtra("burcid", 8);
             }
+        }
+    }
+
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            actionbar.setBackgroundDrawable(new ColorDrawable(color2));
+        } else {
+            actionbar.setBackgroundDrawable(new ColorDrawable(color2));
         }
     }
 

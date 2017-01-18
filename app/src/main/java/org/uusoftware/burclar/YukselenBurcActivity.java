@@ -42,6 +42,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
     Toolbar toolbar;
     Context mContext;
     CollapsingToolbarLayout collapsingToolbarLayout;
+    String burcName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,39 +99,51 @@ public class YukselenBurcActivity extends AppCompatActivity {
         if (selectedburc == 0) {
             image.setImageResource(R.drawable.burc_koc);
             link = "http://uusoftware.org/burclar/koc.html";
+            burcName = "Koç";
         } else if (selectedburc == 1) {
             image.setImageResource(R.drawable.burc_boga);
             link = "http://uusoftware.org/burclar/boga.html";
+            burcName = "Boğa";
         } else if (selectedburc == 2) {
             image.setImageResource(R.drawable.burc_ikizler);
             link = "http://uusoftware.org/burclar/ikizler.html";
+            burcName = "İkizler";
         } else if (selectedburc == 3) {
             image.setImageResource(R.drawable.burc_yengec);
             link = "http://uusoftware.org/burclar/yengec.html";
+            burcName = "Yengeç";
         } else if (selectedburc == 4) {
             image.setImageResource(R.drawable.burc_aslan);
             link = "http://uusoftware.org/burclar/aslan.html";
+            burcName = "Aslan";
         } else if (selectedburc == 5) {
             image.setImageResource(R.drawable.burc_basak);
             link = "http://uusoftware.org/burclar/basak.html";
+            burcName = "Başak";
         } else if (selectedburc == 6) {
             image.setImageResource(R.drawable.burc_terazi);
             link = "http://uusoftware.org/burclar/terazi.html";
+            burcName = "Terazi";
         } else if (selectedburc == 7) {
             image.setImageResource(R.drawable.burc_akrep);
             link = "http://uusoftware.org/burclar/akrep.html";
+            burcName = "Akrep";
         } else if (selectedburc == 8) {
             image.setImageResource(R.drawable.burc_yay);
             link = "http://uusoftware.org/burclar/yay.html";
+            burcName = "Yay";
         } else if (selectedburc == 9) {
             image.setImageResource(R.drawable.burc_oglak);
             link = "http://uusoftware.org/burclar/oglak.html";
+            burcName = "Oğlak";
         } else if (selectedburc == 10) {
             image.setImageResource(R.drawable.burc_kova);
             link = "http://uusoftware.org/burclar/kova.html";
+            burcName = "Kova";
         } else {
             image.setImageResource(R.drawable.burc_balik);
             link = "http://uusoftware.org/burclar/balik.html";
+            burcName = "Balık";
         }
 
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -241,7 +254,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
         // Share
         Uri myUri = Uri.parse("file://" + path);
         System.out.println(myUri);
-        String shareBody = "Günlük Burçlar uygulaması Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+        String shareBody = "Yükselen burcum" + burcName + ". Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareBody);

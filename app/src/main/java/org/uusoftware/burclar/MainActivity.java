@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int REQUEST_ID_PERMISSION = 1;
     public static Context mContext;
     public static boolean premium = false;
-    public static long start = System.currentTimeMillis();
-    public static boolean displayed = false;
-    public static boolean displayed2 = false;
-    public static boolean displayed3 = false;
-    public static boolean displayed4 = false;
     static InterstitialAd interstitial;
     private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -65,42 +60,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     Toolbar toolbar;
-
-    public static void displayAds() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
-
-    public static void displayAds2() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed2 = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
-
-    public static void displayAds3() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed3 = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
-
-    public static void displayAds4() {
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-            displayed4 = true;
-        } else {
-            mContext.startActivity(FragmentHome.intent);
-        }
-    }
 
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
@@ -232,7 +191,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                startActivity(FragmentHome.intent);
                 AdMob();
             }
 

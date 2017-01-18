@@ -8,8 +8,6 @@
     <string name="chooseaction">Bir eylem seçin:</string>
     <string name="deleted">Öğe favorilerinizden silindi&#8230;</string>
     <string name="exit">Çıkmak için tekrar dokunun</string>
-    <string name="drawer_open">Sol menü açık</string>
-    <string name="drawer_close">Sol menü kapalı</string>
     <string name="burclaryazisi">Burcunuzu seçin</string>
     <string name="dogumsaatiyazisi">Doğum saatinizi seçin</string>
     <string name="spinnerdialog">Burcunuzu seçin</string>

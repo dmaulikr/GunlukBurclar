@@ -1,28 +1,39 @@
 package org.uusoftware.burclar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+
+import java.util.Random;
 
 public class FragmentHome extends Fragment {
 
     public static Intent intent;
-    Tracker t;
     boolean premium;
+    Context mContext;
+    Window window;
+    ActionBar actionbar;
 
     //Facebook Audience Network
-    private com.facebook.ads.AdView adView;
+    private AdView adView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,8 +52,14 @@ public class FragmentHome extends Fragment {
             adView.loadAd();
         }
 
+        /* Colored bars */
+        mContext = getActivity().getApplicationContext();
+        window = getActivity().getWindow();
+        actionbar = ((MainActivity) getActivity()).getSupportActionBar();
+        coloredBars(ContextCompat.getColor(mContext, R.color.colorMainDark), ContextCompat.getColor(mContext, R.color.colorMainPrimary));
+
         // Analytics
-        t = ((AnalyticsApplication) getActivity().getApplication()).getDefaultTracker();
+        Tracker t = ((AnalyticsApplication) getActivity().getApplication()).getDefaultTracker();
         t.setScreenName("Anasayfa");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
@@ -110,28 +127,14 @@ public class FragmentHome extends Fragment {
             }
 
             public void showAds() {
-                // AdMob
-                boolean displayed = MainActivity.displayed;
-                boolean displayed2 = MainActivity.displayed2;
-                boolean displayed3 = MainActivity.displayed3;
-                boolean displayed4 = MainActivity.displayed4;
-                long a = MainActivity.start;
-                long b = System.currentTimeMillis();
-
-                if (b - a >= 2500 && !displayed) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    MainActivity.displayAds();
-                } else if (b - a >= 30000 && !displayed2) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    MainActivity.displayAds2();
-                } else if (b - a >= 90000 && !displayed3) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    MainActivity.displayAds3();
-                } else if (b - a >= 180000 && !displayed4) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    MainActivity.displayAds4();
+                Random generator = new Random();
+                int random = generator.nextInt(3);
+                System.out.println(random);
+                if (MainActivity.interstitial.isLoaded() && random == 1) {
+                    MainActivity.interstitial.show();
+                    mContext.startActivity(FragmentHome.intent);
                 } else {
-                    startActivity(intent);
+                    mContext.startActivity(FragmentHome.intent);
                 }
             }
         };
@@ -150,6 +153,17 @@ public class FragmentHome extends Fragment {
         img12.setOnClickListener(buttonListener);
 
         return v;
+    }
+
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            actionbar.setBackgroundDrawable(new ColorDrawable(color2));
+        } else {
+            actionbar.setBackgroundDrawable(new ColorDrawable(color2));
+        }
     }
 
     @Override
