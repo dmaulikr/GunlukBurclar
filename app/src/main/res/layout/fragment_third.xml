@@ -23,9 +23,9 @@
             android:text="Burcunuz"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF"
-            app:layout_heightPercent="30%"
+            app:layout_heightPercent="15%"
             app:layout_marginLeftPercent="5%"
-            app:layout_marginTopPercent="2.5%"
+            app:layout_marginTopPercent="5%"
             app:layout_widthPercent="45%" />
 
         <TextView
@@ -40,9 +40,9 @@
             android:text="Doğum saatiniz"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
-            app:layout_heightPercent="30%"
+            app:layout_heightPercent="15%"
             app:layout_marginRightPercent="5%"
-            app:layout_marginTopPercent="2.5%"
+            app:layout_marginTopPercent="5%"
             app:layout_widthPercent="45%" />
 
         <Spinner
@@ -56,9 +56,9 @@
             android:prompt="@string/spinnerdialog"
             android:spinnerMode="dialog"
             app:layout_heightPercent="40%"
-            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginBottomPercent="5%"
             app:layout_marginLeftPercent="5%"
-            app:layout_marginTopPercent="2.5%"
+            app:layout_marginTopPercent="5%"
             app:layout_widthPercent="45%" />
 
         <ProgressBar
@@ -83,9 +83,9 @@
             android:textColor="#FFFFFF"
             android:textSize="50sp"
             app:layout_heightPercent="40%"
-            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginBottomPercent="5%"
             app:layout_marginRightPercent="5%"
-            app:layout_marginTopPercent="2.5%"
+            app:layout_marginTopPercent="5%"
             app:layout_widthPercent="45%"/>
 
         <ProgressBar
@@ -106,9 +106,9 @@
             android:layout_below="@+id/spinner1"
             android:layout_centerHorizontal="true"
             android:src="@drawable/button_yukselenburc"
-            app:layout_heightPercent="20%"
-            app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="70%" />
+            app:layout_heightPercent="25%"
+            app:layout_marginTopPercent="5%"
+            app:layout_widthPercent="75%" />
     </android.support.percent.PercentRelativeLayout>
 
     <RelativeLayout

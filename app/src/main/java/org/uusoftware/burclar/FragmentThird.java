@@ -47,8 +47,6 @@ public class FragmentThird extends Fragment {
             "22 Haziran–22 Temmuz", "23 Temmuz–22 Ağustos", "23 Ağustos–22 Eylül",
             "23 Eylül–22 Ekim", "23 Ekim–21 Kasım", "23 Kasım–21 Aralık",
             "22 Aralık–19 Ocak", "20 Ocak–18 Şubat", "19 Şubat–20 Mart"};
-    String[] strings2 = {"00:00–02:00", "02:00–04:00", "04:00–06:00", "06:00–08:00", "08:00–10:00", "10:00–12:00",
-            "12:00–14:00", "14:00–16:00", "16:00–18:00", "18:00–20:00", "20:00–22:00", "22:00–00:00",};
     int images[] = {R.drawable.burc_koc, R.drawable.burc_boga, R.drawable.burc_ikizler, R.drawable.burc_yengec,
             R.drawable.burc_aslan, R.drawable.burc_basak, R.drawable.burc_terazi, R.drawable.burc_akrep,
             R.drawable.burc_yay, R.drawable.burc_oglak, R.drawable.burc_kova, R.drawable.burc_balik};
@@ -110,6 +108,7 @@ public class FragmentThird extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
+
             }
         });
 

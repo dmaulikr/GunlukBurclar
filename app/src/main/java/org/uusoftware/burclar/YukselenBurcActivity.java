@@ -72,7 +72,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
-                    coloredBars(ContextCompat.getColor(mContext, R.color.colorYukselenPrimary), ContextCompat.getColor(mContext, R.color.colorYukselenPrimary));
+                    coloredBars(ContextCompat.getColor(mContext, R.color.colorYukselenDark), ContextCompat.getColor(mContext, R.color.colorYukselenPrimary));
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
