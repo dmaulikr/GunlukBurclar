@@ -71,8 +71,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         mContext = this.getApplicationContext();
-        InAppBilling();
-        editor = getSharedPreferences("Preferences", Context.MODE_PRIVATE).edit();
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+
+        //Check premium
+        if (prefs.getBoolean("Premium", false)) {
+            premium = true;
+        } else {
+            premium = false;
+            InAppBilling();
+            AdMob();
+        }
 
         // Other codes
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -159,10 +168,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (ownedItems.getInt("RESPONSE_CODE") == 0) {
             ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
             if (ownedSkus.contains("premium")) {
+                premium = true;
                 editor.putBoolean("Premium", true).apply();
             } else {
+                premium = false;
                 editor.putBoolean("Premium", false).apply();
-                AdMob();
             }
         }
     }

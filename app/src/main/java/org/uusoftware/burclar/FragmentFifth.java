@@ -17,10 +17,9 @@ import com.facebook.ads.AdView;
 public class FragmentFifth extends Fragment {
 
     int selectedburc;
-
+    String link;
     //Facebook Audience Network
     private AdView adView;
-    String link;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class FragmentFifth extends Fragment {
 
         selectedburc = SecondActivity.burcid;
 
-        ImageView image = (ImageView) v.findViewById(R.id.imageViewgenelozellikler);
+        ImageView image = (ImageView) v.findViewById(R.id.imageView1);
 
         if (selectedburc == 0) {
             image.setImageResource(R.drawable.burc_koc);
@@ -81,7 +80,7 @@ public class FragmentFifth extends Fragment {
             link = "http://uusoftware.org/burclar/balik.html";
         }
 
-        WebView myWebView = (WebView) v.findViewById(R.id.webViewGeneral);
+        WebView myWebView = (WebView) v.findViewById(R.id.webView1);
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         myWebView.loadUrl(link);
 

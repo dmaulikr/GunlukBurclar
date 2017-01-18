@@ -8,35 +8,16 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AdSize;
 
 public class FragmentEighth extends Fragment {
 
     int selectedburc;
     String link;
 
-    //Facebook Audience Network
-    private com.facebook.ads.AdView adView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_general, container, false);
-
-        // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
-        if (premium) {
-            //Do nothing
-        } else {
-            RelativeLayout adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
-            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
-            adViewContainer.addView(adView);
-            adView.loadAd();
-        }
 
         selectedburc = SecondActivity.burcid;
         ImageView image = (ImageView) v.findViewById(R.id.imageView1);
@@ -84,13 +65,5 @@ public class FragmentEighth extends Fragment {
         myWebView.loadUrl(link);
 
         return v;
-    }
-
-    @Override
-    public void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 }
