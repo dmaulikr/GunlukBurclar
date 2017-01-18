@@ -40,6 +40,7 @@ public class FragmentThird extends Fragment {
     TextView txt;
     ImageView imagebutton;
     Spinner spinner1;
+    boolean premium;
 
     String[] strings = {"21 Mart–19 Nisan", "20 Nisan–20 Mayıs", "21 Mayıs–21 Haziran",
             "22 Haziran–22 Temmuz", "23 Temmuz–22 Ağustos", "23 Ağustos–22 Eylül",
@@ -61,7 +62,7 @@ public class FragmentThird extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_third, container, false);
 
         // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
+        premium = MainActivity.premium;
         if (premium) {
             //Do nothing
         } else {
@@ -153,11 +154,24 @@ public class FragmentThird extends Fragment {
             @Override
             public void onClick(View v) {
                 sendIntent();
-                startActivity(intent);
+                if (premium) {
+                    startActivity(intent);
+                } else {
+                    showAds();
+                }
             }
         });
 
         return rootView;
+    }
+
+    public void showAds() {
+        if (MainActivity.interstitial.isLoaded()) {
+            startActivity(intent);
+            MainActivity.interstitial.show();
+        } else {
+            startActivity(intent);
+        }
     }
 
     public String pad(int input) {

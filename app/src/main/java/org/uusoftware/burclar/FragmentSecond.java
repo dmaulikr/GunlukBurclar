@@ -203,6 +203,7 @@ public class FragmentSecond extends Fragment {
     Context mContext;
     ActionBar actionbar;
     Spinner spinner, spinner2;
+    boolean premium;
     Intent intent;
     String[] strings = {"21 Mart–19 Nisan", "20 Nisan–20 Mayıs", "21 Mayıs–21 Haziran", "22 Haziran–22 Temmuz",
             "23 Temmuz–22 Ağustos", "23 Ağustos–22 Eylül", "23 Eylül–22 Ekim", "23 Ekim–21 Kasım", "23 Kasım–21 Aralık",
@@ -219,7 +220,7 @@ public class FragmentSecond extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_second, container, false);
 
         // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
+        premium = MainActivity.premium;
         if (premium) {
             //Do nothing
         } else {
@@ -813,11 +814,25 @@ public class FragmentSecond extends Fragment {
                     intent.putExtra("burcuyumu", balikbalik);
                     intent.putExtra("number", 100);
                 }
-                startActivity(intent);
+
+                if (premium) {
+                    startActivity(intent);
+                } else {
+                    showAds();
+                }
             }
         });
 
         return rootView;
+    }
+
+    public void showAds() {
+        if (MainActivity.interstitial.isLoaded()) {
+            startActivity(intent);
+            MainActivity.interstitial.show();
+        } else {
+            startActivity(intent);
+        }
     }
 
     @Override

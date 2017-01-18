@@ -1,13 +1,18 @@
 package org.uusoftware.burclar;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,19 +24,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AdSize;
-import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
+
+import me.itangqi.waveloadingview.WaveLoadingView;
 
 public class BurcUyumuActivity extends AppCompatActivity {
 
@@ -42,46 +45,52 @@ public class BurcUyumuActivity extends AppCompatActivity {
     int skor, burckadin, burcerkek;
     TextView text, number;
     ProgressBar pb;
-    Tracker t;
+    Window window;
+    Toolbar toolbar;
+    Context mContext;
+    CollapsingToolbarLayout collapsingToolbarLayout;
     ImageView imageerkek, imagekadin;
-
-    //Facebook Audience Network
-    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_burcuyumu);
 
-        // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
-        if (premium) {
-            //Do nothing
-        } else {
-            RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-            adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
-            adViewContainer.addView(adView);
-            adView.loadAd();
-        }
+        /* Colored bars */
+        mContext = this.getApplicationContext();
 
-        // Colored bars
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //StatusBar
+        window = this.getWindow();
+
+        //Collapsing Toolbar
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
+        collapsingToolbarLayout.setTitle("Yükselen burç");
+        collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+
+        //Toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
-
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        }
+        //Dynamic bar colors
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.Appbar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                    coloredBars(ContextCompat.getColor(mContext, R.color.colorUyumDark), ContextCompat.getColor(mContext, R.color.colorUyumPrimary));
+                } else if (verticalOffset == 0) {
+                    coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
+                } else {
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 233, 30, 99), Color.argb(255 - verticalOffset / 2, 233, 30, 99));
+                }
+            }
+        });
 
         // Analytics
-        t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
+        Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
         t.setScreenName("Burç uyumu - Sonuç");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
@@ -95,7 +104,24 @@ public class BurcUyumuActivity extends AppCompatActivity {
         burckadin = extras.getInt("burckadin");
         burcerkek = extras.getInt("burcerkek");
 
-        text = (TextView) findViewById(R.id.textViewUyum);
+
+        WaveLoadingView mWaveLoadingView = (WaveLoadingView) findViewById(R.id.waveLoadingView);
+        mWaveLoadingView.setShapeType(WaveLoadingView.ShapeType.CIRCLE);
+        mWaveLoadingView.setTopTitle("%" + skor);
+        mWaveLoadingView.setCenterTitleColor(Color.GRAY);
+        mWaveLoadingView.setBottomTitleSize(18);
+        mWaveLoadingView.setProgressValue(80);
+        mWaveLoadingView.setBorderWidth(10);
+        mWaveLoadingView.setAmplitudeRatio(60);
+        mWaveLoadingView.setWaveColor(Color.GRAY);
+        mWaveLoadingView.setBorderColor(Color.GRAY);
+        mWaveLoadingView.setTopTitleStrokeColor(Color.BLUE);
+        mWaveLoadingView.setTopTitleStrokeWidth(3);
+        mWaveLoadingView.setAnimDuration(3000);
+        mWaveLoadingView.startAnimation();
+
+
+       /* text = (TextView) findViewById(R.id.textViewUyum);
         number = (TextView) findViewById(R.id.textViewSkor);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         imageerkek = (ImageView) findViewById(R.id.imageView1);
@@ -103,8 +129,9 @@ public class BurcUyumuActivity extends AppCompatActivity {
 
         text.setText(uyum);
         number.setText("%" + Integer.toString(skor));
-        pb.setProgress(skor);
+        pb.setProgress(skor);*/
 
+        /*
         // SetImageViews
         // Erkek
         switch (burcerkek) {
@@ -188,6 +215,16 @@ public class BurcUyumuActivity extends AppCompatActivity {
             default:
                 break;
         }
+        */
+
+        //Floating action button
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verifyStoragePermissions();
+            }
+        });
     }
 
     @Override
@@ -247,6 +284,17 @@ public class BurcUyumuActivity extends AppCompatActivity {
         }
     }
 
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        } else {
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        }
+    }
+
     public void saveBitmap() {
         CharSequence now = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm", new Date());
         String filePath = now + ".png";
@@ -288,13 +336,5 @@ public class BurcUyumuActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 }

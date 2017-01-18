@@ -128,13 +128,12 @@ public class FragmentHome extends Fragment {
 
             public void showAds() {
                 Random generator = new Random();
-                int random = generator.nextInt(2);
-                System.out.println(random);
+                int random = generator.nextInt(3);
                 if (MainActivity.interstitial.isLoaded() && random == 1) {
+                    startActivity(intent);
                     MainActivity.interstitial.show();
-                    mContext.startActivity(FragmentHome.intent);
                 } else {
-                    mContext.startActivity(FragmentHome.intent);
+                    startActivity(intent);
                 }
             }
         };

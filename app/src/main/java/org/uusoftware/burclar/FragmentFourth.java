@@ -34,6 +34,7 @@ public class FragmentFourth extends Fragment {
     ActionBar actionbar;
     Intent intent;
     Context mContext;
+    boolean premium;
 
     String fare = "Fare insanının liderlik ve öncülük özellikleri çok kuvvetlidir. Başlangıçlar yapmayı, atak davranmayı ve ilk olmayı sever. Çok çalışır, çok yoğun duygularla yaşar ve kendini yaptığı işlere tamamıyla verir. Fare insanı aşırı uçlarda dolaşmayı seven ve yoğunlaşabilen bir naturaya sahiptir. Yüzeysel de olsa farklı konularda bilgi sahibi olmak Fare insanını tatmin eder. Öğrendiklerini ya da kendine has düşüncelerini açıklamaktan hiç çekinmez. Çok yönlü ve değişken bir yapısı olan Fare insanının yaşamında enerjilerin boşuna harcanması da çok sık görülür. Ortalama ile asla mutlu olamayan Fare insanı hiç bir zaman kendini aşan işlerin altına girmekten de çekinmez. Maddi konular dışındaki riskleri bir macera gibi algılayarak, hayatın bir oyun olduğunu düşünür. Fare insanı ne kadar sıkıntılı olursa olsun, hareket etmek ister. Hareketsiz kalmak, kendine saygısını ve güvenini yitirmesine yol açarak, depreselse if bir ruh haline bürünmesine neden olur. Fare aşkta da derin duyguları olan bir insandır Sevdiği insana zaman ayırmayı, özel olarak onunla ilgilenmeyi ve sevdiğini göstermeyi tercih eden bir yapısı vardır. Sağlıklı ve tatmin edici iletişim her türlü ilişkilerinde önemli bir gereksinimdir. Sevdiği insanın hayatında her zaman ön planda olmayı ve özel bir ilgi görmeyi ister. Yalnızlıktan çok korkan Fare insanı, istenmediğini ya da sevilmediğini hissettiği zaman büyük panikler yaşar. Bu aşk acısını, cinsellikle gidermeye çalışır. Toplum içinde kontrollü olmaya, kurallara uymaya dikkat eden Fare insanı giyimiyle de dikkat çekmek ve kabul edilmek arzusundadır. Tanınmış insanlarla birarada olmak, çeşitli grup ve organizasyonlara üye olarak, toplum içinde güçlü bir konuma sahip olmayı istemek, tipik Fare özellikleri arasındadır. Paraya karşı oldukça tutkulu olan Fare insanları, nasıl para kazanılacağını çok iyi bilmelerine rağme, harcama konusunda son derece zayelse iftırlar. Yaşamlarında giderlerini minimumda tutmaya çalışarak, para biriktirirler. Fare’nin bonkörleşebilmesi için, gerçekten çok büyük bir aşk yaşıyor olması gereklidir. Fare kadını oldukça kültürlü ve bilgilidir. Dinamik bir yaşamı seven Fare kadını hem çalışmayı hem de bir aile sahibi olarak toplumda kabul edilmeyi tercih eder. Herkesle dost olabilmesine rağmen, yakın arkadaşları sınırlıdır. Sırlarını ya da problemlerini açık etmeyi sevmediği için, herkes Fare kadınının dört dörtlük bir yaşamı olduğunu düşünür. Fare erkeği dışadönük ve sosyal bir insandır. Nazik ve zarelse if davranışlarıyla, asabiyetini kontrol edebilme yeteneğiyle ve problemlere getirdiği enteresan çözümleriyle her zaman toplumsal olarak sevilir. Hareketli Fare erkeğinin el becerileri çok kuvvetlidir. Rutinden sıkıldığı için, masabaşı işlerden çok, hareket ve değişim gerektiren mesleklerde daha başarılı olur.";
     String okuz = "Öküz insanının hayatında hiç bir şey ortalama değildir. Her şeyi “iyi” ya da “kötü” olarak sınıflandırır. Olayları ve deneyimlerini geniş perspektiften ele almayı ve değerlendirmeyi tercih eder. Yaşamındaki sınırları belirlemek ve kabul etmek Öküz insanın temel gereksinimleri arasındadır. Belirsizliklerden son derece rahatsız olur. Dolayısıyla, kurallar ve kaideler hayatının belkemiğini oluşturur. Ortak yaşama girebilmesi için muhakkak karşısındaki insana güvenmesi gereklidir. Güvenini kazanan insanlara karşı oldukça açık ve verici bir yapısı vardır. Aslında katı bir görüntü sergilemesine rağmen, duygusal, duyarlı ve şefkatlidir. Değer verdiği insanlara karşı oldukça yumuşak bir tavır içindedir. Ancak kendisine karşı yapılan hatalarda esnekliğini yitirebilir ve intikam hislerine de kapılabilir. ıradesi kuvvetli, sakin ve iyi gözlem yapabilen bir insandır Öküz. ınsan ilişkilerinde sessiz kalarak, gözlemeyi ve fikir edinmeyi tercih eder. Sadık bir insan olan Öküz, geçmişe, geleneklere ve anılara son derece bağlıdır. Bir kez dost olduğunda ya da sevdiğinde, ömür boyu bırakmak istemez. Sorumluluklarına sahip bir insan olan Öküz, kuvvetli hafızasıyla iş yaşamında da oldukça beceriklidir. Enerjisini boşa harcamayı sevmediği için, her eyleminin faydalı ve verimli olmasına dikkat eder. Somutluğu tercih etmesine karşı, soyut kavramlardan da uzak değildir. Ama yine de hayaller ya da fantaziler yaşamının ana parçaları değildir. Hareketsizliğe çok eğilimli olan Öküz insanı, sanki gösterdiği direnç ve atalet ile gücüne güç katar. Uzun yıllar aynı mekanda yaşamak ya da aynı işte çalışmak, Öküz’ü hiç rahatsız etmez. Bu hareketsizlik, kimi zaman inat olarak da tezahür eder. Sabitliğe olan yatkınlığı ve değişime karşı gösterdiği direnç, diğer insanlar tarafından kimi zaman sıkıcı ve boğucu bir insan olarak nitelendirilmesine neden olabilir. Öküz insanı yemek yemeği çok sevdiği için genellikle kilo almaya eğilimlidir. Ancak çelik gibi iradesiyle, kendini kontrol altına almaya başladığı zaman, istediği mükemmel görünüme de kavuşabilir. Öküz’ün kendi istediği değişiklikleri kusursuz bir şekilde gerçekleştirebilme kapasitesi vardır. Öküz kadını, tuttuğunu koparan ve cesaretli bir karakterdedir. Ailesine çok bağlı olan bu kadın genellikle tekeşli olmayı ve sadık kalmayı tercih eder. Kendisi de aldatılmaya dayanamaz. Doğayla tam bir uyum içinde yaşayabilen Öküz kadını, çok düzenlidir. Sorumluluklarını gayet iyi bilir ve bunları tam zamanında yerine getirebilmek için, kendine mükemmel bir düzen yaratır. Zaman zaman kendine dönme ve içine kapanma alışkanlığı da vardır. Öküz erkeği, yaşamında taviz vermekten hoşlanmayan, kendi istediklerinden zor vazgeçen bir yapıya sahiptir. Ancak sevdikleri için esneklik gösterebilir. Yoksa yaşamı boyunca kendi ilkelerinden vazgeçmesi olanaksızdır. Öküz erkeğinin iş yaşamı hayatının en önemli alanıdır. Evde, uykuda, eğlencede, kısacası her yerde aklı işindedir. Hayatını güvence altına almak, gelecekle ilgili kaygısız bir yaşam sürebilmek için durmaksızın çalışır.";
@@ -57,7 +58,7 @@ public class FragmentFourth extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_fourth, container, false);
 
         // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
+        premium = MainActivity.premium;
         if (premium) {
             //Do nothing
         } else {
@@ -623,7 +624,11 @@ public class FragmentFourth extends Fragment {
                             intent.putExtra("burcyazisi", unknown);
                             intent.putExtra("burciconu", R.drawable.cin_unknown);
                         }
-                        startActivity(intent);
+                        if (premium) {
+                            startActivity(intent);
+                        } else {
+                            showAds();
+                        }
                     }
                 }, mcurrentTime.get(Calendar.YEAR), mcurrentTime.get(Calendar.MONTH),
                         mcurrentTime.get(Calendar.DAY_OF_MONTH));
@@ -635,6 +640,15 @@ public class FragmentFourth extends Fragment {
         });
 
         return rootView;
+    }
+
+    public void showAds() {
+        if (MainActivity.interstitial.isLoaded()) {
+            startActivity(intent);
+            MainActivity.interstitial.show();
+        } else {
+            startActivity(intent);
+        }
     }
 
     public void coloredBars(int color1, int color2) {

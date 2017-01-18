@@ -1,107 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background_home">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:fitsSystemWindows="true">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/adFacebook">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/Appbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <TextView
-                android:id="@+id/textViewUyum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/progressBar"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:alpha="0.87"
-                android:gravity="center"
-                android:text="Başak ile Boğa arasında uyumlu bir ilişki olması mümkün çünkü her iki tarafın da beklentileri ve davranışları birbiriyle uyum halde. Başak’ın beklentilerini Boğa fazlasıyla karşılar. Güven ve sadakat Boğa için çok önemlidir, Başak da sevdiği zaman sadık ve bağlılığını göstermekten çekinmeyen bir eş olacaktır. Boğa’nın hassas ve duygusal tarafı Başak’ın bazı eleştirel konuşmaları ile rahatsız olsa da, her iki taraf da kişisel zıtlıklar yaşamıyorsa uzun vadede, mutlu bir beraberlik yaşayabilirler."
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF" />
+            <me.itangqi.waveloadingview.WaveLoadingView
+                android:id="@+id/waveLoadingView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                app:wlv_borderColor="#fff"
+                app:wlv_borderWidth="5dp"
+                app:wlv_progressValue="40"
+                app:wlv_round_rectangle="true"
+                app:wlv_shapeType="circle"
+                app:wlv_titleCenter="% 93"
+                app:wlv_titleCenterColor="@android:color/white"
+                app:wlv_titleCenterSize="24sp"
+                app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"
+                app:wlv_titleCenterStrokeWidth="3dp"
+                app:wlv_triangle_direction="north"
+                app:wlv_waveAmplitude="70"
+                app:wlv_waveColor="@color/colorUyumDark"/>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageView1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:max="100"
-                android:minHeight="30dp"
-                android:minWidth="250dp"
-                android:progressDrawable="@drawable/greenprocess" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignLeft="@+id/textViewSkor"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="50dp"
-                android:src="@drawable/burc_boga" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adFacebook"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignRight="@+id/textViewSkor"
-                android:layout_alignTop="@+id/imageView1"
-                android:src="@drawable/burc_basak" />
+        <WebView
+            android:id="@+id/webViewGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </android.support.v4.widget.NestedScrollView>
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/imageView2"
-                android:layout_alignLeft="@+id/imageView1"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="22dp"
-                android:alpha="0.87"
-                android:text="Erkek"
-                android:textColor="#26B4C3"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/imageView2"
-                android:layout_alignLeft="@+id/imageView2"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="22dp"
-                android:alpha="0.87"
-                android:text="Kadın"
-                android:textColor="#F06292"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/textViewSkor"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_above="@+id/textViewUyum"
-                android:layout_alignLeft="@+id/progressBar"
-                android:layout_alignRight="@+id/progressBar"
-                android:layout_alignTop="@+id/progressBar"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="%90"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF" />
-        </RelativeLayout>
-    </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/adFacebook"
-        android:layout_width="fill_parent"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-
-</RelativeLayout>
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_share"
+        app:backgroundTint="@color/colorUyumPrimary"
+        app:layout_anchor="@id/Appbar"
+        app:layout_anchorGravity="bottom|right|end"/>
+</android.support.design.widget.CoordinatorLayout>
