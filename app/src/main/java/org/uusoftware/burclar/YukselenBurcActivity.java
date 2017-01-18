@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +22,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -36,8 +38,6 @@ public class YukselenBurcActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    int selectedburc;
-    Tracker t;
     Window window;
     Toolbar toolbar;
     Context mContext;
@@ -48,116 +48,102 @@ public class YukselenBurcActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yukselen);
 
-        // Colored bars
+        /* Colored bars */
         mContext = this.getApplicationContext();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //StatusBar
+        window = this.getWindow();
 
+        //Collapsing Toolbar
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
         collapsingToolbarLayout.setTitle("Yükselen burç");
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
-        window = this.getWindow();
+        //Toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Dynamic bar colors
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.Appbar);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
-                    if (android.os.Build.VERSION.SDK_INT >= 21) {
-                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                        window.setStatusBarColor(ContextCompat.getColor(mContext, R.color.colorYukselenDark));
-                        toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(mContext, R.color.colorYukselenPrimary)));
-                    } else {
-                        toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(mContext, R.color.colorYukselenPrimary)));
-                    }
+                    coloredBars(ContextCompat.getColor(mContext, R.color.colorYukselenPrimary), ContextCompat.getColor(mContext, R.color.colorYukselenPrimary));
                 } else if (verticalOffset == 0) {
-                    if (android.os.Build.VERSION.SDK_INT >= 21) {
-                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                        window.setStatusBarColor(Color.TRANSPARENT);
-                        toolbar.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    } else {
-                        toolbar.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    }
+                    coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
-                    if (android.os.Build.VERSION.SDK_INT >= 21) {
-                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                        window.setStatusBarColor(Color.argb(255 - verticalOffset / 2, 230, 74, 25));
-                        toolbar.setBackgroundDrawable(new ColorDrawable(Color.argb(255 - verticalOffset / 2, 255, 87, 34)));
-                    } else {
-                        toolbar.setBackgroundDrawable(new ColorDrawable(Color.argb(255 - verticalOffset / 2, 255, 87, 34)));
-                    }
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 255, 87, 34), Color.argb(255 - verticalOffset / 2, 255, 87, 34));
                 }
             }
         });
 
         // Analytics
-        t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
+        Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
         t.setScreenName("Yükselen burç - Sonuç");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
+        //Get Yükselen Burç
         Bundle extras = getIntent().getExtras();
-        selectedburc = extras.getInt("burcid");
+        int selectedburc = extras.getInt("burcid");
 
         ImageView image = (ImageView) findViewById(R.id.burc_header);
-        TextView textview = (TextView) findViewById(R.id.burc_exp);
+        WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
+        String link;
 
         if (selectedburc == 0) {
             image.setImageResource(R.drawable.burc_koc);
-            textview.setText(R.string.koc);
-        }
-        if (selectedburc == 1) {
+            link = "http://uusoftware.org/burclar/koc.html";
+        } else if (selectedburc == 1) {
             image.setImageResource(R.drawable.burc_boga);
-            textview.setText(R.string.boga);
-        }
-        if (selectedburc == 2) {
+            link = "http://uusoftware.org/burclar/boga.html";
+        } else if (selectedburc == 2) {
             image.setImageResource(R.drawable.burc_ikizler);
-            textview.setText(R.string.ikizler);
-        }
-        if (selectedburc == 3) {
+            link = "http://uusoftware.org/burclar/ikizler.html";
+        } else if (selectedburc == 3) {
             image.setImageResource(R.drawable.burc_yengec);
-            textview.setText(R.string.yengec);
-        }
-        if (selectedburc == 4) {
+            link = "http://uusoftware.org/burclar/yengec.html";
+        } else if (selectedburc == 4) {
             image.setImageResource(R.drawable.burc_aslan);
-            textview.setText(R.string.aslan);
-        }
-        if (selectedburc == 5) {
+            link = "http://uusoftware.org/burclar/aslan.html";
+        } else if (selectedburc == 5) {
             image.setImageResource(R.drawable.burc_basak);
-            textview.setText(R.string.basak);
-        }
-        if (selectedburc == 6) {
+            link = "http://uusoftware.org/burclar/basak.html";
+        } else if (selectedburc == 6) {
             image.setImageResource(R.drawable.burc_terazi);
-            textview.setText(R.string.terazi);
-        }
-        if (selectedburc == 7) {
+            link = "http://uusoftware.org/burclar/terazi.html";
+        } else if (selectedburc == 7) {
             image.setImageResource(R.drawable.burc_akrep);
-            textview.setText(R.string.akrep);
-        }
-        if (selectedburc == 8) {
+            link = "http://uusoftware.org/burclar/akrep.html";
+        } else if (selectedburc == 8) {
             image.setImageResource(R.drawable.burc_yay);
-            textview.setText(R.string.yay);
-        }
-        if (selectedburc == 9) {
+            link = "http://uusoftware.org/burclar/yay.html";
+        } else if (selectedburc == 9) {
             image.setImageResource(R.drawable.burc_oglak);
-            textview.setText(R.string.oglak);
-        }
-        if (selectedburc == 10) {
+            link = "http://uusoftware.org/burclar/oglak.html";
+        } else if (selectedburc == 10) {
             image.setImageResource(R.drawable.burc_kova);
-            textview.setText(R.string.kova);
-        }
-        if (selectedburc == 11) {
+            link = "http://uusoftware.org/burclar/kova.html";
+        } else {
             image.setImageResource(R.drawable.burc_balik);
-            textview.setText(R.string.balik);
+            link = "http://uusoftware.org/burclar/balik.html";
         }
+
+        myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        myWebView.loadUrl(link);
+
+        //Floating action button
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verifyStoragePermissions();
+            }
+        });
     }
 
     @Override
@@ -173,7 +159,6 @@ public class YukselenBurcActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_share:
-                MainActivity.createFolder();
                 verifyStoragePermissions();
                 return true;
             default:
@@ -186,6 +171,35 @@ public class YukselenBurcActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_EXTERNAL_STORAGE: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Ayarlarınız kaydedildi...", Toast.LENGTH_SHORT).show();
+                    MainActivity.createFolder();
+                } else {
+                    Toast.makeText(this, "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_SHORT)
+                            .show();
+                }
+                break;
+            }
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        } else {
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        }
+    }
+
     public void verifyStoragePermissions() {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -196,23 +210,6 @@ public class YukselenBurcActivity extends AppCompatActivity {
             }
         } else {
             saveBitmap();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_EXTERNAL_STORAGE: {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Ayarlarınız kaydedildi...", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_SHORT)
-                            .show();
-                }
-                break;
-            }
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

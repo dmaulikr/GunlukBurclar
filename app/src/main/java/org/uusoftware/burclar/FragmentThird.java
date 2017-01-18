@@ -105,32 +105,7 @@ public class FragmentThird extends Fragment {
         spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapter, View v, int position, long lng) {
-                if (position == 0) {
-                    burc = 0;
-                } else if (position == 1) {
-                    burc = 1;
-                } else if (position == 2) {
-                    burc = 2;
-                } else if (position == 3) {
-                    burc = 3;
-                } else if (position == 4) {
-                    burc = 4;
-                } else if (position == 5) {
-                    burc = 5;
-                } else if (position == 6) {
-                    burc = 6;
-                } else if (position == 7) {
-                    burc = 7;
-                } else if (position == 8) {
-                    burc = 8;
-                } else if (position == 9) {
-                    burc = 9;
-                } else if (position == 10) {
-                    burc = 10;
-                } else {
-                    burc = 11;
-                }
-
+                burc = position;
             }
 
             @Override
@@ -205,460 +180,331 @@ public class FragmentThird extends Fragment {
     }
 
     public void sendIntent() {
-        // Koç
-        if (burc == 0 && dogumsaati == 0) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 0 && dogumsaati == 1) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 0 && dogumsaati == 2) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 0 && dogumsaati == 3) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 0 && dogumsaati == 4) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 0 && dogumsaati == 5) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 0 && dogumsaati == 6) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 0 && dogumsaati == 7) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 0 && dogumsaati == 8) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 0 && dogumsaati == 9) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 0 && dogumsaati == 10) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 0 && dogumsaati == 11) {
-            intent.putExtra("burcid", 9);
-        }
 
-        // Boğa
-        if (burc == 1 && dogumsaati == 0) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 1 && dogumsaati == 1) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 1 && dogumsaati == 2) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 1 && dogumsaati == 3) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 1 && dogumsaati == 4) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 1 && dogumsaati == 5) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 1 && dogumsaati == 6) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 1 && dogumsaati == 7) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 1 && dogumsaati == 8) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 1 && dogumsaati == 9) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 1 && dogumsaati == 10) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 1 && dogumsaati == 11) {
-            intent.putExtra("burcid", 10);
-        }
-
-        // İkizler
-        if (burc == 2 && dogumsaati == 0) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 2 && dogumsaati == 1) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 2 && dogumsaati == 2) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 2 && dogumsaati == 3) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 2 && dogumsaati == 4) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 2 && dogumsaati == 5) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 2 && dogumsaati == 6) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 2 && dogumsaati == 7) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 2 && dogumsaati == 8) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 2 && dogumsaati == 9) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 2 && dogumsaati == 10) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 2 && dogumsaati == 11) {
-            intent.putExtra("burcid", 11);
-        }
-
-        // Yengeç
-        if (burc == 3 && dogumsaati == 0) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 3 && dogumsaati == 1) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 3 && dogumsaati == 2) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 3 && dogumsaati == 3) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 3 && dogumsaati == 4) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 3 && dogumsaati == 5) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 3 && dogumsaati == 6) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 3 && dogumsaati == 7) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 3 && dogumsaati == 8) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 3 && dogumsaati == 9) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 2 && dogumsaati == 10) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 3 && dogumsaati == 11) {
-            intent.putExtra("burcid", 0);
-        }
-
-        // Aslan
-        if (burc == 4 && dogumsaati == 0) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 4 && dogumsaati == 1) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 4 && dogumsaati == 2) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 4 && dogumsaati == 3) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 4 && dogumsaati == 4) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 4 && dogumsaati == 5) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 4 && dogumsaati == 6) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 4 && dogumsaati == 7) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 4 && dogumsaati == 8) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 4 && dogumsaati == 9) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 4 && dogumsaati == 10) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 4 && dogumsaati == 11) {
-            intent.putExtra("burcid", 1);
-        }
-
-        // Başak
-        if (burc == 5 && dogumsaati == 0) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 5 && dogumsaati == 1) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 5 && dogumsaati == 2) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 5 && dogumsaati == 3) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 5 && dogumsaati == 4) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 5 && dogumsaati == 5) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 5 && dogumsaati == 6) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 5 && dogumsaati == 7) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 5 && dogumsaati == 8) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 5 && dogumsaati == 9) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 5 && dogumsaati == 10) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 5 && dogumsaati == 11) {
-            intent.putExtra("burcid", 2);
-        }
-
-        // Terazi
-        if (burc == 6 && dogumsaati == 0) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 6 && dogumsaati == 1) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 6 && dogumsaati == 2) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 6 && dogumsaati == 3) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 6 && dogumsaati == 4) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 6 && dogumsaati == 5) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 6 && dogumsaati == 6) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 6 && dogumsaati == 7) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 6 && dogumsaati == 8) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 6 && dogumsaati == 9) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 6 && dogumsaati == 10) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 6 && dogumsaati == 11) {
-            intent.putExtra("burcid", 3);
-        }
-
-        // Akrep
-        if (burc == 7 && dogumsaati == 0) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 7 && dogumsaati == 1) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 7 && dogumsaati == 2) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 7 && dogumsaati == 3) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 7 && dogumsaati == 4) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 7 && dogumsaati == 5) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 7 && dogumsaati == 6) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 7 && dogumsaati == 7) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 7 && dogumsaati == 8) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 7 && dogumsaati == 9) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 7 && dogumsaati == 10) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 7 && dogumsaati == 11) {
-            intent.putExtra("burcid", 4);
-        }
-
-        // Yay
-        if (burc == 8 && dogumsaati == 0) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 8 && dogumsaati == 1) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 8 && dogumsaati == 2) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 8 && dogumsaati == 3) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 8 && dogumsaati == 4) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 8 && dogumsaati == 5) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 8 && dogumsaati == 6) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 8 && dogumsaati == 7) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 8 && dogumsaati == 8) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 8 && dogumsaati == 9) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 8 && dogumsaati == 10) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 8 && dogumsaati == 11) {
-            intent.putExtra("burcid", 5);
-        }
-
-        // Oğlak
-        if (burc == 9 && dogumsaati == 0) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 9 && dogumsaati == 1) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 9 && dogumsaati == 2) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 9 && dogumsaati == 3) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 9 && dogumsaati == 4) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 9 && dogumsaati == 5) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 9 && dogumsaati == 6) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 9 && dogumsaati == 7) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 9 && dogumsaati == 8) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 9 && dogumsaati == 9) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 9 && dogumsaati == 10) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 9 && dogumsaati == 11) {
-            intent.putExtra("burcid", 6);
-        }
-
-        // Kova
-        if (burc == 10 && dogumsaati == 0) {
-            intent.putExtra("burcid", 8);
-        }
-        if (burc == 10 && dogumsaati == 1) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 10 && dogumsaati == 2) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 10 && dogumsaati == 3) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 10 && dogumsaati == 4) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 10 && dogumsaati == 5) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 10 && dogumsaati == 6) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 10 && dogumsaati == 7) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 10 && dogumsaati == 8) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 10 && dogumsaati == 9) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 10 && dogumsaati == 10) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 10 && dogumsaati == 11) {
-            intent.putExtra("burcid", 7);
-        }
-
-        // Balık
-        if (burc == 11 && dogumsaati == 0) {
-            intent.putExtra("burcid", 9);
-        }
-        if (burc == 11 && dogumsaati == 1) {
-            intent.putExtra("burcid", 10);
-        }
-        if (burc == 11 && dogumsaati == 2) {
-            intent.putExtra("burcid", 11);
-        }
-        if (burc == 11 && dogumsaati == 3) {
-            intent.putExtra("burcid", 0);
-        }
-        if (burc == 11 && dogumsaati == 4) {
-            intent.putExtra("burcid", 1);
-        }
-        if (burc == 11 && dogumsaati == 5) {
-            intent.putExtra("burcid", 2);
-        }
-        if (burc == 11 && dogumsaati == 6) {
-            intent.putExtra("burcid", 3);
-        }
-        if (burc == 11 && dogumsaati == 7) {
-            intent.putExtra("burcid", 4);
-        }
-        if (burc == 11 && dogumsaati == 8) {
-            intent.putExtra("burcid", 5);
-        }
-        if (burc == 11 && dogumsaati == 9) {
-            intent.putExtra("burcid", 6);
-        }
-        if (burc == 11 && dogumsaati == 10) {
-            intent.putExtra("burcid", 7);
-        }
-        if (burc == 11 && dogumsaati == 11) {
-            intent.putExtra("burcid", 8);
+        if (burc == 0) {
+            //KOÇ
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 8);
+            } else {
+                intent.putExtra("burcid", 9);
+            }
+        } else if (burc == 1) {
+            //BOĞA
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 9);
+            } else {
+                intent.putExtra("burcid", 10);
+            }
+        } else if (burc == 2) {
+            //İKİZLER
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 10);
+            } else {
+                intent.putExtra("burcid", 11);
+            }
+        } else if (burc == 3) {
+            //YENGEÇ
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 11);
+            } else {
+                intent.putExtra("burcid", 0);
+            }
+        } else if (burc == 4) {
+            //ASLAN
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 0);
+            } else {
+                intent.putExtra("burcid", 1);
+            }
+        } else if (burc == 5) {
+            //BAŞAK
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 1);
+            } else {
+                intent.putExtra("burcid", 2);
+            }
+        } else if (burc == 6) {
+            //TERAZİ
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 2);
+            } else {
+                intent.putExtra("burcid", 3);
+            }
+        } else if (burc == 7) {
+            //AKREP
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 3);
+            } else {
+                intent.putExtra("burcid", 4);
+            }
+        } else if (burc == 8) {
+            //YAY
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 4);
+            } else {
+                intent.putExtra("burcid", 5);
+            }
+        } else if (burc == 9) {
+            //OĞLAK
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 7);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 5);
+            } else {
+                intent.putExtra("burcid", 6);
+            }
+        } else if (burc == 10) {
+            //KOVA
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 8);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 6);
+            } else {
+                intent.putExtra("burcid", 7);
+            }
+        } else {
+            //BALIK
+            if (dogumsaati == 0) {
+                intent.putExtra("burcid", 9);
+            } else if (dogumsaati == 1) {
+                intent.putExtra("burcid", 10);
+            } else if (dogumsaati == 2) {
+                intent.putExtra("burcid", 11);
+            } else if (dogumsaati == 3) {
+                intent.putExtra("burcid", 0);
+            } else if (dogumsaati == 4) {
+                intent.putExtra("burcid", 1);
+            } else if (dogumsaati == 5) {
+                intent.putExtra("burcid", 2);
+            } else if (dogumsaati == 6) {
+                intent.putExtra("burcid", 3);
+            } else if (dogumsaati == 7) {
+                intent.putExtra("burcid", 4);
+            } else if (dogumsaati == 8) {
+                intent.putExtra("burcid", 5);
+            } else if (dogumsaati == 9) {
+                intent.putExtra("burcid", 6);
+            } else if (dogumsaati == 10) {
+                intent.putExtra("burcid", 7);
+            } else {
+                intent.putExtra("burcid", 8);
+            }
         }
     }
 
