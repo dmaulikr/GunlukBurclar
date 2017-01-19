@@ -107,17 +107,8 @@ public class BurcUyumuActivity extends AppCompatActivity {
 
         WaveLoadingView mWaveLoadingView = (WaveLoadingView) findViewById(R.id.waveLoadingView);
         mWaveLoadingView.setShapeType(WaveLoadingView.ShapeType.CIRCLE);
-        mWaveLoadingView.setTopTitle("%" + skor);
-        mWaveLoadingView.setCenterTitleColor(Color.GRAY);
-        mWaveLoadingView.setBottomTitleSize(18);
-        mWaveLoadingView.setProgressValue(80);
-        mWaveLoadingView.setBorderWidth(10);
-        mWaveLoadingView.setAmplitudeRatio(60);
-        mWaveLoadingView.setWaveColor(Color.GRAY);
-        mWaveLoadingView.setBorderColor(Color.GRAY);
-        mWaveLoadingView.setTopTitleStrokeColor(Color.BLUE);
-        mWaveLoadingView.setTopTitleStrokeWidth(3);
-        mWaveLoadingView.setAnimDuration(3000);
+        mWaveLoadingView.setCenterTitle("%" + skor);
+        mWaveLoadingView.setProgressValue(skor);
         mWaveLoadingView.startAnimation();
 
 
