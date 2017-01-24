@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -40,8 +44,7 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     Context mContext;
     CollapsingToolbarLayout collapsingToolbarLayout;
     Tracker t;
-    String burc, burcyazisi;
-    int burciconu;
+    String burc, link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +75,11 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
-                    coloredBars(ContextCompat.getColor(mContext, R.color.colorYukselenDark), ContextCompat.getColor(mContext, R.color.colorYukselenPrimary));
+                    coloredBars(ContextCompat.getColor(mContext, R.color.colorCinDark), ContextCompat.getColor(mContext, R.color.colorCinPrimary));
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
-                    coloredBars(Color.argb(255 - verticalOffset / 2, 255, 87, 34), Color.argb(255 - verticalOffset / 2, 255, 87, 34));
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 56, 142, 60), Color.argb(255 - verticalOffset / 2, 56, 142, 60));
                 }
             }
         });
@@ -87,13 +90,64 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         Bundle extras = getIntent().getExtras();
         burc = extras.getString("burc");
-        burcyazisi = extras.getString("burcyazisi");
-        burciconu = extras.getInt("burciconu");
+
+        ImageView image = (ImageView) findViewById(R.id.cin_header);
+        WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
+
+        if (burc == "Fare") {
+            image.setImageResource(R.drawable.cin_fare);
+            link = "http://uusoftware.org/burclar/koc.html";
+        } else if (burc == "Öküz") {
+            image.setImageResource(R.drawable.cin_okuz);
+            link = "http://uusoftware.org/burclar/boga.html";
+        } else if (burc == "Kaplan") {
+            image.setImageResource(R.drawable.cin_kaplan);
+            link = "http://uusoftware.org/burclar/ikizler.html";
+        } else if (burc == "Tavşan") {
+            image.setImageResource(R.drawable.cin_tavsan);
+            link = "http://uusoftware.org/burclar/yengec.html";
+        } else if (burc == "Ejderha") {
+            image.setImageResource(R.drawable.cin_ejdarha);
+            link = "http://uusoftware.org/burclar/aslan.html";
+        } else if (burc == "Yılan") {
+            image.setImageResource(R.drawable.cin_yilan);
+            link = "http://uusoftware.org/burclar/basak.html";
+        } else if (burc == "At") {
+            image.setImageResource(R.drawable.cin_at);
+            link = "http://uusoftware.org/burclar/terazi.html";
+        } else if (burc == "Keçi") {
+            image.setImageResource(R.drawable.cin_keci);
+            link = "http://uusoftware.org/burclar/akrep.html";
+        } else if (burc == "Maymun") {
+            image.setImageResource(R.drawable.cin_maymun);
+            link = "http://uusoftware.org/burclar/yay.html";
+        } else if (burc == "Horoz") {
+            image.setImageResource(R.drawable.cin_horoz);
+            link = "http://uusoftware.org/burclar/oglak.html";
+        } else if (burc == "Köpek") {
+            image.setImageResource(R.drawable.cin_kopek);
+            link = "http://uusoftware.org/burclar/kova.html";
+        } else if (burc == "Domuz") {
+            image.setImageResource(R.drawable.cin_domuz);
+            link = "http://uusoftware.org/burclar/kova.html";
+        } else {
+            image.setImageResource(R.drawable.cin_unknown);
+            link = "http://uusoftware.org/burclar/balik.html";
+        }
+
+        myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        myWebView.loadUrl(link);
+
+        //Floating action button
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verifyStoragePermissions();
+            }
+        });
     }
 
     @Override
