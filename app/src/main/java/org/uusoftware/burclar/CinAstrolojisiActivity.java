@@ -59,7 +59,7 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
 
         //Collapsing Toolbar
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
-        collapsingToolbarLayout.setTitle("Yükselen burç");
+        collapsingToolbarLayout.setTitle("Çin astrolojisi");
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
@@ -90,8 +90,6 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-
-
         Bundle extras = getIntent().getExtras();
         burc = extras.getString("burc");
 
@@ -102,43 +100,43 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
 
         if (burc.contains("Fare")) {
             image.setImageResource(R.drawable.cin_fare);
-            link = "http://uusoftware.org/burclar/koc.html";
+            link = "http://uusoftware.org/burclar/cin-fare.html";
         } else if (burc.contains("Öküz")) {
             image.setImageResource(R.drawable.cin_okuz);
-            link = "http://uusoftware.org/burclar/boga.html";
+            link = "http://uusoftware.org/burclar/cin-okuz.html";
         } else if (burc.contains("Kaplan")) {
             image.setImageResource(R.drawable.cin_kaplan);
-            link = "http://uusoftware.org/burclar/ikizler.html";
+            link = "http://uusoftware.org/burclar/cin-kaplan.html";
         } else if (burc.contains("Tavşan")) {
             image.setImageResource(R.drawable.cin_tavsan);
-            link = "http://uusoftware.org/burclar/yengec.html";
+            link = "http://uusoftware.org/burclar/cin-tavsan.html";
         } else if (burc.contains("Ejderha")) {
             image.setImageResource(R.drawable.cin_ejdarha);
-            link = "http://uusoftware.org/burclar/aslan.html";
+            link = "http://uusoftware.org/burclar/cin-ejderha.html";
         } else if (burc.contains("Yılan")) {
             image.setImageResource(R.drawable.cin_yilan);
-            link = "http://uusoftware.org/burclar/basak.html";
+            link = "http://uusoftware.org/burclar/cin-yilan.html";
         } else if (burc.contains("At")) {
             image.setImageResource(R.drawable.cin_at);
-            link = "http://uusoftware.org/burclar/terazi.html";
+            link = "http://uusoftware.org/burclar/cin-at.html";
         } else if (burc.contains("Keçi")) {
             image.setImageResource(R.drawable.cin_keci);
-            link = "http://uusoftware.org/burclar/akrep.html";
+            link = "http://uusoftware.org/burclar/cin-keci.html";
         } else if (burc.contains("Maymun")) {
             image.setImageResource(R.drawable.cin_maymun);
-            link = "http://uusoftware.org/burclar/yay.html";
+            link = "http://uusoftware.org/burclar/cin-maymun.html";
         } else if (burc.contains("Horoz")) {
             image.setImageResource(R.drawable.cin_horoz);
-            link = "http://uusoftware.org/burclar/oglak.html";
+            link = "http://uusoftware.org/burclar/cin-horoz.html";
         } else if (burc.contains("Köpek")) {
             image.setImageResource(R.drawable.cin_kopek);
-            link = "http://uusoftware.org/burclar/kova.html";
+            link = "http://uusoftware.org/burclar/cin-kopek.html";
         } else if (burc.contains("Domuz")) {
             image.setImageResource(R.drawable.cin_domuz);
-            link = "http://uusoftware.org/burclar/kova.html";
+            link = "http://uusoftware.org/burclar/cin-domuz.html";
         } else {
             image.setImageResource(R.drawable.cin_unknown);
-            link = "http://uusoftware.org/burclar/balik.html";
+            link = "http://uusoftware.org/burclar/cin-noburc.html";
         }
 
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -248,8 +246,12 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     public void shareIt(String path) {
         // Share
         Uri myUri = Uri.parse("file://" + path);
-        System.out.println(myUri);
-        String shareBody = "Günlük Burçlar uygulaması Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+        String shareBody;
+        if (burc.contains("Burcunuzu bulamadık?")) {
+            shareBody = "Çin burcumu aradım ama bulamadım :( Ya sen? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+        } else {
+            shareBody = "Çin burcum" + burc + " çıktı. Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+        }
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareBody);

@@ -254,7 +254,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
         // Share
         Uri myUri = Uri.parse("file://" + path);
         System.out.println(myUri);
-        String shareBody = "Yükselen burcum" + burcName + ". Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+        String shareBody = "Yükselen burcum" + burcName + " çıktı. Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareBody);
