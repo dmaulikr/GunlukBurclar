@@ -828,8 +828,8 @@ public class FragmentSecond extends Fragment {
 
     public void showAds() {
         if (MainActivity.interstitial.isLoaded()) {
-            startActivity(intent);
             MainActivity.interstitial.show();
+            startActivity(intent);
         } else {
             startActivity(intent);
         }

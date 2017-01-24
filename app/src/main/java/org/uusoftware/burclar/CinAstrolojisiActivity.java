@@ -1,13 +1,17 @@
 package org.uusoftware.burclar;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,13 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AdSize;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -36,46 +35,51 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    TextView text1, text2;
-    ImageView image1;
+    Window window;
+    Toolbar toolbar;
+    Context mContext;
+    CollapsingToolbarLayout collapsingToolbarLayout;
     Tracker t;
     String burc, burcyazisi;
     int burciconu;
-
-    //Facebook Audience Network
-    private com.facebook.ads.AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cinastrolojisi);
 
-        // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
-        if (premium) {
-            //Do nothing
-        } else {
-            RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-            adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
-            adViewContainer.addView(adView);
-            adView.loadAd();
-        }
+        /* Colored bars */
+        mContext = this.getApplicationContext();
 
-        // Colored bars
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //StatusBar
+        window = this.getWindow();
+
+        //Collapsing Toolbar
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
+        collapsingToolbarLayout.setTitle("Yükselen burç");
+        collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+
+        //Toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
-
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        }
+        //Dynamic bar colors
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.Appbar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                    coloredBars(ContextCompat.getColor(mContext, R.color.colorYukselenDark), ContextCompat.getColor(mContext, R.color.colorYukselenPrimary));
+                } else if (verticalOffset == 0) {
+                    coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
+                } else {
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 255, 87, 34), Color.argb(255 - verticalOffset / 2, 255, 87, 34));
+                }
+            }
+        });
 
         // Analytics
         t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
@@ -90,14 +94,6 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
         burc = extras.getString("burc");
         burcyazisi = extras.getString("burcyazisi");
         burciconu = extras.getInt("burciconu");
-
-        text1 = (TextView) findViewById(R.id.textView1);
-        text2 = (TextView) findViewById(R.id.textView2);
-        image1 = (ImageView) findViewById(R.id.imageView1);
-
-        text1.setText(burc);
-        text2.setText(burcyazisi);
-        image1.setImageResource(burciconu);
     }
 
     @Override
@@ -123,6 +119,17 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        } else {
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        }
     }
 
     public void verifyStoragePermissions() {
@@ -197,13 +204,5 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 }

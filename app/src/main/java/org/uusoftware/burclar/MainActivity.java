@@ -70,18 +70,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //BUNU BURDAN SİL İŞİN BİTİNCE
+        AdMob();
+
         mContext = this.getApplicationContext();
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
         //Check premium
-        if (prefs.getBoolean("Premium", false)) {
-            premium = true;
-        } else {
-            premium = false;
-            InAppBilling();
-            AdMob();
-        }
+        premium = prefs.getBoolean("Premium", false);
+        InAppBilling();
 
         // Other codes
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -132,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 },
                 new RmpAppirater.Options(
                         "Günlük Burçlar'ı sevdin mi?", "5 puan vererek bize destek olabilirsin!",
-                        "Oyla!", "Başka zaman",
+                        "Oyla!", "Belki başka zaman",
                         "Hayır, teşekkürler"));
 
         // AlarmManager
@@ -145,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 mService = null;
+                AdMob();
             }
 
             @Override
@@ -173,7 +172,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 premium = false;
                 editor.putBoolean("Premium", false).apply();
+                AdMob();
             }
+        } else {
+            AdMob();
         }
     }
 
@@ -218,14 +220,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent myIntent = new Intent(MainActivity.this, MyReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
+        int hourofday = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
         Calendar calendar = Calendar.getInstance();
-
-        Calendar calendar2 = Calendar.getInstance();
-        int hourofday = calendar2.get(Calendar.HOUR_OF_DAY);
-
         calendar.set(Calendar.HOUR_OF_DAY, 10);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
+
         if (hourofday < 10) {
             alarmManager.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, pendingIntent);
