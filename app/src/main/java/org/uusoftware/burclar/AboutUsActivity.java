@@ -14,11 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AdSize;
-import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -37,25 +33,10 @@ public class AboutUsActivity extends AppCompatActivity {
     ImageView image1, image2, image3, image4, image5, image6;
     Intent intent1, intent2, intent3, intent4, intent5, intent6;
 
-    //Facebook Audience Network
-    private AdView adView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
-
-        // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
-        if (premium) {
-            //Do nothing
-        } else {
-            RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-            adView = new AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
-            adViewContainer.addView(adView);
-            adView.loadAd();
-        }
 
         //StatusBar
         window = this.getWindow();
@@ -159,13 +140,5 @@ public class AboutUsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 }

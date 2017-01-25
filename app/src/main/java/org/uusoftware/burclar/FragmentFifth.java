@@ -20,7 +20,6 @@ public class FragmentFifth extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fifth, container, false);
 
         selectedburc = SecondActivity.burcid;
-
         ImageView image = (ImageView) v.findViewById(R.id.imageView1);
 
         if (selectedburc == 0) {

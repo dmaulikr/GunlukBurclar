@@ -14,11 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AdSize;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -37,42 +34,25 @@ public class FavoritesActivity extends AppCompatActivity {
     Tracker t;
     GridItem item;
     BitmapFactory.Options options;
+    Window window;
+    Toolbar toolbar;
     private List<GridItem> feedsList;
-
-    //Facebook Audience Network
-    private com.facebook.ads.AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
-        // Premium & Facebook Audience Network
-        boolean premium = MainActivity.premium;
-        if (premium) {
-            //Do nothing
-        } else {
-            RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-            adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("90ff5bfeac54391d98cc2bb9ff05ebb7");
-            adViewContainer.addView(adView);
-            adView.loadAd();
-        }
+        //StatusBar
+        window = this.getWindow();
 
-        // Colored bars
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //Toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
-
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        }
+        coloredBars(ContextCompat.getColor(this, R.color.colorAboutDark), ContextCompat.getColor(this, R.color.colorAboutPrimary));
 
         // Analytics
         t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
@@ -122,6 +102,17 @@ public class FavoritesActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        } else {
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
@@ -147,13 +138,5 @@ public class FavoritesActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
     }
 }

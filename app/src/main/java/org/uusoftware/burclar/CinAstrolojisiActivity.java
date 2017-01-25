@@ -43,7 +43,6 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
     Toolbar toolbar;
     Context mContext;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    Tracker t;
     String burc, link;
 
     @Override
@@ -85,7 +84,7 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
         });
 
         // Analytics
-        t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
+        Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
         t.setScreenName("Çin astrolojisi - Sonuç");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());

@@ -36,7 +36,7 @@ public class HelpingActivity extends AppCompatActivity {
 
         // Analytics
         Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
-        t.setScreenName("Yükselen burç - Sonuç");
+        t.setScreenName("Yardım");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
     }
