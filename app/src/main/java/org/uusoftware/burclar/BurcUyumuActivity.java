@@ -15,6 +15,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -288,7 +289,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
 
     public void saveBitmap() {
         CharSequence now = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm", new Date());
-        String filePath = now + ".png";
+        String fileName = now + ".png";
 
         try {
             // create bitmap screen capture
@@ -297,23 +298,24 @@ public class BurcUyumuActivity extends AppCompatActivity {
             Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
             v1.setDrawingCacheEnabled(false);
 
-            File imageFile = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar", filePath);
+            File imageFile = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar", fileName);
             FileOutputStream outputStream = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 70, outputStream);
             outputStream.flush();
             outputStream.close();
 
-            shareIt(Environment.getExternalStorageDirectory() + "/Günlük Burçlar" + "/" + filePath);
+            shareIt(fileName);
         } catch (Throwable e) {
             // Several error may come out with file handling or OOM
             e.printStackTrace();
         }
     }
 
-    public void shareIt(String path) {
+    public void shareIt(String name) {
         // Share
-        Uri myUri = Uri.parse("file://" + path);
-        System.out.println(myUri);
+        File imagePath = new File(this.getFilesDir(), "Günlük Burçlar");
+        File newFile = new File(imagePath, name);
+        Uri myUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", newFile);
         String shareBody = "Günlük Burçlar uygulaması Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

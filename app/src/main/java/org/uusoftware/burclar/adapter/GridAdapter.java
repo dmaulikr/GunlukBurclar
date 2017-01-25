@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,19 +36,19 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     // Get Uri
-                    String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar";
-                    File f = new File(path);
-                    File file[] = f.listFiles();
+                    File imagePath = new File(mContext.getFilesDir(), "Günlük Burçlar");
+                    File file[] = imagePath.listFiles();
+                    Uri myUri = FileProvider.getUriForFile(mContext, mContext.getApplicationContext().getPackageName() + ".provider", file[position]);
                     Intent intent = new Intent();
                     if (which == 0) {
                         // Show
                         intent.setAction(android.content.Intent.ACTION_VIEW);
-                        intent.setDataAndType(Uri.fromFile(file[position]), "image/*");
+                        intent.setDataAndType(myUri, "image/*");
                         mContext.startActivity(intent);
                     } else if (which == 1) {
                         // Share
                         intent.setAction(Intent.ACTION_SEND);
-                        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file[position]));
+                        intent.putExtra(Intent.EXTRA_STREAM, myUri);
                         intent.setType("image/*");
                         mContext.startActivity(intent);
                     } else {
