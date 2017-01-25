@@ -20,7 +20,7 @@
         android:layout_above="@+id/adFacebook">
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_alignParentLeft="true"
@@ -38,7 +38,7 @@
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_below="@+id/textView1"
+            android:layout_below="@+id/textView2"
             android:alpha="0.87"
             android:gravity="center"
             android:text="Standart sürümde kullanıcılara çeşitli reklamlar gösterilir. Premium sürümde ise kullanıcılarımıza kesinlikle reklam göstermiyoruz."

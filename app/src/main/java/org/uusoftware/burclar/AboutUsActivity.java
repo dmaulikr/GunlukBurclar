@@ -1,5 +1,6 @@
 package org.uusoftware.burclar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -15,7 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
@@ -25,16 +25,19 @@ import com.google.android.gms.analytics.Tracker;
 
 public class AboutUsActivity extends AppCompatActivity {
 
+    Window window;
+    Toolbar toolbar;
+    Context mContext;
+    Tracker t;
+
     String str1 = "http://uusoftware.org";
     String str2 = "https://www.facebook.com/uusoftware";
     String str3 = "https://twitter.com/uusoftware1";
-    String str4 = "https://instagram.com/uusoftware";
+    String str4 = "https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
     String str5 = "https://www.youtube.com/channel/UCpzVBPCN4XSJt8sL5u8X_FQ";
     String str6 = "https://plus.google.com/115518080824239135242";
 
-    Tracker t;
-
-    ImageView image1, image2, image3, image4, image5, image6, image7;
+    ImageView image1, image2, image3, image4, image5, image6;
     Intent intent1, intent2, intent3, intent4, intent5, intent6;
 
     //Facebook Audience Network
@@ -57,20 +60,19 @@ public class AboutUsActivity extends AppCompatActivity {
             adView.loadAd();
         }
 
-        // Colored bars
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         /* Colored bars */
+        mContext = this.getApplicationContext();
+
+        //StatusBar
+        window = this.getWindow();
+
+        //Toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
-
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        }
+        coloredBars(ContextCompat.getColor(this, R.color.colorAboutDark), ContextCompat.getColor(this, R.color.colorAboutPrimary));
 
         // Analytics
         t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
@@ -79,53 +81,40 @@ public class AboutUsActivity extends AppCompatActivity {
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
         // Initializing
-        image1 = (ImageView) findViewById(R.id.imageView1);
-        image2 = (ImageView) findViewById(R.id.imageView2);
-        image3 = (ImageView) findViewById(R.id.imageView3);
-        image4 = (ImageView) findViewById(R.id.imageView4);
-        image5 = (ImageView) findViewById(R.id.imageView5);
-        image6 = (ImageView) findViewById(R.id.imageView6);
-        image7 = (ImageView) findViewById(R.id.imageView7);
+        image1 = (ImageView) findViewById(R.id.imageViewWebsite);
+        image2 = (ImageView) findViewById(R.id.footerFacebook);
+        image3 = (ImageView) findViewById(R.id.footerTwitter);
+        image4 = (ImageView) findViewById(R.id.footerGooglePlay);
+        image5 = (ImageView) findViewById(R.id.footerYoutube);
+        image6 = (ImageView) findViewById(R.id.footerGooglePlus);
 
         OnClickListener buttonListener = new OnClickListener() {
 
             public void onClick(final View v) {
                 switch (v.getId()) {
-                    case R.id.imageView1:
+                    case R.id.imageViewWebsite:
                         intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse(str1));
                         startActivity(intent1);
                         break;
-                    case R.id.imageView2:
+                    case R.id.footerFacebook:
                         intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse(str2));
                         startActivity(intent2);
                         break;
-                    case R.id.imageView3:
+                    case R.id.footerTwitter:
                         intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse(str3));
                         startActivity(intent3);
                         break;
-                    case R.id.imageView4:
+                    case R.id.footerGooglePlay:
                         intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse(str4));
                         startActivity(intent4);
                         break;
-                    case R.id.imageView5:
+                    case R.id.footerYoutube:
                         intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse(str5));
                         startActivity(intent5);
                         break;
-                    case R.id.imageView6:
+                    case R.id.footerGooglePlus:
                         intent6 = new Intent(Intent.ACTION_VIEW, Uri.parse(str6));
                         startActivity(intent6);
-                        break;
-                    case R.id.imageView7:
-                        Intent i = new Intent(Intent.ACTION_SEND);
-                        i.setType("plain/text");
-                        i.putExtra(Intent.EXTRA_EMAIL, new String[]{"uusoftware@outlook.com"});
-                        i.putExtra(Intent.EXTRA_SUBJECT, "Günlük Burçlar");
-                        try {
-                            startActivity(Intent.createChooser(i, "E-posta gönder..."));
-                        } catch (android.content.ActivityNotFoundException ex) {
-                            Toast.makeText(AboutUsActivity.this, "Cihazınızda e-posta uygulaması bulunmamaktadır!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
                         break;
                 }
 
@@ -138,7 +127,17 @@ public class AboutUsActivity extends AppCompatActivity {
         image4.setOnClickListener(buttonListener);
         image5.setOnClickListener(buttonListener);
         image6.setOnClickListener(buttonListener);
-        image7.setOnClickListener(buttonListener);
+    }
+
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        } else {
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+        }
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -280,7 +281,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent2);
         } else if (id == R.id.nav_premium) {
             if (premium) {
-                // Do nothing
+                Toast.makeText(MainActivity.this, "Premium sürüme daha önce geçiş yapmısınız!",
+                        Toast.LENGTH_LONG).show();
             } else {
                 try {
                     buyPremium();
@@ -295,8 +297,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent3);
         } else if (id == R.id.nav_puanla) {
             //PUANLA
+            Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=org.uusoftware.burclar"));
+            startActivity(intent4);
         } else {
             //BETA
+            Intent intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
+            startActivity(intent5);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

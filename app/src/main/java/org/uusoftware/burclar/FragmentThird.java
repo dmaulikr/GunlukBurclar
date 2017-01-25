@@ -540,7 +540,7 @@ public class FragmentThird extends Fragment {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View row = inflater.inflate(R.layout.spinner_row, parent, false);
 
-            TextView text = (TextView) row.findViewById(R.id.textView1);
+            TextView text = (TextView) row.findViewById(R.id.textView2);
             text.setText(strings[position]);
 
             ImageView icon = (ImageView) row.findViewById(R.id.imageView1);

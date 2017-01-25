@@ -1,134 +1,139 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/background_home">
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".AboutUsActivity">
 
-    <android.support.percent.PercentRelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/adFacebook">
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="TODO"
-            android:src="@drawable/ic_about_uulogo"
-            app:layout_heightPercent="30%"
-            app:layout_marginBottomPercent="2.5%"
-            app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="50%"/>
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView1"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_social_facebook"
-            app:layout_heightPercent="15%"
-            app:layout_marginLeftPercent="20%"
-            app:layout_marginTopPercent="3.75%"
-            app:layout_widthPercent="20%"/>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@+id/textView1"
-            android:layout_toRightOf="@id/imageView2"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_social_twitter"
-            app:layout_heightPercent="15%"
-            app:layout_marginTopPercent="3.75%"
-            app:layout_widthPercent="20%"/>
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@+id/textView1"
-            android:layout_toRightOf="@id/imageView3"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_social_youtube"
-            app:layout_heightPercent="15%"
-            app:layout_marginTopPercent="3.75%"
-            app:layout_widthPercent="20%"/>
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/imageView2"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_social_instagram"
-            app:layout_heightPercent="15%"
-            app:layout_marginLeftPercent="20%"
-            app:layout_widthPercent="20%"/>
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@+id/imageView3"
-            android:layout_toRightOf="@id/imageView5"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_social_google"
-            app:layout_heightPercent="15%"
-            app:layout_widthPercent="20%"/>
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@+id/imageView4"
-            android:layout_toRightOf="@id/imageView6"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_about_mail"
-            app:layout_heightPercent="15%"
-            app:layout_widthPercent="20%"/>
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@+id/imageView1"
-            android:layout_centerHorizontal="true"
-            android:alpha="0.87"
-            android:gravity="center"
-            android:text="U&amp;U Software Android kullanıcıları için yüksek kaliteli oyun ve uygulamalar geliştirmeyi hedefleyen bir Indie Developerdır."
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF"
-            app:layout_heightPercent="22.5%"
-            app:layout_widthPercent="95%"/>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:alpha="0.54"
-            android:gravity="center"
-            android:text="Copyright © 2016 U&amp;U Software"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#FFFFFF"
-            app:layout_heightPercent="5%"
-            app:layout_widthPercent="90%"/>
-
-    </android.support.percent.PercentRelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/adFacebook"
-        android:layout_width="fill_parent"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#9E9E9E"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:context=".AboutUsActivity">
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/adFacebook">
+
+            <ImageView
+                android:id="@+id/footerGooglePlay"
+                android:layout_below="@+id/footerBurclar"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_googleplay"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageView
+                android:id="@+id/footerTwitter"
+                android:layout_below="@+id/footerBurclar"
+                android:layout_margin="5dp"
+                android:layout_toLeftOf="@+id/footerGooglePlay"
+                android:src="@drawable/ic_social_twitter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageView
+                android:id="@+id/footerYoutube"
+                android:layout_below="@+id/footerBurclar"
+                android:layout_margin="5dp"
+                android:layout_toRightOf="@+id/footerGooglePlay"
+                android:src="@drawable/ic_social_youtube"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageView
+                android:id="@+id/footerGooglePlus"
+                android:layout_below="@+id/footerBurclar"
+                android:layout_margin="5dp"
+                android:layout_toRightOf="@+id/footerYoutube"
+                android:src="@drawable/ic_social_google"
+                android:layout_height="50dp"
+                android:layout_width="50dp"/>
+
+            <ImageView
+                android:id="@+id/footerFacebook"
+                android:layout_below="@+id/footerBurclar"
+                android:layout_margin="5dp"
+                android:layout_toLeftOf="@+id/footerTwitter"
+                android:src="@drawable/ic_social_facebook"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:alpha="0.54"
+                android:text="Copyright © 2016 U&amp;U Software"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:id="@+id/imageViewWebsite"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/ic_about_uulogo"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.87"
+                android:gravity="center"
+                android:text="Günlük Burçlar, mobil cihaz kullanıcılarının astrolojik gündemlerini daha kolay takip etmesi için U&amp;U Software tarafından yazılmıştır. Aşağıdaki linklerden ya da uusoftware@outlook.com üzerinden bize ulaşabilirsiniz."
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000"
+                app:layout_heightPercent="30%"
+                app:layout_widthPercent="95%"
+                android:layout_below="@+id/imageViewWebsite"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                />
+
+            <ImageView
+                android:id="@+id/footerBurclar"
+                android:layout_width="250dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_burclar"
+                android:layout_below="@+id/textView1"
+                android:layout_centerHorizontal="true"/>
+
+        </android.support.percent.PercentRelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/adFacebook"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
