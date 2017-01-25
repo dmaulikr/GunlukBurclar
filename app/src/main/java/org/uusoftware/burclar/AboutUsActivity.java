@@ -1,6 +1,5 @@
 package org.uusoftware.burclar;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -27,8 +26,6 @@ public class AboutUsActivity extends AppCompatActivity {
 
     Window window;
     Toolbar toolbar;
-    Context mContext;
-    Tracker t;
 
     String str1 = "http://uusoftware.org";
     String str2 = "https://www.facebook.com/uusoftware";
@@ -60,9 +57,6 @@ public class AboutUsActivity extends AppCompatActivity {
             adView.loadAd();
         }
 
-         /* Colored bars */
-        mContext = this.getApplicationContext();
-
         //StatusBar
         window = this.getWindow();
 
@@ -75,7 +69,7 @@ public class AboutUsActivity extends AppCompatActivity {
         coloredBars(ContextCompat.getColor(this, R.color.colorAboutDark), ContextCompat.getColor(this, R.color.colorAboutPrimary));
 
         // Analytics
-        t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
+        Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
         t.setScreenName("Hakkımızda");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
