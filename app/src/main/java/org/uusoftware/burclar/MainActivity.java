@@ -32,9 +32,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -42,6 +44,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int REQUEST_ID_PERMISSION = 1;
 
     public static boolean premium = false;
+    //FacebookLogin
     public static CallbackManager callbackmanager;
     static InterstitialAd interstitial;
     private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -74,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     Toolbar toolbar;
-    //FacebookLogin
     private LoginButton loginButton;
+    private ProfilePictureView profilepic;
 
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
@@ -119,52 +123,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                //FacebookLogin
-                loginButton = (LoginButton) findViewById(R.id.login_button);
-                loginButton.setReadPermissions("public_profile");
-                callbackmanager = CallbackManager.Factory.create();
-                loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        System.out.println("Success");
-                        GraphRequest.newMeRequest(
-                                loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                                    @Override
-                                    public void onCompleted(JSONObject json, GraphResponse response) {
-                                        if (response.getError() != null) {
-                                            // handle error
-                                            System.out.println("ERROR");
-                                        } else {
-                                            System.out.println("Success");
-                                            try {
 
-                                                String jsonresult = String.valueOf(json);
-                                                System.out.println("JSON Result" + jsonresult);
+                facebookLogin();
 
-                                                String str_email = json.getString("email");
-                                                String str_id = json.getString("id");
-                                                String str_firstname = json.getString("first_name");
-                                                String str_lastname = json.getString("last_name");
+                //Check user logged via Facebook
+                if (isLoggedIn()) {
+                    loginButton.setVisibility(View.GONE);
 
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    }
+                    String name = prefs.getString("FbName", "");
+                    String profileID = prefs.getString("FbID", "");
 
-                                }).executeAsync();
-                    }
+                    TextView textView = (TextView) findViewById(R.id.textViewName);
+                    textView.setText(name);
 
-                    @Override
-                    public void onCancel() {
-                        Log.d("iptal", "On cancel");
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        Log.d("hata", exception.toString());
-                    }
-                });
+                    ProfilePictureView picture = (ProfilePictureView) findViewById(R.id.profilePicture);
+                    picture.setCropped(true);
+                    picture.setProfileId(profileID);
+                }
             }
         };
         drawer.setDrawerListener(toggle);
@@ -211,6 +186,62 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // AlarmManager
         prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
         AlarmManager();
+    }
+
+    public void facebookLogin() {
+        //FacebookLogin
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("public_profile");
+        callbackmanager = CallbackManager.Factory.create();
+        loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                System.out.println("Success");
+                GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject json, GraphResponse response) {
+                                if (response.getError() != null) {
+                                    // handle error
+                                    System.out.println("ERROR");
+                                } else {
+                                    System.out.println("Success");
+                                    try {
+
+                                        String jsonresult = String.valueOf(json);
+                                        System.out.println("JSON Result" + jsonresult);
+
+                                        String str_email = json.getString("email");
+                                        String str_id = json.getString("id");
+                                        String str_firstname = json.getString("first_name");
+                                        String str_lastname = json.getString("last_name");
+
+                                        editor.putString("FbName", str_firstname + str_lastname);
+                                        editor.putString("FbID", str_id);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+
+                        }).executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                //Do nothing
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Log.d("hata", exception.toString());
+            }
+        });
+    }
+
+    public boolean isLoggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
     }
 
     private void InAppBilling() {
