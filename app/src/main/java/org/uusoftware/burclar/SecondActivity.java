@@ -20,8 +20,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -42,11 +46,26 @@ public class SecondActivity extends AppCompatActivity {
     Context mContext;
     Window window;
     Toolbar toolbar;
+    boolean premium;
+    //Facebook Audience Network
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        // Premium & Facebook Audience Network
+        premium = MainActivity.premium;
+        if (premium) {
+            //Do nothing
+        } else {
+            RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
+            adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
+            AdSettings.addTestDevice("f7b438ca481bd95179a45b4b10ea9a7a");
+            adViewContainer.addView(adView);
+            adView.loadAd();
+        }
 
         /* Colored bars */
         mContext = this.getApplicationContext();
@@ -71,7 +90,6 @@ public class SecondActivity extends AppCompatActivity {
         burcid = extras.getInt("burcid");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
     }
@@ -185,5 +203,13 @@ public class SecondActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

@@ -27,15 +27,27 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,8 +59,9 @@ import jp.co.recruit_mp.android.rmp_appirater.RmpAppirater;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int REQUEST_ID_PERMISSION = 1;
-    public static Context mContext;
+
     public static boolean premium = false;
+    public static CallbackManager callbackmanager;
     static InterstitialAd interstitial;
     private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -61,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     Toolbar toolbar;
+    //FacebookLogin
+    private LoginButton loginButton;
 
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
@@ -69,12 +84,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        callbackmanager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
 
         //BUNU BURDAN SİL İŞİN BİTİNCE
         AdMob();
 
-        mContext = this.getApplicationContext();
+        //SharedPreferences
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
@@ -82,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         premium = prefs.getBoolean("Premium", false);
         InAppBilling();
 
-        // Other codes
+        // Toolbar, NavigationDrawer
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ft = getSupportFragmentManager().beginTransaction();
@@ -92,7 +108,65 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+            @Override
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                // Do whatever you want here
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                //FacebookLogin
+                loginButton = (LoginButton) findViewById(R.id.login_button);
+                loginButton.setReadPermissions("public_profile");
+                callbackmanager = CallbackManager.Factory.create();
+                loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        System.out.println("Success");
+                        GraphRequest.newMeRequest(
+                                loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(JSONObject json, GraphResponse response) {
+                                        if (response.getError() != null) {
+                                            // handle error
+                                            System.out.println("ERROR");
+                                        } else {
+                                            System.out.println("Success");
+                                            try {
+
+                                                String jsonresult = String.valueOf(json);
+                                                System.out.println("JSON Result" + jsonresult);
+
+                                                String str_email = json.getString("email");
+                                                String str_id = json.getString("id");
+                                                String str_firstname = json.getString("first_name");
+                                                String str_lastname = json.getString("last_name");
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+
+                                }).executeAsync();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d("iptal", "On cancel");
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.d("hata", exception.toString());
+                    }
+                });
+            }
+        };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -328,6 +402,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.putBoolean("Premium", false).commit();
             }
         }
+        callbackmanager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
