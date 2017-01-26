@@ -3,6 +3,7 @@
 
     <string name="facebook_app_id">155235578298611</string>
     <string name="fb_login_protocol_scheme">fb155235578298611</string>
+
     <string name="app_name">Günlük Burçlar</string>
     <string name="action_share">Paylaş</string>
     <string name="chooseaction">Bir eylem seçin:</string>
@@ -19,16 +20,16 @@
     </string-array>
 
     <!-- Nav Drawer Menu Items -->
-    <string name="nav_home">Burçlar</string>
-    <string name="nav_uyum">Burç uyumunu</string>
-    <string name="nav_yukselen">Yükselen burç</string>
-    <string name="nav_cin">Çin astrolojisi</string>
-    <string name="nav_favoriler">Favoriler</string>
-    <string name="nav_help">Yardım</string>
-    <string name="nav_premium">Premium sürüme geçin</string>
-    <string name="nav_about">Hakkımızda</string>
-    <string name="nav_puanla">Uygulamayı puanla</string>
-    <string name="nav_beta">Beta testine kaydolun</string>
+    <string name="nav_text_home">Burçlar</string>
+    <string name="nav_text_uyum">Burç uyumu</string>
+    <string name="nav_text_yukselen">Yükselen burç</string>
+    <string name="nav_text_cin">Çin astrolojisi</string>
+    <string name="nav_text_favoriler">Favoriler</string>
+    <string name="nav_text_help">Yardım</string>
+    <string name="nav_text_premium">Premium sürüme geçin</string>
+    <string name="nav_text_puanla">Uygulamayı puanla</string>
+    <string name="nav_text_about">Hakkımızda</string>
+    <string name="nav_text_beta">Beta testine kaydolun</string>
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Öğe ikonu</string>

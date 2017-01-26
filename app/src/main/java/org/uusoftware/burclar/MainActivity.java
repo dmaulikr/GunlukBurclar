@@ -20,7 +20,6 @@ import android.os.RemoteException;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -35,8 +34,6 @@ import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
-import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -48,27 +45,25 @@ import java.util.Date;
 
 import jp.co.recruit_mp.android.rmp_appirater.RmpAppirater;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
+
 
     private static final int REQUEST_ID_PERMISSION = 1;
-
     public static boolean premium = false;
-    //FacebookLogin
     public static CallbackManager callbackmanager;
     static InterstitialAd interstitial;
     private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE};
-    Fragment fragment = null;
-    FragmentTransaction ft;
     boolean doubleBackToExitPressedOnce = false;
     PendingIntent pendingIntent;
     IInAppBillingService mService;
     ServiceConnection mServiceConn;
+    Window window;
     SharedPreferences prefs;
-    SharedPreferences.Editor editor;
     Toolbar toolbar;
-    private LoginButton loginButton;
-    private ProfilePictureView profilepic;
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    Context mContext;
 
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
@@ -77,80 +72,137 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        callbackmanager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
 
-        //BUNU BURDAN SİL İŞİN BİTİNCE
-        AdMob();
+        mContext = this.getApplicationContext();
 
-        //SharedPreferences
-        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-        editor = prefs.edit();
-
-        //Check premium
-        premium = prefs.getBoolean("Premium", false);
-        InAppBilling();
-
-        // Toolbar, NavigationDrawer
+        // Initializing Toolbar and setting it as the actionbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ft = getSupportFragmentManager().beginTransaction();
-        fragment = new FragmentHome();
-        ft.replace(R.id.frame_container, fragment, "Home").commit();
-        toolbar.setTitle(R.string.nav_home);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        //Initializing NavigationView
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            // This method will trigger on item Click of navigation menu
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if (menuItem.isChecked()) {
+                    menuItem.setChecked(false);
+                } else {
+                    menuItem.setChecked(true);
+                }
+
+                //Closing drawer on item click
+                drawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_home:
+                        Fragment fragment = new FragmentHome();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
+                        toolbar.setTitle(R.string.nav_text_home);
+                    case R.id.nav_uyum:
+                        Fragment fragment2 = new FragmentSecond();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment2, "Second").commit();
+                        toolbar.setTitle(R.string.nav_text_uyum);
+                        return true;
+                    case R.id.nav_yukselen:
+                        Fragment fragment3 = new FragmentThird();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment3, "Third").commit();
+                        toolbar.setTitle(R.string.nav_text_yukselen);
+                        return true;
+                    case R.id.nav_cin:
+                        Fragment fragment4 = new FragmentFourth();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment4, "Fourth").commit();
+                        toolbar.setTitle(R.string.nav_text_cin);
+                        return true;
+                    case R.id.nav_favoriler:
+                        Intent intent = new Intent(mContext, FavoritesActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_help:
+                        Intent intent2 = new Intent(mContext, HelpingActivity.class);
+                        startActivity(intent2);
+                        return true;
+                    case R.id.nav_premium:
+                        try {
+                            buyPremium();
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        } catch (SendIntentException e) {
+                            e.printStackTrace();
+                        }
+                        return true;
+                    case R.id.nav_puanla:
+                        //PUANLA
+                        Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=org.uusoftware.burclar"));
+                        startActivity(intent4);
+                        return true;
+                    case R.id.nav_about:
+                        Intent intent3 = new Intent(mContext, AboutUsActivity.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.nav_beta:
+                        //BETA
+                        Intent intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
+                        startActivity(intent5);
+                        return true;
+                    default:
+                        Toast.makeText(getApplicationContext(), "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_SHORT).show();
+                        return true;
+
+                }
+            }
+        });
+
+        // Initializing Drawer Layout and ActionBarToggle
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             @Override
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                // Do whatever you want here
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer openes as we dont want anything to happen so we leave this blank
                 super.onDrawerOpened(drawerView);
-
-                // facebookLogin();
-
-                //Check user logged via Facebook
-               /* if (isLoggedIn()) {
-                    loginButton.setVisibility(View.GONE);
-
-                    String name = prefs.getString("FbName", "");
-                    String profileID = prefs.getString("FbID", "");
-
-                    TextView textView = (TextView) findViewById(R.id.textViewName);
-                    textView.setText(name);
-
-                    ProfilePictureView picture = (ProfilePictureView) findViewById(R.id.profilePicture);
-                    picture.setCropped(true);
-                    picture.setProfileId(profileID);
-                }*/
             }
         };
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
-        // Colored bars
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorMainDark));
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
 
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
-        } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorMainPrimary)));
+        //When Activity first times opened
+        if (savedInstanceState == null) {
+            Fragment fragment = new FragmentHome();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
+            toolbar.setTitle(R.string.nav_text_home);
         }
+
+        //SharedPreferences
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+
+        //Check user have a premium
+        premium = prefs.getBoolean("Premium", false);
+        InAppBilling();
 
         // Create Günlük Burçlar folder
         verifyStoragePermissions();
+
+        //ColoredBars
+        window = this.getWindow();
+        coloredBars(ContextCompat.getColor(this, R.color.colorMainDark), ContextCompat.getColor(this, R.color.colorMainPrimary));
 
         // AppRater
         RmpAppirater.appLaunched(this,
@@ -179,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
    /* public void facebookLogin() {
         //FacebookLogin
+        callbackmanager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("public_profile");
         callbackmanager = CallbackManager.Factory.create();
@@ -263,10 +316,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
             if (ownedSkus.contains("premium")) {
                 premium = true;
-                editor.putBoolean("Premium", true).apply();
+                prefs.edit().putBoolean("Premium", true).apply();
             } else {
                 premium = false;
-                editor.putBoolean("Premium", false).apply();
+                prefs.edit().putBoolean("Premium", false).apply();
                 AdMob();
             }
         } else {
@@ -345,63 +398,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        ft = getSupportFragmentManager().beginTransaction();
-        int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            fragment = new FragmentHome();
-            ft.replace(R.id.frame_container, fragment, "Home").commit();
-            toolbar.setTitle(R.string.nav_home);
-        } else if (id == R.id.nav_uyum) {
-            fragment = new FragmentSecond();
-            ft.replace(R.id.frame_container, fragment, "Second").commit();
-            toolbar.setTitle(R.string.nav_uyum);
-        } else if (id == R.id.nav_yukselen) {
-            fragment = new FragmentThird();
-            ft.replace(R.id.frame_container, fragment, "Third").commit();
-            toolbar.setTitle(R.string.nav_yukselen);
-        } else if (id == R.id.nav_cin) {
-            fragment = new FragmentFourth();
-            ft.replace(R.id.frame_container, fragment, "Fourth").commit();
-            toolbar.setTitle(R.string.nav_cin);
-        } else if (id == R.id.nav_favoriler) {
-            Intent intent = new Intent(this, FavoritesActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_help) {
-            Intent intent2 = new Intent(this, HelpingActivity.class);
-            startActivity(intent2);
-        } else if (id == R.id.nav_premium) {
-            if (premium) {
-                Toast.makeText(MainActivity.this, "Premium sürüme daha önce geçiş yapmısınız!",
-                        Toast.LENGTH_LONG).show();
-            } else {
-                try {
-                    buyPremium();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                } catch (SendIntentException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else if (id == R.id.nav_about) {
-            Intent intent3 = new Intent(this, AboutUsActivity.class);
-            startActivity(intent3);
-        } else if (id == R.id.nav_puanla) {
-            //PUANLA
-            Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=org.uusoftware.burclar"));
-            startActivity(intent4);
+    public void coloredBars(int color1, int color2) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(color1);
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
         } else {
-            //BETA
-            Intent intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
-            startActivity(intent5);
+            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override
@@ -410,7 +415,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (resultCode == RESULT_OK) {
                 Toast.makeText(MainActivity.this, "Satın alma başarılı. Premium sürüme geçiriliyorsunuz, teşekkürler!",
                         Toast.LENGTH_LONG).show();
-                editor.putBoolean("Premium", true).commit();
+                prefs.edit().putBoolean("Premium", true).commit();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -419,7 +424,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 Toast.makeText(MainActivity.this, "Satın alma başarısız. Lütfen daha sonra tekrar deneyiniz.",
                         Toast.LENGTH_LONG).show();
-                editor.putBoolean("Premium", false).commit();
+                prefs.edit().putBoolean("Premium", false).commit();
             }
         }
         callbackmanager.onActivityResult(requestCode, resultCode, data);
@@ -449,8 +454,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            ft = getSupportFragmentManager().beginTransaction();
-
             // Fragments
             FragmentHome fragment0 = (FragmentHome) getSupportFragmentManager().findFragmentByTag("Home");
             FragmentSecond fragment1 = (FragmentSecond) getSupportFragmentManager().findFragmentByTag("Second");
@@ -481,27 +484,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // FragmentSecond OnBackPressed
             if (fragment1 != null) {
                 if (fragment1.isVisible()) {
-                    fragment = new FragmentHome();
-                    ft.replace(R.id.frame_container, fragment, "Home").commit();
-                    toolbar.setTitle(R.string.nav_home);
+                    Fragment fragment = new FragmentHome();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
+                    toolbar.setTitle(R.string.nav_text_home);
                 }
             }
 
             // FragmentThird OnBackPressed
             if (fragment2 != null) {
                 if (fragment2.isVisible()) {
-                    fragment = new FragmentHome();
-                    ft.replace(R.id.frame_container, fragment, "Home").commit();
-                    toolbar.setTitle(R.string.nav_home);
+                    Fragment fragment = new FragmentHome();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
+                    toolbar.setTitle(R.string.nav_text_home);
                 }
             }
 
             // FragmentFourth OnBackPressed
             if (fragment3 != null) {
                 if (fragment3.isVisible()) {
-                    fragment = new FragmentHome();
-                    ft.replace(R.id.frame_container, fragment, "Home").commit();
-                    toolbar.setTitle(R.string.nav_home);
+                    Fragment fragment = new FragmentHome();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
+                    toolbar.setTitle(R.string.nav_text_home);
                 }
             }
         }

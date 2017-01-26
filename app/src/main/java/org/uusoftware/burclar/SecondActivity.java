@@ -1,7 +1,6 @@
 package org.uusoftware.burclar;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -43,7 +42,6 @@ public class SecondActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-    Context mContext;
     Window window;
     Toolbar toolbar;
     boolean premium;
@@ -67,9 +65,6 @@ public class SecondActivity extends AppCompatActivity {
             adView.loadAd();
         }
 
-        /* Colored bars */
-        mContext = this.getApplicationContext();
-
         //StatusBar
         window = this.getWindow();
 
@@ -78,7 +73,7 @@ public class SecondActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        coloredBars(ContextCompat.getColor(mContext, R.color.colorYorumDark), ContextCompat.getColor(mContext, R.color.colorYorumPrimary));
+        coloredBars(ContextCompat.getColor(this, R.color.colorYorumDark), ContextCompat.getColor(this, R.color.colorYorumPrimary));
 
         // Analytics
         Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();

@@ -151,6 +151,8 @@ public class FragmentHome extends Fragment {
             if (MainActivity.interstitial.isLoaded() && random == 1) {
                 startActivity(intent);
                 MainActivity.interstitial.show();
+            } else {
+                startActivity(intent);
             }
         } else {
             startActivity(intent);

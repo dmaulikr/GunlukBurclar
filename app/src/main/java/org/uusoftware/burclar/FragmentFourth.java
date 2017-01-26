@@ -436,6 +436,8 @@ public class FragmentFourth extends Fragment {
             if (MainActivity.interstitial.isLoaded()) {
                 startActivity(intent);
                 MainActivity.interstitial.show();
+            } else {
+                startActivity(intent);
             }
         } else {
             startActivity(intent);
