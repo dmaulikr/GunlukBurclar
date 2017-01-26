@@ -432,9 +432,11 @@ public class FragmentFourth extends Fragment {
     }
 
     public void showAds() {
-        if (MainActivity.interstitial.isLoaded()) {
-            MainActivity.interstitial.show();
-            startActivity(intent);
+        if (MainActivity.interstitial != null) {
+            if (MainActivity.interstitial.isLoaded()) {
+                startActivity(intent);
+                MainActivity.interstitial.show();
+            }
         } else {
             startActivity(intent);
         }

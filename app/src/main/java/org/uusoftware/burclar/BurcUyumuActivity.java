@@ -23,9 +23,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -35,8 +32,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 
-import me.itangqi.waveloadingview.WaveLoadingView;
-
 public class BurcUyumuActivity extends AppCompatActivity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -44,13 +39,10 @@ public class BurcUyumuActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     String uyum;
     int skor, burckadin, burcerkek;
-    TextView text, number;
-    ProgressBar pb;
     Window window;
     Toolbar toolbar;
     Context mContext;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    ImageView imageerkek, imagekadin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,13 +96,6 @@ public class BurcUyumuActivity extends AppCompatActivity {
         skor = extras.getInt("number");
         burckadin = extras.getInt("burckadin");
         burcerkek = extras.getInt("burcerkek");
-
-
-        WaveLoadingView mWaveLoadingView = (WaveLoadingView) findViewById(R.id.waveLoadingView);
-        mWaveLoadingView.setShapeType(WaveLoadingView.ShapeType.CIRCLE);
-        mWaveLoadingView.setCenterTitle("%" + skor);
-        mWaveLoadingView.setProgressValue(skor);
-        mWaveLoadingView.startAnimation();
 
 
        /* text = (TextView) findViewById(R.id.textViewUyum);

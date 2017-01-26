@@ -125,17 +125,6 @@ public class FragmentHome extends Fragment {
                     showAds();
                 }
             }
-
-            public void showAds() {
-                Random generator = new Random();
-                int random = generator.nextInt(4);
-                if (MainActivity.interstitial.isLoaded() && random == 1) {
-                    startActivity(intent);
-                    MainActivity.interstitial.show();
-                } else {
-                    startActivity(intent);
-                }
-            }
         };
 
         img.setOnClickListener(buttonListener);
@@ -152,6 +141,20 @@ public class FragmentHome extends Fragment {
         img12.setOnClickListener(buttonListener);
 
         return v;
+    }
+
+    public void showAds() {
+        Random generator = new Random();
+        int random = generator.nextInt(4);
+
+        if (MainActivity.interstitial != null) {
+            if (MainActivity.interstitial.isLoaded() && random == 1) {
+                startActivity(intent);
+                MainActivity.interstitial.show();
+            }
+        } else {
+            startActivity(intent);
+        }
     }
 
     public void coloredBars(int color1, int color2) {

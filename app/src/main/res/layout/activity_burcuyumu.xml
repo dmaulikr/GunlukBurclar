@@ -10,9 +10,9 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/Appbar"
         android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:layout_height="250dp">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_header"
@@ -23,23 +23,6 @@
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <me.itangqi.waveloadingview.WaveLoadingView
-                android:id="@+id/waveLoadingView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                app:wlv_borderColor="#fff"
-                app:wlv_borderWidth="5dp"
-                app:wlv_progressValue="40"
-                app:wlv_round_rectangle="true"
-                app:wlv_shapeType="circle"
-                app:wlv_titleCenterColor="@android:color/white"
-                app:wlv_titleCenterSize="24sp"
-                app:wlv_titleCenterStrokeWidth="3dp"
-                app:wlv_triangle_direction="north"
-                app:wlv_waveAmplitude="70"
-                app:wlv_waveColor="@color/colorUyumDark"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

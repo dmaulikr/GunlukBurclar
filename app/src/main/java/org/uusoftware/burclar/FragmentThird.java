@@ -165,15 +165,6 @@ public class FragmentThird extends Fragment {
         return rootView;
     }
 
-    public void showAds() {
-        if (MainActivity.interstitial.isLoaded()) {
-            MainActivity.interstitial.show();
-            startActivity(intent);
-        } else {
-            startActivity(intent);
-        }
-    }
-
     public String pad(int input) {
         if (input >= 10) {
             return String.valueOf(input);
@@ -507,6 +498,17 @@ public class FragmentThird extends Fragment {
             } else {
                 intent.putExtra("burcid", 8);
             }
+        }
+    }
+
+    public void showAds() {
+        if (MainActivity.interstitial != null) {
+            if (MainActivity.interstitial.isLoaded()) {
+                startActivity(intent);
+                MainActivity.interstitial.show();
+            }
+        } else {
+            startActivity(intent);
         }
     }
 

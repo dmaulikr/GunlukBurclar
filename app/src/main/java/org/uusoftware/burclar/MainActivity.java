@@ -27,30 +27,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -124,10 +113,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
 
-                facebookLogin();
+                // facebookLogin();
 
                 //Check user logged via Facebook
-                if (isLoggedIn()) {
+               /* if (isLoggedIn()) {
                     loginButton.setVisibility(View.GONE);
 
                     String name = prefs.getString("FbName", "");
@@ -139,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ProfilePictureView picture = (ProfilePictureView) findViewById(R.id.profilePicture);
                     picture.setCropped(true);
                     picture.setProfileId(profileID);
-                }
+                }*/
             }
         };
         drawer.setDrawerListener(toggle);
@@ -188,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlarmManager();
     }
 
-    public void facebookLogin() {
+   /* public void facebookLogin() {
         //FacebookLogin
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("public_profile");
@@ -237,12 +226,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.d("hata", exception.toString());
             }
         });
-    }
+    }*/
 
-    public boolean isLoggedIn() {
+    /*public boolean isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
-    }
+    }*/
 
     private void InAppBilling() {
         mServiceConn = new ServiceConnection() {
