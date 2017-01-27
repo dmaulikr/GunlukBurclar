@@ -1,12 +1,11 @@
 package org.uusoftware.burclar.adapter;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 
 import org.uusoftware.burclar.R;
 
@@ -40,17 +39,34 @@ public class GridAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        SquareImageView imageView;
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(335, 335));
-            imageView.setScaleType(ScaleType.FIT_XY);
+            imageView = new SquareImageView(mContext);
         } else {
-            imageView = (ImageView) convertView;
+            imageView = (SquareImageView) convertView;
         }
 
         imageView.setImageResource(mThumbIds[position]);
         return imageView;
+    }
+
+    public class SquareImageView extends ImageView {
+
+        public SquareImageView(Context context) {
+            super(context);
+        }
+
+        public SquareImageView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public SquareImageView(Context context, AttributeSet attrs, int defStyle) {
+            super(context, attrs, defStyle);
+        }
+
+        @Override
+        public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            super.onMeasure(widthMeasureSpec - 10, widthMeasureSpec - 10);
+        }
     }
 }

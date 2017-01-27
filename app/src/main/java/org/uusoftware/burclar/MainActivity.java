@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    MenuItem clickedMenuItem;
 
    /* CallbackManager callbackmanager;
     LoginButton loginButton;*/
@@ -129,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
             // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                clickedMenuItem = menuItem;
                 menuItem.setChecked(true);
 
                 //Closing drawer on item click
@@ -321,10 +318,17 @@ public class MainActivity extends AppCompatActivity {
             if (ownedSkus.contains("premium")) {
                 premium = true;
                 prefs.edit().putBoolean("Premium", true).apply();
+
+                MenuItem item = navigationView.getMenu().findItem(R.id.nav_premium);
+                item.setTitle(R.string.nav_text_premium2);
             } else {
                 premium = false;
                 prefs.edit().putBoolean("Premium", false).apply();
                 AdMob();
+
+                MenuItem item = navigationView.getMenu().findItem(R.id.nav_premium);
+                item.setTitle(R.string.nav_text_premium);
+                item.setIcon(R.drawable.ic_slider_premium);
             }
         } else {
             AdMob();

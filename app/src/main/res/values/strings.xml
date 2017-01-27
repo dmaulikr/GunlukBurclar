@@ -32,6 +32,9 @@
     <string name="nav_text_beta">Beta testine kaydolun</string>
     <string name="nav_text_version"><small>Günlük Burçlar v3.0</small></string>
 
+    <!-- Nav Drawer Menu Items -->
+    <string name="nav_text_premium2">Günlük Burçlar Premium</string>
+
     <!-- Content Description -->
     <string name="desc_list_item_icon">Öğe ikonu</string>
     <string name="navigation_drawer_open">Yan menü açıldı</string>
