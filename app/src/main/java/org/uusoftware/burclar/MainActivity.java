@@ -26,6 +26,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -33,16 +34,28 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import jp.co.recruit_mp.android.rmp_appirater.RmpAppirater;
 
 public class MainActivity extends AppCompatActivity {
@@ -94,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 // Code here will be triggered once the drawer openes as we dont want anything to happen so we leave this blank
                 super.onDrawerOpened(drawerView);
+                FacebookLogin();
             }
         };
 
@@ -112,8 +126,12 @@ public class MainActivity extends AppCompatActivity {
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ProfileActivity.class);
-                startActivity(intent);
+                if (isLoggedIn()) {
+                    Intent intent = new Intent(mContext, ProfileActivity.class);
+                    startActivity(intent);
+                } else {
+                    //Do nothing
+                }
             }
         });
 
@@ -236,47 +254,38 @@ public class MainActivity extends AppCompatActivity {
                         "Hayır, teşekkürler"));
 
         // AlarmManager
-        prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
         AlarmManager();
     }
 
-   /* public void facebookLogin() {
-        //FacebookLogin
+    public void FacebookLogin() {
         callbackmanager = CallbackManager.Factory.create();
-        loginButton = (LoginButton) findViewById(R.id.login_button);
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("public_profile");
         callbackmanager = CallbackManager.Factory.create();
         loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                System.out.println("Success");
-                GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                Bundle params = new Bundle();
+                params.putString("fields", "id,email,gender,cover,picture.type(large)");
+                new GraphRequest(AccessToken.getCurrentAccessToken(), "me", params, HttpMethod.GET,
+                        new GraphRequest.Callback() {
                             @Override
-                            public void onCompleted(JSONObject json, GraphResponse response) {
-                                if (response.getError() != null) {
-                                    // handle error
-                                    System.out.println("ERROR");
-                                } else {
-                                    System.out.println("Success");
+                            public void onCompleted(GraphResponse response) {
+                                if (response != null) {
                                     try {
-
-                                        String jsonresult = String.valueOf(json);
-                                        System.out.println("JSON Result" + jsonresult);
-
-                                        String str_email = json.getString("email");
-                                        String str_id = json.getString("id");
-                                        String str_firstname = json.getString("first_name");
-                                        String str_lastname = json.getString("last_name");
-
-                                        editor.putString("FbName", str_firstname + str_lastname);
-                                        editor.putString("FbID", str_id);
-                                    } catch (JSONException e) {
+                                        JSONObject data = response.getJSONObject();
+                                        if (data.has("picture")) {
+                                            String profilePicUrl = data.getJSONObject("picture").getJSONObject("data").getString("url");
+                                            CircleImageView profileImage = (CircleImageView) findViewById(R.id.profile_image);
+                                            Picasso.with(mContext)
+                                                    .load(profilePicUrl)
+                                                    .into(profileImage);
+                                        }
+                                    } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
                             }
-
                         }).executeAsync();
             }
 
@@ -290,12 +299,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("hata", exception.toString());
             }
         });
-    }*/
+    }
 
-    /*public boolean isLoggedIn() {
+    public boolean isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
-    }*/
+    }
 
     private void InAppBilling() {
         mServiceConn = new ServiceConnection() {
