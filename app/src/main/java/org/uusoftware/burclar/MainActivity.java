@@ -80,8 +80,42 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Initializing Drawer Layout and ActionBarToggle
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer openes as we dont want anything to happen so we leave this blank
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
+
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        //Navigation header ClickListener
+       /* RelativeLayout header = (RelativeLayout) findViewById(R.id.nav_header_layout);
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, FavoritesActivity.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+        });*/
 
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -106,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                         Fragment fragment = new FragmentHome();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
                         toolbar.setTitle(R.string.nav_text_home);
+                        return true;
                     case R.id.nav_uyum:
                         Fragment fragment2 = new FragmentSecond();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment2, "Second").commit();
@@ -155,33 +190,9 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         Toast.makeText(getApplicationContext(), "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_SHORT).show();
                         return true;
-
                 }
             }
         });
-
-        // Initializing Drawer Layout and ActionBarToggle
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
-                super.onDrawerClosed(drawerView);
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                // Code here will be triggered once the drawer openes as we dont want anything to happen so we leave this blank
-                super.onDrawerOpened(drawerView);
-            }
-        };
-
-        //Setting the actionbarToggle to drawer layout
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
-
-        //calling sync state is necessay or else your hamburger icon wont show up
-        actionBarDrawerToggle.syncState();
 
         //When Activity first times opened
         if (savedInstanceState == null) {
@@ -454,6 +465,8 @@ public class MainActivity extends AppCompatActivity {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            navigationView.setCheckedItem(R.id.nav_home);
+
             // Fragments
             FragmentHome fragment0 = (FragmentHome) getSupportFragmentManager().findFragmentByTag("Home");
             FragmentSecond fragment1 = (FragmentSecond) getSupportFragmentManager().findFragmentByTag("Second");
