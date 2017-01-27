@@ -66,7 +66,7 @@ public class GridAdapter extends BaseAdapter {
 
         @Override
         public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec - 10, widthMeasureSpec - 10);
+            super.onMeasure(widthMeasureSpec, widthMeasureSpec - 15);
         }
     }
 }

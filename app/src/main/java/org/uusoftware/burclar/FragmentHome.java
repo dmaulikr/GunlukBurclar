@@ -50,6 +50,7 @@ public class FragmentHome extends Fragment {
             adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
             AdSettings.addTestDevice("93b55fab32ae5be4b95fb1fa2815d35b");
             AdSettings.addTestDevice("9c984b400407ede69f69662c8816f1d3");
+            AdSettings.addTestDevice("291094bfd3e4384b98451dca16f66e81");
             adViewContainer.addView(adView);
             adView.loadAd();
         }
@@ -67,6 +68,7 @@ public class FragmentHome extends Fragment {
 
         GridView gridView = (GridView) v.findViewById(R.id.gridView);
         gridView.setAdapter(new GridAdapter(getActivity()));
+
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
