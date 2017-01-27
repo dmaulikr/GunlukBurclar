@@ -1,114 +1,56 @@
 package org.uusoftware.burclar.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageView.ScaleType;
 
-import org.uusoftware.burclar.FavoritesActivity;
 import org.uusoftware.burclar.R;
-import org.uusoftware.burclar.model.GridItem;
 
-import java.io.File;
-import java.util.List;
-
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
-    private List<GridItem> feedItemList;
+public class GridAdapter extends BaseAdapter {
     private Context mContext;
-    View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            ViewHolder holder = (ViewHolder) view.getTag();
-            final int position = holder.getPosition();
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setTitle(R.string.chooseaction);
-            builder.setItems(R.array.choose_actions, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // Get Uri
-                    File imagePath = new File(mContext.getFilesDir(), "Günlük Burçlar");
-                    File file[] = imagePath.listFiles();
-                    Uri myUri = FileProvider.getUriForFile(mContext, mContext.getApplicationContext().getPackageName() + ".provider", file[position]);
-                    Intent intent = new Intent();
-                    if (which == 0) {
-                        // Show
-                        intent.setAction(android.content.Intent.ACTION_VIEW);
-                        intent.setDataAndType(myUri, "image/*");
-                        mContext.startActivity(intent);
-                    } else if (which == 1) {
-                        // Share
-                        intent.setAction(Intent.ACTION_SEND);
-                        intent.putExtra(Intent.EXTRA_STREAM, myUri);
-                        intent.setType("image/*");
-                        mContext.startActivity(intent);
-                    } else {
-                        // Delete
-                        file[position].delete();
-                        Toast.makeText(mContext, R.string.deleted, Toast.LENGTH_SHORT).show();
-                        intent = new Intent(mContext, FavoritesActivity.class);
-                        mContext.startActivity(intent);
-                        ((FavoritesActivity) mContext).finish();
-                    }
-                }
-            });
-            builder.show();
-        }
+    // references to our images
+    private Integer[] mThumbIds = {
+            R.drawable.burc_koc, R.drawable.burc_boga,
+            R.drawable.burc_ikizler, R.drawable.burc_yengec,
+            R.drawable.burc_aslan, R.drawable.burc_basak,
+            R.drawable.burc_terazi, R.drawable.burc_akrep,
+            R.drawable.burc_yay, R.drawable.burc_oglak,
+            R.drawable.burc_kova, R.drawable.burc_balik
     };
 
-    public GridAdapter(Context context, List<GridItem> feedItemList) {
-        this.feedItemList = feedItemList;
-        this.mContext = context;
+    public GridAdapter(Context c) {
+        mContext = c;
     }
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.favorites_item, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+    public int getCount() {
+        return mThumbIds.length;
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        GridItem feedItem = feedItemList.get(i);
-
-        // Setting image
-        viewHolder.image.setImageBitmap(feedItem.getThumbnail());
-
-        // Setting text view title
-        viewHolder.text.setText(feedItem.getTitle());
-
-        // Handle click event on both title and image click
-        viewHolder.text.setOnClickListener(clickListener);
-        viewHolder.image.setOnClickListener(clickListener);
-
-        viewHolder.text.setTag(viewHolder);
-        viewHolder.image.setTag(viewHolder);
+    public Object getItem(int position) {
+        return null;
     }
 
-    @Override
-    public int getItemCount() {
-        return (null != feedItemList ? feedItemList.size() : 0);
+    public long getItemId(int position) {
+        return 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        public ImageView image;
-        public TextView text;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.img_thumbnail);
-            text = (TextView) itemView.findViewById(R.id.txt_text);
+    // create a new ImageView for each item referenced by the Adapter
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ImageView imageView;
+        if (convertView == null) {
+            // if it's not recycled, initialize some attributes
+            imageView = new ImageView(mContext);
+            imageView.setLayoutParams(new GridView.LayoutParams(335, 335));
+            imageView.setScaleType(ScaleType.FIT_XY);
+        } else {
+            imageView = (ImageView) convertView;
         }
+
+        imageView.setImageResource(mThumbIds[position]);
+        return imageView;
     }
 }

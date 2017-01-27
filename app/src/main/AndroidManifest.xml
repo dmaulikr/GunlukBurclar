@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="@string/nav_text_home"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="org.uusoftware.burclar.MAINACTIVITY"/>
@@ -38,7 +38,7 @@
         </activity>
         <activity
             android:name=".SecondActivity"
-            android:label="@string/app_name"
+            android:label="@string/nav_text_home"
             android:parentActivityName=".MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -48,22 +48,6 @@
 
             <intent-filter>
                 <action android:name="org.uusoftware.burclar.SECONDACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".AboutUsActivity"
-            android:label="@string/nav_text_about"
-            android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AboutUsActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.ABOUTUSACTIVITY"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -85,6 +69,22 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".YukselenBurcActivity"
+            android:label="@string/nav_text_yukselen"
+            android:parentActivityName=".MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".YukselenBurcActivity"/>
+
+            <intent-filter>
+                <action android:name="org.uusoftware.burclar.YUKSELENBURCACTIVITY"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".CinAstrolojisiActivity"
             android:label="@string/nav_text_cin"
             android:parentActivityName=".MainActivity">
@@ -101,17 +101,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".YukselenBurcActivity"
-            android:label="@string/nav_text_yukselen"
+            android:name=".AboutUsActivity"
+            android:label="@string/nav_text_about"
             android:parentActivityName=".MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".YukselenBurcActivity"/>
+                android:value=".AboutUsActivity"/>
 
             <intent-filter>
-                <action android:name="org.uusoftware.burclar.YUKSELENBURCACTIVITY"/>
+                <action android:name="org.uusoftware.burclar.ABOUTUSACTIVITY"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

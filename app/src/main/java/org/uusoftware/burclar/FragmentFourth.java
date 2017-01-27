@@ -1,7 +1,5 @@
 package org.uusoftware.burclar;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,12 +8,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.facebook.ads.AdSettings;
@@ -24,16 +19,13 @@ import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class FragmentFourth extends Fragment {
 
-    ImageView imagebutton;
     Window window;
     ActionBar actionbar;
     Intent intent;
-    Context mContext;
     boolean premium;
 
     //Facebook Audience Network
@@ -56,10 +48,9 @@ public class FragmentFourth extends Fragment {
         }
 
         /* Colored bars */
-        mContext = getActivity().getApplicationContext();
         window = getActivity().getWindow();
         actionbar = ((MainActivity) getActivity()).getSupportActionBar();
-        coloredBars(ContextCompat.getColor(mContext, R.color.colorMainDark), ContextCompat.getColor(mContext, R.color.colorMainPrimary));
+        coloredBars(ContextCompat.getColor(getActivity(), R.color.colorMainDark), ContextCompat.getColor(getActivity(), R.color.colorMainPrimary));
 
         // Analytics
         Tracker t = ((AnalyticsApplication) getActivity().getApplication()).getDefaultTracker();
@@ -67,7 +58,7 @@ public class FragmentFourth extends Fragment {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        intent = new Intent(getActivity(), CinAstrolojisiActivity.class);
+        /*intent = new Intent(getActivity(), CinAstrolojisiActivity.class);
         imagebutton = (ImageView) rootView.findViewById(R.id.imageView2);
         imagebutton.setOnClickListener(new OnClickListener() {
             @Override
@@ -93,7 +84,7 @@ public class FragmentFourth extends Fragment {
                 datePicker.setButton(DatePickerDialog.BUTTON_NEGATIVE, "İptal", datePicker);
                 datePicker.show();
             }
-        });
+        });*/
 
         return rootView;
     }

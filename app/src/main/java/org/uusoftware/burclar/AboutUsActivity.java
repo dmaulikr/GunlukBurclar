@@ -2,15 +2,12 @@ package org.uusoftware.burclar;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -55,7 +52,7 @@ public class AboutUsActivity extends AppCompatActivity {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        // Initializing
+      /*  // Initializing
         image1 = (ImageView) findViewById(R.id.imageViewWebsite);
         image2 = (ImageView) findViewById(R.id.footerFacebook);
         image3 = (ImageView) findViewById(R.id.footerTwitter);
@@ -102,6 +99,7 @@ public class AboutUsActivity extends AppCompatActivity {
         image4.setOnClickListener(buttonListener);
         image5.setOnClickListener(buttonListener);
         image6.setOnClickListener(buttonListener);
+        */
     }
 
     public void coloredBars(int color1, int color2) {

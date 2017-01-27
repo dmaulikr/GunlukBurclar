@@ -9,17 +9,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
@@ -242,7 +237,7 @@ public class FragmentSecond extends Fragment {
         t.setScreenName("Burç uyumu");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
-
+/*
         SpinnerAdapter spinneradapter = new SpinnerAdapter(getActivity(), R.layout.spinner_row, strings);
 
         spinner = (Spinner) rootView.findViewById(R.id.spinner1);
@@ -822,7 +817,7 @@ public class FragmentSecond extends Fragment {
                 }
             }
         });
-
+*/
         return rootView;
     }
 
@@ -858,7 +853,7 @@ public class FragmentSecond extends Fragment {
         }
     }
 
-    public class SpinnerAdapter extends ArrayAdapter<String> {
+   /* public class SpinnerAdapter extends ArrayAdapter<String> {
 
         public SpinnerAdapter(Context context, int textViewResourceId, String[] objects) {
             super(context, textViewResourceId, objects);
@@ -891,5 +886,5 @@ public class FragmentSecond extends Fragment {
 
             return row2;
         }
-    }
+    }*/
 }

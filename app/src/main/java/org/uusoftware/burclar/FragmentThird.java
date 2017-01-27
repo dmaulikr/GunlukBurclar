@@ -1,6 +1,5 @@
 package org.uusoftware.burclar;
 
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -10,18 +9,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
@@ -88,7 +82,7 @@ public class FragmentThird extends Fragment {
         // Intent
         intent = new Intent(getActivity(), YukselenBurcActivity.class);
 
-        // spinner1
+      /*  // spinner1
         spinner1 = (Spinner) rootView.findViewById(R.id.spinner1);
         spinner1.setAdapter(new SpinnerAdapter(getActivity(), R.layout.spinner_row, strings));
         spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -161,7 +155,7 @@ public class FragmentThird extends Fragment {
                 }
             }
         });
-
+*/
         return rootView;
     }
 
@@ -533,7 +527,7 @@ public class FragmentThird extends Fragment {
         super.onDestroy();
     }
 
-    public class SpinnerAdapter extends ArrayAdapter<String> {
+   /* public class SpinnerAdapter extends ArrayAdapter<String> {
 
         public SpinnerAdapter(Context context, int textViewResourceId, String[] objects) {
             super(context, textViewResourceId, objects);
@@ -565,5 +559,5 @@ public class FragmentThird extends Fragment {
 
             return row2;
         }
-    }
+    }*/
 }

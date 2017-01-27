@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import org.uusoftware.burclar.adapter.GridAdapter;
+import org.uusoftware.burclar.adapter.RecyclerViewAdapter;
 import org.uusoftware.burclar.model.GridItem;
 
 import java.io.File;
@@ -84,7 +84,7 @@ public class FavoritesActivity extends AppCompatActivity {
         }
 
         // Adapter
-        mAdapter = new GridAdapter(this, feedsList);
+        mAdapter = new RecyclerViewAdapter(this, feedsList);
         mRecyclerView.setAdapter(mAdapter);
 
         // The number of Columns

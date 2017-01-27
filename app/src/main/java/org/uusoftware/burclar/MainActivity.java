@@ -26,7 +26,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -34,28 +33,15 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import jp.co.recruit_mp.android.rmp_appirater.RmpAppirater;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,20 +49,24 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_ID_PERMISSION = 1;
     public static boolean premium = false;
-    public static CallbackManager callbackmanager;
     static InterstitialAd interstitial;
     private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE};
+    SharedPreferences prefs;
     boolean doubleBackToExitPressedOnce = false;
+
     PendingIntent pendingIntent;
     IInAppBillingService mService;
     ServiceConnection mServiceConn;
+
     Window window;
-    SharedPreferences prefs;
     Toolbar toolbar;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    Context mContext;
+    MenuItem clickedMenuItem;
+
+   /* CallbackManager callbackmanager;
+    LoginButton loginButton;*/
 
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
@@ -86,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mContext = this.getApplicationContext();
 
         // Initializing Toolbar and setting it as the actionbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -107,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 // Code here will be triggered once the drawer openes as we dont want anything to happen so we leave this blank
                 super.onDrawerOpened(drawerView);
-                FacebookLogin();
+                //FacebookLogin();
             }
         };
 
@@ -126,12 +114,12 @@ public class MainActivity extends AppCompatActivity {
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isLoggedIn()) {
-                    Intent intent = new Intent(mContext, ProfileActivity.class);
+                /*if (isLoggedIn()) {
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                     startActivity(intent);
                 } else {
                     //Do nothing
-                }
+                }*/
             }
         });
 
@@ -142,12 +130,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                //Checking if the item is in checked state or not, if not make it in checked state
-                if (menuItem.isChecked()) {
-                    menuItem.setChecked(false);
-                } else {
-                    menuItem.setChecked(true);
-                }
+                clickedMenuItem = menuItem;
+                menuItem.setChecked(true);
 
                 //Closing drawer on item click
                 drawerLayout.closeDrawers();
@@ -175,11 +159,11 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.setTitle(R.string.nav_text_cin);
                         return true;
                     case R.id.nav_favoriler:
-                        Intent intent = new Intent(mContext, FavoritesActivity.class);
+                        Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_help:
-                        Intent intent2 = new Intent(mContext, HelpingActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, HelpingActivity.class);
                         startActivity(intent2);
                         return true;
                     case R.id.nav_premium:
@@ -197,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent4);
                         return true;
                     case R.id.nav_about:
-                        Intent intent3 = new Intent(mContext, AboutUsActivity.class);
+                        Intent intent3 = new Intent(MainActivity.this, AboutUsActivity.class);
                         startActivity(intent3);
                         return true;
                     case R.id.nav_beta:
@@ -212,11 +196,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //When Activity first times opened
+        // When Activity first times opened
         if (savedInstanceState == null) {
             Fragment fragment = new FragmentHome();
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
-            toolbar.setTitle(R.string.nav_text_home);
+            navigationView.setCheckedItem(R.id.nav_home);
         }
 
         //SharedPreferences
@@ -257,9 +241,9 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager();
     }
 
-    public void FacebookLogin() {
+   /* public void FacebookLogin() {
         callbackmanager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("public_profile");
         callbackmanager = CallbackManager.Factory.create();
         loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
@@ -277,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (data.has("picture")) {
                                             String profilePicUrl = data.getJSONObject("picture").getJSONObject("data").getString("url");
                                             CircleImageView profileImage = (CircleImageView) findViewById(R.id.profile_image);
-                                            Picasso.with(mContext)
+                                            Picasso.with(MainActivity.this)
                                                     .load(profilePicUrl)
                                                     .into(profileImage);
                                         }
@@ -304,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
-    }
+    }*/
 
     private void InAppBilling() {
         mServiceConn = new ServiceConnection() {
@@ -447,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
                 prefs.edit().putBoolean("Premium", false).commit();
             }
         }
-        callbackmanager.onActivityResult(requestCode, resultCode, data);
+        // callbackmanager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
