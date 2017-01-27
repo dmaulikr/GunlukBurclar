@@ -106,16 +106,16 @@ public class MainActivity extends AppCompatActivity {
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        //Navigation header ClickListener
-       /* RelativeLayout header = (RelativeLayout) findViewById(R.id.nav_header_layout);
-        header.setOnClickListener(new View.OnClickListener() {
+        //Add Navigation header and its ClickListener
+        View headerView = getLayoutInflater().inflate(R.layout.nav_header, navigationView, false);
+        navigationView.addHeaderView(headerView);
+        headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, FavoritesActivity.class);
+                Intent intent = new Intent(mContext, ProfileActivity.class);
                 startActivity(intent);
-                drawerLayout.closeDrawer(GravityCompat.START);
             }
-        });*/
+        });
 
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
