@@ -37,7 +37,7 @@ import java.util.Date;
 public class SecondActivity extends AppCompatActivity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    public static int burcid;
+    public static String burcid;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     SecondActivityAdapter mSectionsPagerAdapter;
@@ -82,7 +82,7 @@ public class SecondActivity extends AppCompatActivity {
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
         Bundle extras = getIntent().getExtras();
-        burcid = extras.getInt("burcid");
+        burcid = extras.getString("burcid");
 
         mSectionsPagerAdapter = new SecondActivityAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);

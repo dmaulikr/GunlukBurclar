@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class FragmentEighth extends Fragment {
 
-    int selectedburc;
+    String selectedburc;
     String link;
 
     @Override
@@ -21,43 +21,32 @@ public class FragmentEighth extends Fragment {
 
         selectedburc = SecondActivity.burcid;
         ImageView image = (ImageView) v.findViewById(R.id.imageView1);
+        link = "http://uusoftware.org/burclar/" + selectedburc + "aylik.php";
 
-        if (selectedburc == 0) {
+        if (selectedburc == "koc") {
             image.setImageResource(R.drawable.burc_koc);
-            link = "http://uusoftware.org/burclar/kocaylik.php";
-        } else if (selectedburc == 1) {
+        } else if (selectedburc == "boga") {
             image.setImageResource(R.drawable.burc_boga);
-            link = "http://uusoftware.org/burclar/bogaaylik.php";
-        } else if (selectedburc == 2) {
+        } else if (selectedburc == "ikizler") {
             image.setImageResource(R.drawable.burc_ikizler);
-            link = "http://uusoftware.org/burclar/ikizleraylik.php";
-        } else if (selectedburc == 3) {
+        } else if (selectedburc == "yengec") {
             image.setImageResource(R.drawable.burc_yengec);
-            link = "http://uusoftware.org/burclar/yengecaylik.php";
-        } else if (selectedburc == 4) {
+        } else if (selectedburc == "aslan") {
             image.setImageResource(R.drawable.burc_aslan);
-            link = "http://uusoftware.org/burclar/aslanaylik.php";
-        } else if (selectedburc == 5) {
+        } else if (selectedburc == "basak") {
             image.setImageResource(R.drawable.burc_basak);
-            link = "http://uusoftware.org/burclar/basakaylik.php";
-        } else if (selectedburc == 6) {
+        } else if (selectedburc == "terazi") {
             image.setImageResource(R.drawable.burc_terazi);
-            link = "http://uusoftware.org/burclar/teraziaylik.php";
-        } else if (selectedburc == 7) {
+        } else if (selectedburc == "akrep") {
             image.setImageResource(R.drawable.burc_akrep);
-            link = "http://uusoftware.org/burclar/akrepaylik.php";
-        } else if (selectedburc == 8) {
+        } else if (selectedburc == "yay") {
             image.setImageResource(R.drawable.burc_yay);
-            link = "http://uusoftware.org/burclar/yayaylik.php";
-        } else if (selectedburc == 9) {
+        } else if (selectedburc == "oglak") {
             image.setImageResource(R.drawable.burc_oglak);
-            link = "http://uusoftware.org/burclar/oglakaylik.php";
-        } else if (selectedburc == 10) {
+        } else if (selectedburc == "kova") {
             image.setImageResource(R.drawable.burc_kova);
-            link = "http://uusoftware.org/burclar/kovaaylik.php";
         } else {
             image.setImageResource(R.drawable.burc_balik);
-            link = "http://uusoftware.org/burclar/balikaylik.php";
         }
 
         WebView myWebView = (WebView) v.findViewById(R.id.webView1);

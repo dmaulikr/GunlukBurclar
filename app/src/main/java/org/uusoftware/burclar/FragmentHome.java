@@ -80,40 +80,40 @@ public class FragmentHome extends Fragment {
                 intent = new Intent(getActivity(), SecondActivity.class);
                 switch (v.getId()) {
                     case R.id.imageView1:
-                        intent.putExtra("burcid", 0);
+                        intent.putExtra("burcid", "koc");
                         break;
                     case R.id.imageView2:
-                        intent.putExtra("burcid", 1);
+                        intent.putExtra("burcid", "boga");
                         break;
                     case R.id.imageView3:
-                        intent.putExtra("burcid", 2);
+                        intent.putExtra("burcid", "ikizler");
                         break;
                     case R.id.imageView4:
-                        intent.putExtra("burcid", 3);
+                        intent.putExtra("burcid", "yengec");
                         break;
                     case R.id.imageView5:
-                        intent.putExtra("burcid", 4);
+                        intent.putExtra("burcid", "aslan");
                         break;
                     case R.id.imageView6:
-                        intent.putExtra("burcid", 5);
+                        intent.putExtra("burcid", "basak");
                         break;
                     case R.id.imageView7:
-                        intent.putExtra("burcid", 6);
+                        intent.putExtra("burcid", "terazi");
                         break;
                     case R.id.imageView8:
-                        intent.putExtra("burcid", 7);
+                        intent.putExtra("burcid", "akrep");
                         break;
                     case R.id.imageView9:
-                        intent.putExtra("burcid", 8);
+                        intent.putExtra("burcid", "yay");
                         break;
                     case R.id.imageView10:
-                        intent.putExtra("burcid", 9);
+                        intent.putExtra("burcid", "oglak");
                         break;
                     case R.id.imageView11:
-                        intent.putExtra("burcid", 10);
+                        intent.putExtra("burcid", "kova");
                         break;
                     case R.id.imageView12:
-                        intent.putExtra("burcid", 11);
+                        intent.putExtra("burcid", "balik");
                         break;
                 }
                 if (premium) {

@@ -9,9 +9,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.facebook.ads.AdSettings;
@@ -30,6 +32,7 @@ public class FragmentSecond extends Fragment {
     int images[] = {R.drawable.burc_koc, R.drawable.burc_boga, R.drawable.burc_ikizler, R.drawable.burc_yengec,
             R.drawable.burc_aslan, R.drawable.burc_basak, R.drawable.burc_terazi, R.drawable.burc_akrep,
             R.drawable.burc_yay, R.drawable.burc_oglak, R.drawable.burc_kova, R.drawable.burc_balik};
+    ImageView img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12;
     //Facebook Audience Network
     private AdView adView;
 
@@ -61,6 +64,83 @@ public class FragmentSecond extends Fragment {
         t.setScreenName("Burç uyumu");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
+
+        img1 = (ImageView) rootView.findViewById(R.id.kadin1);
+        img2 = (ImageView) rootView.findViewById(R.id.kadin2);
+        img3 = (ImageView) rootView.findViewById(R.id.kadin3);
+        img4 = (ImageView) rootView.findViewById(R.id.kadin4);
+        img5 = (ImageView) rootView.findViewById(R.id.kadin5);
+        img6 = (ImageView) rootView.findViewById(R.id.kadin6);
+        img7 = (ImageView) rootView.findViewById(R.id.kadin7);
+        img8 = (ImageView) rootView.findViewById(R.id.kadin8);
+        img9 = (ImageView) rootView.findViewById(R.id.kadin9);
+        img10 = (ImageView) rootView.findViewById(R.id.kadin10);
+        img11 = (ImageView) rootView.findViewById(R.id.kadin11);
+        img12 = (ImageView) rootView.findViewById(R.id.kadin12);
+
+        OnClickListener buttonListener = new OnClickListener() {
+
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), BurcUyumuActivity.class);
+                switch (v.getId()) {
+                    case R.id.kadin1:
+                        intent.putExtra("kadinid", "koc");
+                        break;
+                    case R.id.kadin2:
+                        intent.putExtra("kadinid", "boga");
+                        break;
+                    case R.id.kadin3:
+                        intent.putExtra("kadinid", "ikizler");
+                        break;
+                    case R.id.kadin4:
+                        intent.putExtra("kadinid", "yengec");
+                        break;
+                    case R.id.kadin5:
+                        intent.putExtra("kadinid", "aslan");
+                        break;
+                    case R.id.kadin6:
+                        intent.putExtra("kadinid", "basak");
+                        break;
+                    case R.id.kadin7:
+                        intent.putExtra("kadinid", "terazi");
+                        break;
+                    case R.id.kadin8:
+                        intent.putExtra("kadinid", "akrep");
+                        break;
+                    case R.id.kadin9:
+                        intent.putExtra("kadinid", "yay");
+                        break;
+                    case R.id.kadin10:
+                        intent.putExtra("kadinid", "oglak");
+                        break;
+                    case R.id.kadin11:
+                        intent.putExtra("kadinid", "kova");
+                        break;
+                    case R.id.kadin12:
+                        intent.putExtra("burcid", "balik");
+                        break;
+                }
+
+                /*if (premium) {
+                    startActivity(intent);
+                } else {
+                    showAds();
+                }*/
+            }
+        };
+
+        img1.setOnClickListener(buttonListener);
+        img2.setOnClickListener(buttonListener);
+        img3.setOnClickListener(buttonListener);
+        img4.setOnClickListener(buttonListener);
+        img5.setOnClickListener(buttonListener);
+        img6.setOnClickListener(buttonListener);
+        img7.setOnClickListener(buttonListener);
+        img8.setOnClickListener(buttonListener);
+        img9.setOnClickListener(buttonListener);
+        img10.setOnClickListener(buttonListener);
+        img11.setOnClickListener(buttonListener);
+        img12.setOnClickListener(buttonListener);
 
         return rootView;
     }

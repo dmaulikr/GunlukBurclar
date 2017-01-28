@@ -13,29 +13,282 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             app:layout_heightPercent="30%"
-            app:layout_marginLeftPercent="5%"
-            app:layout_marginTopPercent="5%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginTopPercent="2.5%"
             app:layout_widthPercent="30%"
             app:srcCompat="@drawable/ic_kadin"/>
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             app:layout_heightPercent="30%"
-            app:layout_marginRightPercent="5%"
-            app:layout_marginTopPercent="5%"
+            app:layout_marginRightPercent="10%"
+            app:layout_marginTopPercent="2.5%"
             app:layout_widthPercent="30%"
             app:srcCompat="@drawable/ic_erkek"/>
+
+        <android.support.v7.widget.GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView"
+            app:columnCount="3"
+            app:layout_heightPercent="47.5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="40%"
+            app:rowCount="4">
+
+            <ImageView
+                android:id="@+id/kadin1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/kadin2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/kadin3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+
+            <ImageView
+                android:id="@+id/kadin4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/kadin5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/kadin6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+
+            <ImageView
+                android:id="@+id/kadin7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/kadin8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/kadin9"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+
+            <ImageView
+                android:id="@+id/kadin10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/kadin11"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/kadin12"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+        </android.support.v7.widget.GridLayout>
+
+        <android.support.v7.widget.GridLayout
+            android:id="@+id/gridLayout2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/imageView2"
+            app:columnCount="3"
+            app:layout_heightPercent="47.5%"
+            app:layout_marginRightPercent="5%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="40%"
+            app:rowCount="4">
+
+            <ImageView
+                android:id="@+id/erkek1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/erkek2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/erkek3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+
+            <ImageView
+                android:id="@+id/erkek4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/erkek5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/erkek6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+
+            <ImageView
+                android:id="@+id/erkek7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/erkek8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/erkek9"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+
+            <ImageView
+                android:id="@+id/erkek10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_koc"/>
+
+            <ImageView
+                android:id="@+id/erkek11"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_boga"/>
+
+            <ImageView
+                android:id="@+id/erkek12"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="1dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:srcCompat="@drawable/burc_ikizler"/>
+
+        </android.support.v7.widget.GridLayout>
+
+        <ImageView
+            android:id="@+id/imageViewButton"
+            android:layout_below="@+id/gridLayout"
+            android:layout_centerHorizontal="true"
+            app:columnCount="1"
+            app:layout_heightPercent="12.5%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginLeftPercent="15%"
+            app:layout_marginRightPercent="15%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="70%"
+            app:rowCount="12"
+            app:srcCompat="@drawable/button_burcuyumu"/>
     </android.support.percent.PercentRelativeLayout>
 
     <RelativeLayout
