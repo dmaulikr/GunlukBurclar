@@ -8,12 +8,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.facebook.ads.AdSettings;
@@ -21,8 +20,6 @@ import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-
-import org.uusoftware.burclar.adapter.GridAdapter;
 
 import java.util.Random;
 
@@ -48,9 +45,7 @@ public class FragmentHome extends Fragment {
         } else {
             RelativeLayout adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
             adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("93b55fab32ae5be4b95fb1fa2815d35b");
-            AdSettings.addTestDevice("9c984b400407ede69f69662c8816f1d3");
-            AdSettings.addTestDevice("291094bfd3e4384b98451dca16f66e81");
+            AdSettings.addTestDevice("290ec227c11c95e2abb748162f023497");
             adViewContainer.addView(adView);
             adView.loadAd();
         }
@@ -66,21 +61,81 @@ public class FragmentHome extends Fragment {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        GridView gridView = (GridView) v.findViewById(R.id.gridView);
-        gridView.setAdapter(new GridAdapter(getActivity()));
+        ImageView img = (ImageView) v.findViewById(R.id.imageView1);
+        ImageView img2 = (ImageView) v.findViewById(R.id.imageView2);
+        ImageView img3 = (ImageView) v.findViewById(R.id.imageView3);
+        ImageView img4 = (ImageView) v.findViewById(R.id.imageView4);
+        ImageView img5 = (ImageView) v.findViewById(R.id.imageView5);
+        ImageView img6 = (ImageView) v.findViewById(R.id.imageView6);
+        ImageView img7 = (ImageView) v.findViewById(R.id.imageView7);
+        ImageView img8 = (ImageView) v.findViewById(R.id.imageView8);
+        ImageView img9 = (ImageView) v.findViewById(R.id.imageView9);
+        ImageView img10 = (ImageView) v.findViewById(R.id.imageView10);
+        ImageView img11 = (ImageView) v.findViewById(R.id.imageView11);
+        ImageView img12 = (ImageView) v.findViewById(R.id.imageView12);
 
-        gridView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+        OnClickListener buttonListener = new OnClickListener() {
+
+            public void onClick(View v) {
                 intent = new Intent(getActivity(), SecondActivity.class);
-                intent.putExtra("burcid", position);
+                switch (v.getId()) {
+                    case R.id.imageView1:
+                        intent.putExtra("burcid", 0);
+                        break;
+                    case R.id.imageView2:
+                        intent.putExtra("burcid", 1);
+                        break;
+                    case R.id.imageView3:
+                        intent.putExtra("burcid", 2);
+                        break;
+                    case R.id.imageView4:
+                        intent.putExtra("burcid", 3);
+                        break;
+                    case R.id.imageView5:
+                        intent.putExtra("burcid", 4);
+                        break;
+                    case R.id.imageView6:
+                        intent.putExtra("burcid", 5);
+                        break;
+                    case R.id.imageView7:
+                        intent.putExtra("burcid", 6);
+                        break;
+                    case R.id.imageView8:
+                        intent.putExtra("burcid", 7);
+                        break;
+                    case R.id.imageView9:
+                        intent.putExtra("burcid", 8);
+                        break;
+                    case R.id.imageView10:
+                        intent.putExtra("burcid", 9);
+                        break;
+                    case R.id.imageView11:
+                        intent.putExtra("burcid", 10);
+                        break;
+                    case R.id.imageView12:
+                        intent.putExtra("burcid", 11);
+                        break;
+                }
                 if (premium) {
                     startActivity(intent);
                 } else {
                     showAds();
                 }
             }
-        });
+        };
+
+        img.setOnClickListener(buttonListener);
+        img2.setOnClickListener(buttonListener);
+        img3.setOnClickListener(buttonListener);
+        img4.setOnClickListener(buttonListener);
+        img5.setOnClickListener(buttonListener);
+        img6.setOnClickListener(buttonListener);
+        img7.setOnClickListener(buttonListener);
+        img8.setOnClickListener(buttonListener);
+        img9.setOnClickListener(buttonListener);
+        img10.setOnClickListener(buttonListener);
+        img11.setOnClickListener(buttonListener);
+        img12.setOnClickListener(buttonListener);
 
         return v;
     }

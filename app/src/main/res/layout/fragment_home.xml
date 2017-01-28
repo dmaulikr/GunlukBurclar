@@ -1,19 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_home">
 
-    <GridView
-        android:id="@+id/gridView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/adFacebook"
-        android:layout_alignParentTop="true"
-        android:horizontalSpacing="3dp"
-        android:numColumns="3"
-        android:verticalSpacing="3dp"/>
+        app:columnCount="3"
+        app:rowCount="4">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_koc"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_boga"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_ikizler"/>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_koc"/>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_boga"/>
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_ikizler"/>
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_koc"/>
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_boga"/>
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_ikizler"/>
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_koc"/>
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_boga"/>
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            app:srcCompat="@drawable/burc_ikizler"/>
+
+    </android.support.v7.widget.GridLayout>
 
     <RelativeLayout
         android:id="@+id/adFacebook"

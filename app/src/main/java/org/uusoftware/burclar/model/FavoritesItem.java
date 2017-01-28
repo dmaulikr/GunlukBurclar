@@ -2,7 +2,7 @@ package org.uusoftware.burclar.model;
 
 import android.graphics.Bitmap;
 
-public class GridItem {
+public class FavoritesItem {
     private String title;
     private Bitmap thumbnail;
 

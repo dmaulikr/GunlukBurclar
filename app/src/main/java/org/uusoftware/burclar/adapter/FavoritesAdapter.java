@@ -16,13 +16,13 @@ import android.widget.Toast;
 
 import org.uusoftware.burclar.FavoritesActivity;
 import org.uusoftware.burclar.R;
-import org.uusoftware.burclar.model.GridItem;
+import org.uusoftware.burclar.model.FavoritesItem;
 
 import java.io.File;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<GridItem> feedItemList;
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {
+    private List<FavoritesItem> feedItemList;
     private Context mContext;
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
@@ -65,21 +65,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     };
 
-    public RecyclerViewAdapter(Context context, List<GridItem> feedItemList) {
+    public FavoritesAdapter(Context context, List<FavoritesItem> feedItemList) {
         this.feedItemList = feedItemList;
         this.mContext = context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.favorites_item, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_favorites, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        GridItem feedItem = feedItemList.get(i);
+        FavoritesItem feedItem = feedItemList.get(i);
 
         // Setting image
         viewHolder.image.setImageBitmap(feedItem.getThumbnail());

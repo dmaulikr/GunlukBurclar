@@ -9,9 +9,6 @@
     <string name="chooseaction">Bir eylem seçin:</string>
     <string name="deleted">Öğe favorilerinizden silindi&#8230;</string>
     <string name="exit">Çıkmak için tekrar dokunun</string>
-    <string name="burclaryazisi">Burcunuzu seçin</string>
-    <string name="dogumsaatiyazisi">Doğum saatinizi seçin</string>
-    <string name="spinnerdialog">Burcunuzu seçin</string>
 
     <string-array name="choose_actions">
         <item>Görüntüle</item>
@@ -34,6 +31,13 @@
 
     <!-- Nav Drawer Menu Items -->
     <string name="nav_text_premium2">Günlük Burçlar Premium</string>
+
+    <!-- Rate It -->
+    <string name="rate_title">Uygulamayı puanla</string>
+    <string name="rate_message">Uygulamamızı kullanmaktan keyif aldıysanız, uygulamaya 5 yıldız vererek destek olabilirsiniz. Teşekkürler.</string>
+    <string name="rate_yes">Puanla</string>
+    <string name="rate_no">İstemiyorum</string>
+    <string name="rate_later">Sonra</string>
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Öğe ikonu</string>

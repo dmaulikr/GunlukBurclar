@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_burcuyumu">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adFacebook">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:layout_heightPercent="30%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="5%"
+            app:layout_widthPercent="30%"
+            app:srcCompat="@drawable/ic_kadin"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            app:layout_heightPercent="30%"
+            app:layout_marginRightPercent="5%"
+            app:layout_marginTopPercent="5%"
+            app:layout_widthPercent="30%"
+            app:srcCompat="@drawable/ic_erkek"/>
+    </android.support.percent.PercentRelativeLayout>
 
     <RelativeLayout
         android:id="@+id/adFacebook"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>

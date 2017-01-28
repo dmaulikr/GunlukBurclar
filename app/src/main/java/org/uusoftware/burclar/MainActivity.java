@@ -36,13 +36,11 @@ import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.kobakei.ratethisapp.RateThisApp;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
-import jp.co.recruit_mp.android.rmp_appirater.RmpAppirater;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -215,24 +213,7 @@ public class MainActivity extends AppCompatActivity {
         coloredBars(ContextCompat.getColor(this, R.color.colorMainDark), ContextCompat.getColor(this, R.color.colorMainPrimary));
 
         // AppRater
-        RmpAppirater.appLaunched(this,
-                new RmpAppirater.ShowRateDialogCondition() {
-                    @Override
-                    public boolean isShowRateDialog(
-                            long appLaunchCount, long appThisVersionCodeLaunchCount,
-                            long firstLaunchDate, int appVersionCode,
-                            int previousAppVersionCode, Date rateClickDate,
-                            Date reminderClickDate, boolean doNotShowAgain) {
-                        // Show rating dialog if user isn't rating yet
-                        // && don't select "Not show again"
-                        // && launched app more than 5 times.
-                        return (rateClickDate == null && !doNotShowAgain && appLaunchCount >= 5);
-                    }
-                },
-                new RmpAppirater.Options(
-                        "Günlük Burçlar'ı sevdin mi?", "5 puan vererek bize destek olabilirsin!",
-                        "Oyla!", "Belki başka zaman",
-                        "Hayır, teşekkürler"));
+        AppRater();
 
         // AlarmManager
         AlarmManager();
@@ -286,6 +267,18 @@ public class MainActivity extends AppCompatActivity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
     }*/
+
+    public void AppRater() {
+        RateThisApp.onStart(this);
+        RateThisApp.showRateDialogIfNeeded(this);
+        RateThisApp.Config config = new RateThisApp.Config(3, 5);
+        config.setTitle(R.string.rate_title);
+        config.setMessage(R.string.rate_message);
+        config.setYesButtonText(R.string.rate_yes);
+        config.setNoButtonText(R.string.rate_no);
+        config.setCancelButtonText(R.string.rate_later);
+        RateThisApp.init(config);
+    }
 
     private void InAppBilling() {
         mServiceConn = new ServiceConnection() {

@@ -28,7 +28,7 @@ import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import org.uusoftware.burclar.adapter.SectionsPagerAdapter;
+import org.uusoftware.burclar.adapter.SecondActivityAdapter;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,7 +40,7 @@ public class SecondActivity extends AppCompatActivity {
     public static int burcid;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    SectionsPagerAdapter mSectionsPagerAdapter;
+    SecondActivityAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
     Window window;
     Toolbar toolbar;
@@ -84,7 +84,7 @@ public class SecondActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         burcid = extras.getInt("burcid");
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SecondActivityAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
     }

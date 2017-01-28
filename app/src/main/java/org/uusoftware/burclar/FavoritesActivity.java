@@ -19,8 +19,8 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import org.uusoftware.burclar.adapter.RecyclerViewAdapter;
-import org.uusoftware.burclar.model.GridItem;
+import org.uusoftware.burclar.adapter.FavoritesAdapter;
+import org.uusoftware.burclar.model.FavoritesItem;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,11 +32,11 @@ public class FavoritesActivity extends AppCompatActivity {
     GridLayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
     Tracker t;
-    GridItem item;
+    FavoritesItem item;
     BitmapFactory.Options options;
     Window window;
     Toolbar toolbar;
-    private List<GridItem> feedsList;
+    private List<FavoritesItem> feedsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class FavoritesActivity extends AppCompatActivity {
             Toast.makeText(this, "Henüz favorilerinize hiç yorum eklememişsiniz.", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < file.length; i++) {
-                item = new GridItem();
+                item = new FavoritesItem();
                 item.setThumbnail(BitmapFactory.decodeFile(file[i].getAbsolutePath(), options));
                 item.setTitle(file[i].getName());
                 feedsList.add(item);
@@ -84,7 +84,7 @@ public class FavoritesActivity extends AppCompatActivity {
         }
 
         // Adapter
-        mAdapter = new RecyclerViewAdapter(this, feedsList);
+        mAdapter = new FavoritesAdapter(this, feedsList);
         mRecyclerView.setAdapter(mAdapter);
 
         // The number of Columns

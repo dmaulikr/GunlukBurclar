@@ -10,11 +10,11 @@ import org.uusoftware.burclar.FragmentNineth;
 import org.uusoftware.burclar.FragmentSeventh;
 import org.uusoftware.burclar.FragmentSixth;
 
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SecondActivityAdapter extends FragmentPagerAdapter {
 
     Fragment fragment = null;
 
-    public SectionsPagerAdapter(FragmentManager fm) {
+    public SecondActivityAdapter(FragmentManager fm) {
         super(fm);
     }
 
