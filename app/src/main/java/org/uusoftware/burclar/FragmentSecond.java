@@ -29,10 +29,7 @@ public class FragmentSecond extends Fragment {
     boolean premium;
     ActionBar actionbar;
     Intent intent;
-    int images[] = {R.drawable.burc_koc, R.drawable.burc_boga, R.drawable.burc_ikizler, R.drawable.burc_yengec,
-            R.drawable.burc_aslan, R.drawable.burc_basak, R.drawable.burc_terazi, R.drawable.burc_akrep,
-            R.drawable.burc_yay, R.drawable.burc_oglak, R.drawable.burc_kova, R.drawable.burc_balik};
-    ImageView img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12;
+    ImageView imageskadin[] = new ImageView[12];
     //Facebook Audience Network
     private AdView adView;
 
@@ -65,23 +62,25 @@ public class FragmentSecond extends Fragment {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        img1 = (ImageView) rootView.findViewById(R.id.kadin1);
-        img2 = (ImageView) rootView.findViewById(R.id.kadin2);
-        img3 = (ImageView) rootView.findViewById(R.id.kadin3);
-        img4 = (ImageView) rootView.findViewById(R.id.kadin4);
-        img5 = (ImageView) rootView.findViewById(R.id.kadin5);
-        img6 = (ImageView) rootView.findViewById(R.id.kadin6);
-        img7 = (ImageView) rootView.findViewById(R.id.kadin7);
-        img8 = (ImageView) rootView.findViewById(R.id.kadin8);
-        img9 = (ImageView) rootView.findViewById(R.id.kadin9);
-        img10 = (ImageView) rootView.findViewById(R.id.kadin10);
-        img11 = (ImageView) rootView.findViewById(R.id.kadin11);
-        img12 = (ImageView) rootView.findViewById(R.id.kadin12);
+        //Intent
+        intent = new Intent(getActivity(), BurcUyumuActivity.class);
+
+        //ImagesKadın
+        imageskadin[0] = (ImageView) rootView.findViewById(R.id.kadin1);
+        imageskadin[1] = (ImageView) rootView.findViewById(R.id.kadin2);
+        imageskadin[2] = (ImageView) rootView.findViewById(R.id.kadin3);
+        imageskadin[3] = (ImageView) rootView.findViewById(R.id.kadin4);
+        imageskadin[4] = (ImageView) rootView.findViewById(R.id.kadin5);
+        imageskadin[5] = (ImageView) rootView.findViewById(R.id.kadin6);
+        imageskadin[6] = (ImageView) rootView.findViewById(R.id.kadin7);
+        imageskadin[7] = (ImageView) rootView.findViewById(R.id.kadin8);
+        imageskadin[8] = (ImageView) rootView.findViewById(R.id.kadin9);
+        imageskadin[9] = (ImageView) rootView.findViewById(R.id.kadin10);
+        imageskadin[10] = (ImageView) rootView.findViewById(R.id.kadin11);
+        imageskadin[11] = (ImageView) rootView.findViewById(R.id.kadin12);
 
         OnClickListener buttonListener = new OnClickListener() {
-
             public void onClick(View v) {
-                intent = new Intent(getActivity(), BurcUyumuActivity.class);
                 switch (v.getId()) {
                     case R.id.kadin1:
                         intent.putExtra("kadinid", "koc");
@@ -121,26 +120,17 @@ public class FragmentSecond extends Fragment {
                         break;
                 }
 
-                /*if (premium) {
-                    startActivity(intent);
-                } else {
-                    showAds();
-                }*/
+                for (int i = 0; i < 12; i++) {
+                    imageskadin[i].setAlpha(1.0f);
+                }
+
+                v.setAlpha(0.5f);
             }
         };
 
-        img1.setOnClickListener(buttonListener);
-        img2.setOnClickListener(buttonListener);
-        img3.setOnClickListener(buttonListener);
-        img4.setOnClickListener(buttonListener);
-        img5.setOnClickListener(buttonListener);
-        img6.setOnClickListener(buttonListener);
-        img7.setOnClickListener(buttonListener);
-        img8.setOnClickListener(buttonListener);
-        img9.setOnClickListener(buttonListener);
-        img10.setOnClickListener(buttonListener);
-        img11.setOnClickListener(buttonListener);
-        img12.setOnClickListener(buttonListener);
+        for (int i = 0; i < 12; i++) {
+            imageskadin[i].setOnClickListener(buttonListener);
+        }
 
         return rootView;
     }
