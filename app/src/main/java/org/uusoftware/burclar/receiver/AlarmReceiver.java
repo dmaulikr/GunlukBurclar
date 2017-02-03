@@ -1,4 +1,4 @@
-package org.uusoftware.burclar;
+package org.uusoftware.burclar.receiver;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -6,9 +6,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import org.uusoftware.burclar.Utils;
+
 import java.util.Calendar;
 
-public class MyReceiver extends BroadcastReceiver {
+public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -22,7 +24,7 @@ public class MyReceiver extends BroadcastReceiver {
     public void scheduleAlarms(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Intent myIntent = new Intent(context, MyReceiver.class);
+        Intent myIntent = new Intent(context, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, myIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
 

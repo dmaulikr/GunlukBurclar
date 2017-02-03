@@ -38,6 +38,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.kobakei.ratethisapp.RateThisApp;
 
+import org.uusoftware.burclar.receiver.AlarmReceiver;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -366,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
     public void AlarmManager() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        Intent myIntent = new Intent(MainActivity.this, MyReceiver.class);
+        Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         int hourofday = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -416,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(MainActivity.this, "Satın alma başarılı. Premium sürüme geçiriliyorsunuz, teşekkürler!",
                         Toast.LENGTH_LONG).show();
-                prefs.edit().putBoolean("Premium", true).commit();
+                prefs.edit().putBoolean("Premium", true).apply();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -425,7 +427,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(MainActivity.this, "Satın alma başarısız. Lütfen daha sonra tekrar deneyiniz.",
                         Toast.LENGTH_LONG).show();
-                prefs.edit().putBoolean("Premium", false).commit();
+                prefs.edit().putBoolean("Premium", false).apply();
             }
         }
         // callbackmanager.onActivityResult(requestCode, resultCode, data);

@@ -30,170 +30,52 @@
             android:name=".MainActivity"
             android:label="@string/nav_text_home"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.MAINACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".SecondActivity"
             android:label="@string/nav_text_home"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SecondActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.SECONDACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".BurcUyumuActivity"
             android:label="@string/nav_text_uyum"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BurcUyumuActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.ASKUYUMUACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".YukselenBurcActivity"
             android:label="@string/nav_text_yukselen"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".YukselenBurcActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.YUKSELENBURCACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".CinAstrolojisiActivity"
             android:label="@string/nav_text_cin"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CinAstrolojisiActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.CINASTROLOJISIACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".AboutUsActivity"
             android:label="@string/nav_text_about"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AboutUsActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.ABOUTUSACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".HelpingActivity"
             android:label="@string/nav_text_help"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HelpingActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.HELPINGACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".FavoritesActivity"
             android:label="@string/nav_text_favoriler"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FavoritesActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.FAVORITESACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ProfileActivity"
             android:label="Profile"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ProfileActivity"/>
-
-            <intent-filter>
-                <action android:name="org.uusoftware.burclar.PROFILEACTIVITY"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
 
         <!-- AlarmReceiver -->
-        <receiver android:name=".MyReceiver">
+        <receiver android:name=".receiver.AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
-
-        <!-- Google Analytics -->
-        <service
-            android:name="com.google.android.gms.analytics.AnalyticsService"
-            android:enabled="true"
-            android:exported="false"/>
-
-        <receiver
-            android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER"/>
-            </intent-filter>
-        </receiver>
-
-        <service android:name="com.google.android.gms.analytics.CampaignTrackingService"/>
-
-        <receiver
-            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
             </intent-filter>
         </receiver>
 
