@@ -3,18 +3,8 @@
 
     <string name="facebook_app_id">155235578298611</string>
     <string name="fb_login_protocol_scheme">fb155235578298611</string>
-
     <string name="app_name">Günlük Burçlar</string>
     <string name="action_share">Paylaş</string>
-    <string name="chooseaction">Bir eylem seçin:</string>
-    <string name="deleted">Öğe favorilerinizden silindi&#8230;</string>
-    <string name="exit">Çıkmak için tekrar dokunun</string>
-
-    <string-array name="choose_actions">
-        <item>Görüntüle</item>
-        <item>Paylaş</item>
-        <item>Sil</item>
-    </string-array>
 
     <!-- Nav Drawer Menu Items -->
     <string name="nav_text_home">Burç yorumları</string>
@@ -32,16 +22,25 @@
     <!-- Nav Drawer Menu Items -->
     <string name="nav_text_premium2">Günlük Burçlar Premium</string>
 
+    <!-- NavMenu Statues -->
+    <string name="navigation_drawer_open">Yan menü açıldı</string>
+    <string name="navigation_drawer_close">Yan menü kapandı</string>
+
+    <!-- Favorite Screen options -->
+    <string name="chooseaction">Bir eylem seçin:</string>
+    <string name="deleted">Öğe favorilerinizden silindi&#8230;</string>
+    <string name="exit">Çıkmak için tekrar dokunun</string>
+    <string-array name="choose_actions">
+        <item>Görüntüle</item>
+        <item>Paylaş</item>
+        <item>Sil</item>
+    </string-array>
+
     <!-- Rate It -->
     <string name="rate_title">Uygulamayı puanla</string>
     <string name="rate_message">Uygulamamızı kullanmaktan keyif aldıysanız, uygulamaya 5 yıldız vererek destek olabilirsiniz. Teşekkürler.</string>
     <string name="rate_yes">Puanla</string>
     <string name="rate_no">İstemiyorum</string>
     <string name="rate_later">Sonra</string>
-
-    <!-- Content Description -->
-    <string name="desc_list_item_icon">Öğe ikonu</string>
-    <string name="navigation_drawer_open">Yan menü açıldı</string>
-    <string name="navigation_drawer_close">Yan menü kapandı</string>
 
 </resources>

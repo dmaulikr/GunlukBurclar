@@ -1,7 +1,6 @@
 package org.uusoftware.burclar;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -39,19 +38,18 @@ public class YukselenBurcActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
     Window window;
     Toolbar toolbar;
-    Context mContext;
+
     CollapsingToolbarLayout collapsingToolbarLayout;
     String burcName;
+    String link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yukselen);
-
-        /* Colored bars */
-        mContext = this.getApplicationContext();
 
         //StatusBar
         window = this.getWindow();
@@ -74,7 +72,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
-                    coloredBars(ContextCompat.getColor(mContext, R.color.colorYukselenDark), ContextCompat.getColor(mContext, R.color.colorYukselenPrimary));
+                    coloredBars(ContextCompat.getColor(YukselenBurcActivity.this, R.color.colorYukselenDark), ContextCompat.getColor(YukselenBurcActivity.this, R.color.colorYukselenPrimary));
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
@@ -91,59 +89,47 @@ public class YukselenBurcActivity extends AppCompatActivity {
 
         //Get Yükselen Burç
         Bundle extras = getIntent().getExtras();
-        int selectedburc = extras.getInt("burcid");
+        String selectedburc = extras.getString("burcid");
 
         ImageView image = (ImageView) findViewById(R.id.burc_header);
         WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
-        String link;
+        link = "http://uusoftware.org/burclar/" + selectedburc + ".html";
 
-        if (selectedburc == 0) {
+        if (selectedburc == "koc") {
             image.setImageResource(R.drawable.burc_koc);
-            link = "http://uusoftware.org/burclar/koc.html";
             burcName = "Koç";
-        } else if (selectedburc == 1) {
+        } else if (selectedburc == "boga") {
             image.setImageResource(R.drawable.burc_boga);
-            link = "http://uusoftware.org/burclar/boga.html";
             burcName = "Boğa";
-        } else if (selectedburc == 2) {
+        } else if (selectedburc == "ikizler") {
             image.setImageResource(R.drawable.burc_ikizler);
-            link = "http://uusoftware.org/burclar/ikizler.html";
             burcName = "İkizler";
-        } else if (selectedburc == 3) {
+        } else if (selectedburc == "yengec") {
             image.setImageResource(R.drawable.burc_yengec);
-            link = "http://uusoftware.org/burclar/yengec.html";
             burcName = "Yengeç";
-        } else if (selectedburc == 4) {
+        } else if (selectedburc == "aslan") {
             image.setImageResource(R.drawable.burc_aslan);
-            link = "http://uusoftware.org/burclar/aslan.html";
             burcName = "Aslan";
-        } else if (selectedburc == 5) {
+        } else if (selectedburc == "basak") {
             image.setImageResource(R.drawable.burc_basak);
-            link = "http://uusoftware.org/burclar/basak.html";
             burcName = "Başak";
-        } else if (selectedburc == 6) {
+        } else if (selectedburc == "terazi") {
             image.setImageResource(R.drawable.burc_terazi);
-            link = "http://uusoftware.org/burclar/terazi.html";
             burcName = "Terazi";
-        } else if (selectedburc == 7) {
+        } else if (selectedburc == "akrep") {
             image.setImageResource(R.drawable.burc_akrep);
-            link = "http://uusoftware.org/burclar/akrep.html";
             burcName = "Akrep";
-        } else if (selectedburc == 8) {
+        } else if (selectedburc == "yay") {
             image.setImageResource(R.drawable.burc_yay);
-            link = "http://uusoftware.org/burclar/yay.html";
             burcName = "Yay";
-        } else if (selectedburc == 9) {
+        } else if (selectedburc == "oglak") {
             image.setImageResource(R.drawable.burc_oglak);
-            link = "http://uusoftware.org/burclar/oglak.html";
             burcName = "Oğlak";
-        } else if (selectedburc == 10) {
+        } else if (selectedburc == "kova") {
             image.setImageResource(R.drawable.burc_kova);
-            link = "http://uusoftware.org/burclar/kova.html";
             burcName = "Kova";
         } else {
             image.setImageResource(R.drawable.burc_balik);
-            link = "http://uusoftware.org/burclar/balik.html";
             burcName = "Balık";
         }
 

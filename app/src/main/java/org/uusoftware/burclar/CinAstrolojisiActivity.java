@@ -96,47 +96,34 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.cin_header);
         WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
 
-        System.out.println(burc);
+        link = "http://uusoftware.org/burclar/cinastrolojisi/" + burc + ".html";
 
-        if (burc.contains("Fare")) {
+        if (burc.contains("fare")) {
             image.setImageResource(R.drawable.cin_fare);
-            link = "http://uusoftware.org/burclar/cin-fare.html";
-        } else if (burc.contains("Öküz")) {
+        } else if (burc.contains("okuz")) {
             image.setImageResource(R.drawable.cin_okuz);
-            link = "http://uusoftware.org/burclar/cin-okuz.html";
-        } else if (burc.contains("Kaplan")) {
+        } else if (burc.contains("kaplan")) {
             image.setImageResource(R.drawable.cin_kaplan);
-            link = "http://uusoftware.org/burclar/cin-kaplan.html";
-        } else if (burc.contains("Tavşan")) {
+        } else if (burc.contains("tavsan")) {
             image.setImageResource(R.drawable.cin_tavsan);
-            link = "http://uusoftware.org/burclar/cin-tavsan.html";
-        } else if (burc.contains("Ejderha")) {
+        } else if (burc.contains("ejderha")) {
             image.setImageResource(R.drawable.cin_ejdarha);
-            link = "http://uusoftware.org/burclar/cin-ejderha.html";
-        } else if (burc.contains("Yılan")) {
+        } else if (burc.contains("yilan")) {
             image.setImageResource(R.drawable.cin_yilan);
-            link = "http://uusoftware.org/burclar/cin-yilan.html";
-        } else if (burc.contains("At")) {
+        } else if (burc.contains("at")) {
             image.setImageResource(R.drawable.cin_at);
-            link = "http://uusoftware.org/burclar/cin-at.html";
-        } else if (burc.contains("Keçi")) {
+        } else if (burc.contains("keci")) {
             image.setImageResource(R.drawable.cin_keci);
-            link = "http://uusoftware.org/burclar/cin-keci.html";
-        } else if (burc.contains("Maymun")) {
+        } else if (burc.contains("maymun")) {
             image.setImageResource(R.drawable.cin_maymun);
-            link = "http://uusoftware.org/burclar/cin-maymun.html";
-        } else if (burc.contains("Horoz")) {
+        } else if (burc.contains("horoz")) {
             image.setImageResource(R.drawable.cin_horoz);
-            link = "http://uusoftware.org/burclar/cin-horoz.html";
-        } else if (burc.contains("Köpek")) {
+        } else if (burc.contains("kopek")) {
             image.setImageResource(R.drawable.cin_kopek);
-            link = "http://uusoftware.org/burclar/cin-kopek.html";
-        } else if (burc.contains("Domuz")) {
+        } else if (burc.contains("domuz")) {
             image.setImageResource(R.drawable.cin_domuz);
-            link = "http://uusoftware.org/burclar/cin-domuz.html";
         } else {
             image.setImageResource(R.drawable.cin_unknown);
-            link = "http://uusoftware.org/burclar/cin-noburc.html";
         }
 
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);

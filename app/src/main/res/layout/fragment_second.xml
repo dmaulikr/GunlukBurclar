@@ -16,10 +16,12 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            app:layout_heightPercent="30%"
-            app:layout_marginLeftPercent="10%"
+            android:background="#4D000000"
+            android:padding="1dp"
+            app:layout_heightPercent="27.5%"
+            app:layout_marginLeftPercent="5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="30%"
+            app:layout_widthPercent="20%"
             app:srcCompat="@drawable/ic_kadin"/>
 
         <ImageView
@@ -27,10 +29,12 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            app:layout_heightPercent="30%"
-            app:layout_marginRightPercent="10%"
+            android:background="#4D000000"
+            android:padding="1dp"
+            app:layout_heightPercent="27.5%"
+            app:layout_marginRightPercent="5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="30%"
+            app:layout_widthPercent="20%"
             app:srcCompat="@drawable/ic_erkek"/>
 
         <android.support.v7.widget.GridLayout
@@ -39,12 +43,11 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/imageView"
             app:columnCount="3"
-            app:layout_heightPercent="47.5%"
-            app:layout_marginLeftPercent="2.5%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="45%"
-            app:rowCount="4"
-            >
+            app:layout_widthPercent="42.5%"
+            app:rowCount="4">
 
             <ImageView
                 android:id="@+id/kadin1"
@@ -161,10 +164,10 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/imageView2"
             app:columnCount="3"
-            app:layout_heightPercent="47.5%"
-            app:layout_marginRightPercent="2.5%"
+            app:layout_heightPercent="50%"
+            app:layout_marginRightPercent="5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="45%"
+            app:layout_widthPercent="42.5%"
             app:rowCount="4"
             >
 
@@ -275,21 +278,20 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:srcCompat="@drawable/burc_balik"/>
-
         </android.support.v7.widget.GridLayout>
 
         <ImageView
             android:id="@+id/imageViewButton"
             android:layout_below="@+id/gridLayout"
             android:layout_centerHorizontal="true"
+            android:alpha="0.33"
             app:columnCount="1"
             app:layout_heightPercent="12.5%"
-            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginBottomPercent="2%"
             app:layout_marginLeftPercent="15%"
             app:layout_marginRightPercent="15%"
-            app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="70%"
-            app:rowCount="12"
+            app:layout_marginTopPercent="3%"
+            app:layout_widthPercent="60%"
             app:srcCompat="@drawable/button_burcuyumu"/>
     </android.support.percent.PercentRelativeLayout>
 
@@ -298,6 +300,5 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

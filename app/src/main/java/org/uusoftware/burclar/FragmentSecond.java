@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
@@ -28,8 +29,12 @@ public class FragmentSecond extends Fragment {
     Context mContext;
     boolean premium;
     ActionBar actionbar;
+
     Intent intent;
+    ImageView clickButton;
     ImageView imageskadin[] = new ImageView[12];
+    ImageView imageserkek[] = new ImageView[12];
+
     //Facebook Audience Network
     private AdView adView;
 
@@ -79,6 +84,24 @@ public class FragmentSecond extends Fragment {
         imageskadin[10] = (ImageView) rootView.findViewById(R.id.kadin11);
         imageskadin[11] = (ImageView) rootView.findViewById(R.id.kadin12);
 
+        //ImagesErkek
+        imageserkek[0] = (ImageView) rootView.findViewById(R.id.erkek1);
+        imageserkek[1] = (ImageView) rootView.findViewById(R.id.erkek2);
+        imageserkek[2] = (ImageView) rootView.findViewById(R.id.erkek3);
+        imageserkek[3] = (ImageView) rootView.findViewById(R.id.erkek4);
+        imageserkek[4] = (ImageView) rootView.findViewById(R.id.erkek5);
+        imageserkek[5] = (ImageView) rootView.findViewById(R.id.erkek6);
+        imageserkek[6] = (ImageView) rootView.findViewById(R.id.erkek7);
+        imageserkek[7] = (ImageView) rootView.findViewById(R.id.erkek8);
+        imageserkek[8] = (ImageView) rootView.findViewById(R.id.erkek9);
+        imageserkek[9] = (ImageView) rootView.findViewById(R.id.erkek10);
+        imageserkek[10] = (ImageView) rootView.findViewById(R.id.erkek11);
+        imageserkek[11] = (ImageView) rootView.findViewById(R.id.erkek12);
+
+        //ClickButton
+        clickButton = (ImageView) rootView.findViewById(R.id.imageViewButton);
+
+        //onClickListener for Kadın
         OnClickListener buttonListener = new OnClickListener() {
             public void onClick(View v) {
                 switch (v.getId()) {
@@ -116,21 +139,96 @@ public class FragmentSecond extends Fragment {
                         intent.putExtra("kadinid", "kova");
                         break;
                     case R.id.kadin12:
-                        intent.putExtra("burcid", "balik");
+                        intent.putExtra("kadinid", "balik");
                         break;
                 }
 
                 for (int i = 0; i < 12; i++) {
-                    imageskadin[i].setAlpha(1.0f);
+                    imageskadin[i].setAlpha(0.33f);
                 }
 
-                v.setAlpha(0.5f);
+                v.setAlpha(1.0f);
+                if (intent.getStringExtra("erkekid") != null && intent.getStringExtra("erkekid") != null) {
+                    clickButton.setAlpha(1.0f);
+                }
             }
         };
 
+        //onClickListener for Erkek
+        OnClickListener buttonListener2 = new OnClickListener() {
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.erkek1:
+                        intent.putExtra("erkekid", "koc");
+                        break;
+                    case R.id.erkek2:
+                        intent.putExtra("erkekid", "boga");
+                        break;
+                    case R.id.erkek3:
+                        intent.putExtra("erkekid", "ikizler");
+                        break;
+                    case R.id.erkek4:
+                        intent.putExtra("erkekid", "yengec");
+                        break;
+                    case R.id.erkek5:
+                        intent.putExtra("erkekid", "aslan");
+                        break;
+                    case R.id.erkek6:
+                        intent.putExtra("erkekid", "basak");
+                        break;
+                    case R.id.erkek7:
+                        intent.putExtra("erkekid", "terazi");
+                        break;
+                    case R.id.erkek8:
+                        intent.putExtra("erkekid", "akrep");
+                        break;
+                    case R.id.erkek9:
+                        intent.putExtra("erkekid", "yay");
+                        break;
+                    case R.id.erkek10:
+                        intent.putExtra("erkekid", "oglak");
+                        break;
+                    case R.id.erkek11:
+                        intent.putExtra("erkekid", "kova");
+                        break;
+                    case R.id.erkek12:
+                        intent.putExtra("erkekid", "balik");
+                        break;
+                }
+
+                for (int i = 0; i < 12; i++) {
+                    imageserkek[i].setAlpha(0.33f);
+                }
+
+                v.setAlpha(1.0f);
+                if (intent.getStringExtra("erkekid") != null && intent.getStringExtra("erkekid") != null) {
+                    clickButton.setAlpha(1.0f);
+                }
+            }
+        };
+
+        //onClickListener for screen changer button
+        OnClickListener buttonListener3 = new OnClickListener() {
+            public void onClick(View v) {
+                if (intent.getStringExtra("erkekid") != null && intent.getStringExtra("erkekid") != null) {
+                    if (premium) {
+                        startActivity(intent);
+                    } else {
+                        showAds();
+                    }
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Lütfen kendinizin ve partnerinizin burcunu seçiniz.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+
+        //Set Click Listeners
         for (int i = 0; i < 12; i++) {
             imageskadin[i].setOnClickListener(buttonListener);
+            imageserkek[i].setOnClickListener(buttonListener2);
         }
+        clickButton.setOnClickListener(buttonListener3);
 
         return rootView;
     }

@@ -1,6 +1,7 @@
 package org.uusoftware.burclar;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +24,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -37,8 +40,14 @@ public class BurcUyumuActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    String uyum;
-    int skor, burckadin, burcerkek;
+
+    String burcKadin, burcErkek;
+    String text;
+    int skor;
+    TextView textview;
+    ProgressBar pb;
+    ObjectAnimator animation;
+
     Window window;
     Toolbar toolbar;
     Context mContext;
@@ -88,111 +97,12 @@ public class BurcUyumuActivity extends AppCompatActivity {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         Bundle extras = getIntent().getExtras();
-        uyum = extras.getString("burcuyumu");
-        skor = extras.getInt("number");
-        burckadin = extras.getInt("burckadin");
-        burcerkek = extras.getInt("burcerkek");
+        burcKadin = extras.getString("kadinid");
+        burcErkek = extras.getString("erkekid");
 
-
-       /* text = (TextView) findViewById(R.id.textViewUyum);
-        number = (TextView) findViewById(R.id.textViewSkor);
+        textview = (TextView) findViewById(R.id.textView);
         pb = (ProgressBar) findViewById(R.id.progressBar);
-        imageerkek = (ImageView) findViewById(R.id.imageView1);
-        imagekadin = (ImageView) findViewById(R.id.imageView2);
-
-        text.setText(uyum);
-        number.setText("%" + Integer.toString(skor));
-        pb.setProgress(skor);*/
-
-        /*
-        // SetImageViews
-        // Erkek
-        switch (burcerkek) {
-            case 0:
-                imageerkek.setImageResource(R.drawable.burc_koc);
-                break;
-            case 1:
-                imageerkek.setImageResource(R.drawable.burc_boga);
-                break;
-            case 2:
-                imageerkek.setImageResource(R.drawable.burc_ikizler);
-                break;
-            case 3:
-                imageerkek.setImageResource(R.drawable.burc_yengec);
-                break;
-            case 4:
-                imageerkek.setImageResource(R.drawable.burc_aslan);
-                break;
-            case 5:
-                imageerkek.setImageResource(R.drawable.burc_basak);
-                break;
-            case 6:
-                imageerkek.setImageResource(R.drawable.burc_terazi);
-                break;
-            case 7:
-                imageerkek.setImageResource(R.drawable.burc_akrep);
-                break;
-            case 8:
-                imageerkek.setImageResource(R.drawable.burc_yay);
-                break;
-            case 9:
-                imageerkek.setImageResource(R.drawable.burc_oglak);
-                break;
-            case 10:
-                imageerkek.setImageResource(R.drawable.burc_kova);
-                break;
-            case 11:
-                imageerkek.setImageResource(R.drawable.burc_balik);
-                break;
-            default:
-                break;
-        }
-        // Kadın
-        switch (burckadin) {
-            case 0:
-                imagekadin.setImageResource(R.drawable.burc_koc);
-                break;
-            case 1:
-                imagekadin.setImageResource(R.drawable.burc_boga);
-                break;
-            case 2:
-                imagekadin.setImageResource(R.drawable.burc_ikizler);
-                break;
-            case 3:
-                imagekadin.setImageResource(R.drawable.burc_yengec);
-                break;
-            case 4:
-                imagekadin.setImageResource(R.drawable.burc_aslan);
-                break;
-            case 5:
-                imagekadin.setImageResource(R.drawable.burc_basak);
-                break;
-            case 6:
-                imagekadin.setImageResource(R.drawable.burc_terazi);
-                break;
-            case 7:
-                imagekadin.setImageResource(R.drawable.burc_akrep);
-                break;
-            case 8:
-                imagekadin.setImageResource(R.drawable.burc_yay);
-                break;
-            case 9:
-                imagekadin.setImageResource(R.drawable.burc_oglak);
-                break;
-            case 10:
-                imagekadin.setImageResource(R.drawable.burc_kova);
-                break;
-            case 11:
-                imagekadin.setImageResource(R.drawable.burc_balik);
-                break;
-            default:
-                break;
-        }
-        */
 
         //Floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

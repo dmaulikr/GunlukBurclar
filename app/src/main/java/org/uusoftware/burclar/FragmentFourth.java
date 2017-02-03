@@ -199,226 +199,226 @@ public class FragmentFourth extends Fragment {
 
         // 5 Şubat 1924'ten küçük tarihler için
         if (date.before(date1925b)) {
-            intent.putExtra("burc", "Burcunuzu bulamadık?");
+            intent.putExtra("burc", "noburc");
         }
         // Döngü 1
         else if (date.before(date1925)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date1926)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "oküz");
         } else if (date.before(date1927)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date1928)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavşan");
         } else if (date.before(date1929)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date1930)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "eılan");
         } else if (date.before(date1931)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date1932)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keçi");
         } else if (date.before(date1933)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date1934)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date1935)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "köpek");
         } else if (date.before(date1936)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
 
         // Döngü 2
         else if (date.before(date1937)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date1938)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "okuz");
         } else if (date.before(date1939)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date1940)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavsan");
         } else if (date.before(date1941)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date1942)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "yilan");
         } else if (date.before(date1943)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date1944)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keci");
         } else if (date.before(date1945)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date1946)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date1947)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "kopek");
         } else if (date.before(date1948)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
 
         // Döngü 3
         else if (date.before(date1949)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date1950)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "okuz");
         } else if (date.before(date1951)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date1952)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavsan");
         } else if (date.before(date1953)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date1954)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "yilan");
         } else if (date.before(date1955)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date1956)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keci");
         } else if (date.before(date1957)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date1958)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date1959)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "kopek");
         } else if (date.before(date1960)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
 
         // Döngü 4
         else if (date.before(date1961)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date1962)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "okuz");
         } else if (date.before(date1963)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date1964)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavsan");
         } else if (date.before(date1965)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date1966)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "yilan");
         } else if (date.before(date1967)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date1968)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keci");
         } else if (date.before(date1969)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date1970)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date1971)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "kopek");
         } else if (date.before(date1972)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
 
         // Döngü 5
         else if (date.before(date1973)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date1974)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "okuz");
         } else if (date.before(date1975)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date1976)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavsan");
         } else if (date.before(date1977)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date1978)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "yilan");
         } else if (date.before(date1979)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date1980)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keci");
         } else if (date.before(date1981)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date1982)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date1983)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "kopek");
         } else if (date.before(date1984)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
 
         // Döngü 6
         else if (date.before(date1985)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date1986)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "okuz");
         } else if (date.before(date1987)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date1988)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavsan");
         } else if (date.before(date1989)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date1990)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "yilan");
         } else if (date.before(date1991)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date1992)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keci");
         } else if (date.before(date1993)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date1994)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date1995)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "kopek");
         } else if (date.before(date1996)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
 
         // Döngü 7
         else if (date.before(date1997)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date1998)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "okuz");
         } else if (date.before(date1999)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date2000)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavsan");
         } else if (date.before(date2001)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date2002)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "yilan");
         } else if (date.before(date2003)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date2004)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keci");
         } else if (date.before(date2005)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date2006)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date2007)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "kopek");
         } else if (date.before(date2008)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
 
         // Döngü 7
         else if (date.before(date2009)) {
-            intent.putExtra("burc", "Fare");
+            intent.putExtra("burc", "fare");
         } else if (date.before(date2010)) {
-            intent.putExtra("burc", "Öküz");
+            intent.putExtra("burc", "okuz");
         } else if (date.before(date2011)) {
-            intent.putExtra("burc", "Kaplan");
+            intent.putExtra("burc", "kaplan");
         } else if (date.before(date2012)) {
-            intent.putExtra("burc", "Tavşan");
+            intent.putExtra("burc", "tavsan");
         } else if (date.before(date2013)) {
-            intent.putExtra("burc", "Ejderha");
+            intent.putExtra("burc", "ejderha");
         } else if (date.before(date2014)) {
-            intent.putExtra("burc", "Yılan");
+            intent.putExtra("burc", "yilan");
         } else if (date.before(date2015)) {
-            intent.putExtra("burc", "At");
+            intent.putExtra("burc", "at");
         } else if (date.before(date2016)) {
-            intent.putExtra("burc", "Keçi");
+            intent.putExtra("burc", "keci");
         } else if (date.before(date2017)) {
-            intent.putExtra("burc", "Maymun");
+            intent.putExtra("burc", "maymun");
         } else if (date.before(date2018)) {
-            intent.putExtra("burc", "Horoz");
+            intent.putExtra("burc", "horoz");
         } else if (date.before(date2019)) {
-            intent.putExtra("burc", "Köpek");
+            intent.putExtra("burc", "kopek");
         } else if (date.before(date2020)) {
-            intent.putExtra("burc", "Domuz");
+            intent.putExtra("burc", "domuz");
         }
         // 5 şubat 2020'den büyük tarihler için
         else if (date.after(date2020a)) {
-            intent.putExtra("burc", "Burcunuzu bulamadık?");
+            intent.putExtra("burc", "noburc");
         }
     }
 
