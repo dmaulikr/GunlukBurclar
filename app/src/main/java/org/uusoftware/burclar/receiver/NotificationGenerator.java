@@ -1,4 +1,4 @@
-package org.uusoftware.burclar;
+package org.uusoftware.burclar.receiver;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,10 +9,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
+import org.uusoftware.burclar.R;
+import org.uusoftware.burclar.SplashActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Utils {
+public class NotificationGenerator {
     public static void generateNotification(Context context) {
         Intent intent = new Intent(context, SplashActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);

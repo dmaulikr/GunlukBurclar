@@ -6,8 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import org.uusoftware.burclar.Utils;
-
 import java.util.Calendar;
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -17,7 +15,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
             scheduleAlarms(context);
         } else {
-            Utils.generateNotification(context);
+            NotificationGenerator.generateNotification(context);
         }
     }
 
