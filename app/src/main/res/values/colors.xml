@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorMainDark">#000000</color>
-    <color name="colorMainPrimary">#313131</color>
+    <color name="colorMainPrimary">#212121</color>
 
-    <color name="colorAboutDark">#616161</color>
-    <color name="colorAboutPrimary">#9E9E9E</color>
+    <color name="colorAboutDark">#E0E0E0</color>
+    <color name="colorAboutPrimary">#F5F5F5</color>
 
     <color name="colorYorumDark">#E64A19</color>
     <color name="colorYorumPrimary">#FF5722</color>

@@ -250,10 +250,4 @@ public class YukselenBurcActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_STREAM, myUri);
         startActivity(Intent.createChooser(intent, "Paylaş..."));
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
 }

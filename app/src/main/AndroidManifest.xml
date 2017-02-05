@@ -64,7 +64,8 @@
         <activity
             android:name=".FavoritesActivity"
             android:label="@string/nav_text_favoriler"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            >
         </activity>
         <activity
             android:name=".ProfileActivity"
@@ -110,17 +111,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme"/>
             </intent-filter>
         </activity>
-
-        <!-- FileProvider for Android 7.x -->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
     </application>
 
 </manifest>

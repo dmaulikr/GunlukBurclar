@@ -65,7 +65,7 @@ public class FavoritesActivity extends AppCompatActivity {
 
         options = new BitmapFactory.Options();
         options.inJustDecodeBounds = false;
-        options.inSampleSize = 2;
+        options.inSampleSize = 3;
         options.inPreferredConfig = Config.RGB_565;
         options.inDither = true;
 
