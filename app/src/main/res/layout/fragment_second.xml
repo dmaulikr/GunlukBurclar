@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_burcuyumu">
+    android:background="@drawable/background_main">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
@@ -12,11 +12,10 @@
         android:layout_above="@+id/adFacebook">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewKadin"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:padding="1dp"
             app:layout_heightPercent="27.5%"
             app:layout_marginLeftPercent="5%"
             app:layout_marginTopPercent="2.5%"
@@ -24,266 +23,326 @@
             app:srcCompat="@drawable/ic_kadin"/>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewErkek"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:padding="1dp"
             app:layout_heightPercent="27.5%"
             app:layout_marginRightPercent="5%"
             app:layout_marginTopPercent="2.5%"
             app:layout_widthPercent="20%"
             app:srcCompat="@drawable/ic_erkek"/>
 
-        <android.support.v7.widget.GridLayout
+        <android.support.percent.PercentRelativeLayout
             android:id="@+id/gridLayout"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/imageView"
-            app:columnCount="3"
+            android:layout_below="@+id/imageViewKadin"
             app:layout_heightPercent="50%"
             app:layout_marginLeftPercent="5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="42.5%"
-            app:rowCount="4">
+            app:layout_widthPercent="42.5%">
 
             <ImageView
                 android:id="@+id/kadin1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_koc"/>
 
             <ImageView
                 android:id="@+id/kadin2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/kadin1"
+                android:layout_toRightOf="@+id/kadin1"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_boga"/>
 
             <ImageView
                 android:id="@+id/kadin3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_ikizler"/>
 
             <ImageView
                 android:id="@+id/kadin4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/kadin1"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_yengec"/>
 
             <ImageView
                 android:id="@+id/kadin5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_below="@+id/kadin1"
+                android:layout_toEndOf="@+id/kadin4"
+                android:layout_toRightOf="@+id/kadin4"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_aslan"/>
 
             <ImageView
                 android:id="@+id/kadin6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/kadin2"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_basak"/>
 
             <ImageView
                 android:id="@+id/kadin7"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/kadin4"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_terazi"/>
 
             <ImageView
                 android:id="@+id/kadin8"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_below="@+id/kadin5"
+                android:layout_toEndOf="@+id/kadin7"
+                android:layout_toRightOf="@+id/kadin7"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_akrep"/>
 
             <ImageView
                 android:id="@+id/kadin9"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/kadin6"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_yay"/>
 
             <ImageView
                 android:id="@+id/kadin10"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/kadin7"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_oglak"/>
 
             <ImageView
                 android:id="@+id/kadin11"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_below="@+id/kadin8"
+                android:layout_toEndOf="@+id/kadin10"
+                android:layout_toRightOf="@+id/kadin10"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_kova"/>
 
             <ImageView
                 android:id="@+id/kadin12"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/kadin8"
+                android:layout_toRightOf="@+id/kadin8"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_balik"/>
-        </android.support.v7.widget.GridLayout>
+        </android.support.percent.PercentRelativeLayout>
 
-        <android.support.v7.widget.GridLayout
+
+        <android.support.percent.PercentRelativeLayout
             android:id="@+id/gridLayout2"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/imageView2"
-            app:columnCount="3"
+            android:layout_below="@+id/imageViewErkek"
             app:layout_heightPercent="50%"
             app:layout_marginRightPercent="5%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="42.5%"
-            app:rowCount="4"
-            >
+            app:layout_widthPercent="42.5%">
 
             <ImageView
                 android:id="@+id/erkek1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_koc"/>
 
             <ImageView
                 android:id="@+id/erkek2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/erkek1"
+                android:layout_toRightOf="@+id/erkek1"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_boga"/>
 
             <ImageView
                 android:id="@+id/erkek3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_ikizler"/>
 
             <ImageView
                 android:id="@+id/erkek4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/erkek1"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_yengec"/>
 
             <ImageView
                 android:id="@+id/erkek5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_below="@+id/erkek1"
+                android:layout_toEndOf="@+id/erkek4"
+                android:layout_toRightOf="@+id/erkek4"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_aslan"/>
 
             <ImageView
                 android:id="@+id/erkek6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/erkek2"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_basak"/>
 
             <ImageView
                 android:id="@+id/erkek7"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/erkek4"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_terazi"/>
 
             <ImageView
                 android:id="@+id/erkek8"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_below="@+id/erkek5"
+                android:layout_toEndOf="@+id/erkek7"
+                android:layout_toRightOf="@+id/erkek7"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_akrep"/>
 
             <ImageView
                 android:id="@+id/erkek9"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/erkek6"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_yay"/>
 
             <ImageView
                 android:id="@+id/erkek10"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/erkek7"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_oglak"/>
 
             <ImageView
                 android:id="@+id/erkek11"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_below="@+id/erkek8"
+                android:layout_toEndOf="@+id/erkek10"
+                android:layout_toRightOf="@+id/erkek10"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_kova"/>
 
             <ImageView
                 android:id="@+id/erkek12"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="1dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/erkek8"
+                android:layout_toRightOf="@+id/erkek8"
+                android:scaleType="fitXY"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="33.33%"
                 app:srcCompat="@drawable/burc_balik"/>
-        </android.support.v7.widget.GridLayout>
+        </android.support.percent.PercentRelativeLayout>
 
         <ImageView
             android:id="@+id/imageViewButton"
             android:layout_below="@+id/gridLayout"
             android:layout_centerHorizontal="true"
             android:alpha="0.33"
-            app:columnCount="1"
             app:layout_heightPercent="12.5%"
             app:layout_marginBottomPercent="2%"
             app:layout_marginLeftPercent="15%"
