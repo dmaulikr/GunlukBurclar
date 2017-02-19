@@ -344,11 +344,11 @@
             android:layout_centerHorizontal="true"
             android:alpha="0.33"
             app:layout_heightPercent="12.5%"
-            app:layout_marginBottomPercent="2%"
+            app:layout_marginBottomPercent="1%"
             app:layout_marginLeftPercent="15%"
             app:layout_marginRightPercent="15%"
-            app:layout_marginTopPercent="3%"
-            app:layout_widthPercent="60%"
+            app:layout_marginTopPercent="4%"
+            app:layout_widthPercent="70%"
             app:srcCompat="@drawable/button_burcuyumu"/>
     </android.support.percent.PercentRelativeLayout>
 

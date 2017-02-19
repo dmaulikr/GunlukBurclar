@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -73,9 +74,63 @@ public class MainActivity extends AppCompatActivity {
         folder.mkdirs();
     }
 
+   /* public void FacebookLogin() {
+        callbackmanager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("public_profile");
+        callbackmanager = CallbackManager.Factory.create();
+        loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Bundle params = new Bundle();
+                params.putString("fields", "id,email,gender,cover,picture.type(large)");
+                new GraphRequest(AccessToken.getCurrentAccessToken(), "me", params, HttpMethod.GET,
+                        new GraphRequest.Callback() {
+                            @Override
+                            public void onCompleted(GraphResponse response) {
+                                if (response != null) {
+                                    try {
+                                        JSONObject data = response.getJSONObject();
+                                        if (data.has("picture")) {
+                                            String profilePicUrl = data.getJSONObject("picture").getJSONObject("data").getString("url");
+                                            CircleImageView profileImage = (CircleImageView) findViewById(R.id.profile_image);
+                                            Picasso.with(MainActivity.this)
+                                                    .load(profilePicUrl)
+                                                    .into(profileImage);
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }).executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                //Do nothing
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Log.d("hata", exception.toString());
+            }
+        });
+    }
+
+    public boolean isLoggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
+    }*/
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //CheckInternet
+        if (!isNetworkConnected()) {
+            Toast.makeText(getApplicationContext(), "İnternet bağlantınızda bir sorun var gibi görünüyor... Uygulamadaki bazı özellikleri kullanamayabilirsiniz.", Toast.LENGTH_LONG).show();
+        }
 
         // Initializing Toolbar and setting it as the actionbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -188,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent5);
                         return true;
                     default:
-                        Toast.makeText(getApplicationContext(), "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_LONG).show();
                         return true;
                 }
             }
@@ -222,54 +277,10 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager();
     }
 
-   /* public void FacebookLogin() {
-        callbackmanager = CallbackManager.Factory.create();
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("public_profile");
-        callbackmanager = CallbackManager.Factory.create();
-        loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Bundle params = new Bundle();
-                params.putString("fields", "id,email,gender,cover,picture.type(large)");
-                new GraphRequest(AccessToken.getCurrentAccessToken(), "me", params, HttpMethod.GET,
-                        new GraphRequest.Callback() {
-                            @Override
-                            public void onCompleted(GraphResponse response) {
-                                if (response != null) {
-                                    try {
-                                        JSONObject data = response.getJSONObject();
-                                        if (data.has("picture")) {
-                                            String profilePicUrl = data.getJSONObject("picture").getJSONObject("data").getString("url");
-                                            CircleImageView profileImage = (CircleImageView) findViewById(R.id.profile_image);
-                                            Picasso.with(MainActivity.this)
-                                                    .load(profilePicUrl)
-                                                    .into(profileImage);
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                        }).executeAsync();
-            }
-
-            @Override
-            public void onCancel() {
-                //Do nothing
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                Log.d("hata", exception.toString());
-            }
-        });
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
     }
-
-    public boolean isLoggedIn() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        return accessToken != null;
-    }*/
 
     public void AppRater() {
         RateThisApp.onStart(this);
@@ -467,7 +478,7 @@ public class MainActivity extends AppCompatActivity {
                     createFolder();
                     Toast.makeText(this, "Ayarlarınız kaydedildi...", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_LONG)
                             .show();
                 }
                 break;

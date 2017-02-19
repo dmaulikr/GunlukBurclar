@@ -8,6 +8,7 @@
     <string name="action_settings">Ayarlar</string>
 
     <!-- Nav Drawer Menu Items -->
+    <string name="nav_text_profile">Profil</string>
     <string name="nav_text_home">Burç yorumları</string>
     <string name="nav_text_uyum">Burç uyumu</string>
     <string name="nav_text_yukselen">Yükselen burç</string>

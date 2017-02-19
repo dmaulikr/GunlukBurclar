@@ -69,7 +69,7 @@
         </activity>
         <activity
             android:name=".ProfileActivity"
-            android:label="Profile"
+            android:label="@string/nav_text_profile"
             android:parentActivityName=".MainActivity">
         </activity>
 
