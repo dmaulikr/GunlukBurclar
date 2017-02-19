@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_ID_PERMISSION = 1;
     public static boolean premium = false;
-    static InterstitialAd interstitial;
+    static InterstitialAd interstitial, interstitial2;
     private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE};
     SharedPreferences prefs;
@@ -350,6 +350,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
+                AdMob2();
             }
 
             @Override
@@ -364,6 +365,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         interstitial.loadAd(adRequest);
+    }
+
+    public void AdMob2() {
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
+        interstitial2 = new InterstitialAd(this);
+        interstitial2.setAdUnitId("ca-app-pub-1576175228836763/8253556135");
+        interstitial2.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                AdMob2();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+            }
+        });
+        interstitial2.loadAd(adRequest);
     }
 
     public void AlarmManager() {

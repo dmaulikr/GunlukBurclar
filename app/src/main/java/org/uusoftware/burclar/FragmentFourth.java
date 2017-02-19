@@ -42,7 +42,7 @@ public class FragmentFourth extends Fragment {
         } else {
             RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
             adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("f7b438ca481bd95179a45b4b10ea9a7a");
+            AdSettings.addTestDevice("25100dd41a6642a625d348086dbd18bb");
             adViewContainer.addView(adView);
             adView.loadAd();
         }
@@ -423,10 +423,10 @@ public class FragmentFourth extends Fragment {
     }
 
     public void showAds() {
-        if (MainActivity.interstitial != null) {
-            if (MainActivity.interstitial.isLoaded()) {
+        if (MainActivity.interstitial2 != null) {
+            if (MainActivity.interstitial2.isLoaded()) {
+                MainActivity.interstitial2.show();
                 startActivity(intent);
-                MainActivity.interstitial.show();
             } else {
                 startActivity(intent);
             }

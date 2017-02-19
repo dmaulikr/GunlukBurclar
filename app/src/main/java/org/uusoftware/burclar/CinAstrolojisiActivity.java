@@ -237,7 +237,7 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
         Uri myUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", newFile);
         String shareBody;
         if (burc.contains("Burcunuzu bulamadık?")) {
-            shareBody = "Çin burcumu aradım ama bulamadım :( Ya sen? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+            shareBody = "Çin burcumu aradım ama bulamadım :( Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         } else {
             shareBody = "Çin burcum" + burc + " çıktı. Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         }

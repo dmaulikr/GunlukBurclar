@@ -14,7 +14,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -93,7 +92,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
 
         ImageView image = (ImageView) findViewById(R.id.burc_header);
         WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
-        link = "http://uusoftware.org/burclar/" + selectedburc + ".html";
+        link = "http://uusoftware.org/gunlukburclar/yukselenburc" + selectedburc + ".html";
 
         if (selectedburc == "koc") {
             image.setImageResource(R.drawable.burc_koc);
@@ -237,11 +236,10 @@ public class YukselenBurcActivity extends AppCompatActivity {
         }
     }
 
-    public void shareIt(String name) {
+    public void shareIt(String path) {
         // Share
-        File imagePath = new File(this.getFilesDir(), "Günlük Burçlar");
-        File newFile = new File(imagePath, name);
-        Uri myUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", newFile);
+        Uri myUri = Uri.parse("file://" + path);
+        System.out.println(myUri);
         String shareBody = "Yükselen burcum" + burcName + " çıktı. Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

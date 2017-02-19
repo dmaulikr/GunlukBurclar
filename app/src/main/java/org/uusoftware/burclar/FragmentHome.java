@@ -45,7 +45,7 @@ public class FragmentHome extends Fragment {
         } else {
             RelativeLayout adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
             adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("290ec227c11c95e2abb748162f023497");
+            AdSettings.addTestDevice("25100dd41a6642a625d348086dbd18bb");
             adViewContainer.addView(adView);
             adView.loadAd();
         }

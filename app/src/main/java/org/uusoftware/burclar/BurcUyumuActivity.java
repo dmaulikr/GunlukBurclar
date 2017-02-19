@@ -1,7 +1,6 @@
 package org.uusoftware.burclar;
 
 import android.Manifest;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,7 +15,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -24,10 +22,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ProgressBar;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -41,17 +43,17 @@ public class BurcUyumuActivity extends AppCompatActivity {
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-    String burcKadin, burcErkek;
-    String text;
-    int skor;
-    TextView textview;
-    ProgressBar pb;
-    ObjectAnimator animation;
-
     Window window;
     Toolbar toolbar;
     Context mContext;
     CollapsingToolbarLayout collapsingToolbarLayout;
+
+    String burcKadin, burcErkek;
+    TextView textView;
+    CircularProgressView progressView;
+    WebView webview;
+    int percent;
+    ImageView background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
 
         //Collapsing Toolbar
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
-        collapsingToolbarLayout.setTitle("Yükselen burç");
+        collapsingToolbarLayout.setTitle("Burç uyumu");
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
@@ -77,7 +79,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Dynamic bar colors
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.Appbar);
+        final AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.Appbar);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -97,13 +99,6 @@ public class BurcUyumuActivity extends AppCompatActivity {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        Bundle extras = getIntent().getExtras();
-        burcKadin = extras.getString("kadinid");
-        burcErkek = extras.getString("erkekid");
-
-        textview = (TextView) findViewById(R.id.textView);
-        pb = (ProgressBar) findViewById(R.id.progressBar);
-
         //Floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +107,32 @@ public class BurcUyumuActivity extends AppCompatActivity {
                 verifyStoragePermissions();
             }
         });
+
+        //GetInfo
+        Bundle extras = getIntent().getExtras();
+        burcKadin = extras.getString("kadinid");
+        burcErkek = extras.getString("erkekid");
+
+        textView = (TextView) findViewById(R.id.textView);
+        progressView = (CircularProgressView) findViewById(R.id.progressBar);
+        background = (ImageView) findViewById(R.id.imageView);
+
+        webview = (WebView) findViewById(R.id.webView);
+        webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webview.loadUrl("http://uusoftware.org/gunlukburclar/burcuyumu/" + burcKadin + burcErkek + ".html");
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                if (!webview.getTitle().isEmpty()) {
+                    percent = Integer.parseInt(webview.getTitle());
+                    textView.setText("% " + percent);
+                    progressView.setProgress((float) percent);
+                }
+            }
+        });
+
+        //Picasso.with(this).load("https://scontent.xx.fbcdn.net/v/t1.0-9/12650815_1698116557126597_2219973308969176500_n.jpg?oh=4df93c33ece15e0dbd05745b1eefa491&oe=593AAFBE").into(background);
+        background.setBackgroundResource(R.drawable.background_material);
     }
 
     @Override
@@ -185,7 +206,6 @@ public class BurcUyumuActivity extends AppCompatActivity {
     public void saveBitmap() {
         CharSequence now = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm", new Date());
         String fileName = now + ".png";
-
         try {
             // create bitmap screen capture
             View v1 = getWindow().getDecorView().getRootView();
@@ -206,23 +226,16 @@ public class BurcUyumuActivity extends AppCompatActivity {
         }
     }
 
-    public void shareIt(String name) {
+    public void shareIt(String path) {
         // Share
-        File imagePath = new File(this.getFilesDir(), "Günlük Burçlar");
-        File newFile = new File(imagePath, name);
-        Uri myUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", newFile);
-        String shareBody = "Günlük Burçlar uygulaması Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+        Uri myUri = Uri.parse("file://" + path);
+        System.out.println(myUri);
+        String shareBody = "Sevgilimle uyumum % " + percent + " çıktı. Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, shareBody);
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_STREAM, myUri);
         startActivity(Intent.createChooser(intent, "Paylaş..."));
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 }

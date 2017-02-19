@@ -4,13 +4,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
+import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -41,6 +42,7 @@ public class SecondActivity extends AppCompatActivity {
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     SecondActivityAdapter mSectionsPagerAdapter;
+    PagerTitleStrip pagertabstrip;
     ViewPager mViewPager;
     Window window;
     Toolbar toolbar;
@@ -60,7 +62,7 @@ public class SecondActivity extends AppCompatActivity {
         } else {
             RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
             adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("f7b438ca481bd95179a45b4b10ea9a7a");
+            AdSettings.addTestDevice("25100dd41a6642a625d348086dbd18bb");
             adViewContainer.addView(adView);
             adView.loadAd();
         }
@@ -87,6 +89,35 @@ public class SecondActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SecondActivityAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        pagertabstrip = (PagerTitleStrip) findViewById(R.id.pager_title_strip);
+        String selectedburc = SecondActivity.burcid;
+        if (selectedburc.contains("koc")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#341A47"));
+        } else if (selectedburc.contains("boga")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#3C224F"));
+        } else if (selectedburc.contains("ikizler")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#442B55"));
+        } else if (selectedburc.contains("yengec")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#6A3667"));
+        } else if (selectedburc.contains("aslan")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#5F3A6E"));
+        } else if (selectedburc.contains("basak")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#614379"));
+        } else if (selectedburc.contains("terazi")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#7C3E75"));
+        } else if (selectedburc.contains("akrep")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#82396A"));
+        } else if (selectedburc.contains("yay")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#8F4073"));
+        } else if (selectedburc.contains("oglak")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#C55C73"));
+        } else if (selectedburc.contains("kova")) {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#BC4F6C"));
+        } else {
+            pagertabstrip.setBackgroundColor(Color.parseColor("#A24F73"));
+        }
+
     }
 
     @Override
@@ -180,11 +211,9 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
-    public void shareIt(String name) {
+    public void shareIt(String path) {
         // Share
-        File imagePath = new File(this.getFilesDir(), "Günlük Burçlar");
-        File newFile = new File(imagePath, name);
-        Uri myUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", newFile);
+        Uri myUri = Uri.parse("file://" + path);
         String shareBody = "Günlük Burçlar Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
@@ -192,12 +221,6 @@ public class SecondActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_STREAM, myUri);
         startActivity(Intent.createChooser(intent, "Paylaş..."));
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 
     @Override

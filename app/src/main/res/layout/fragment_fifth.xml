@@ -12,7 +12,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="#284568"
         android:contentDescription="Burç"
         android:src="@drawable/burc_koc"/>
 

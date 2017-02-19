@@ -52,7 +52,7 @@ public class FavoritesActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        coloredBars(ContextCompat.getColor(this, R.color.colorAboutDark), ContextCompat.getColor(this, R.color.colorAboutPrimary));
+        coloredBars(ContextCompat.getColor(this, R.color.colorMainDark), ContextCompat.getColor(this, R.color.colorMainPrimary));
 
         // Analytics
         t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();

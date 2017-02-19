@@ -3,11 +3,8 @@
     <color name="colorMainDark">#000000</color>
     <color name="colorMainPrimary">#212121</color>
 
-    <color name="colorAboutDark">#E0E0E0</color>
-    <color name="colorAboutPrimary">#F5F5F5</color>
-
-    <color name="colorYorumDark">#E64A19</color>
-    <color name="colorYorumPrimary">#FF5722</color>
+    <color name="colorYorumDark">#7B1FA2</color>
+    <color name="colorYorumPrimary">#9C27B0</color>
 
     <color name="colorUyumDark">#C2185B</color>
     <color name="colorUyumPrimary">#E91E63</color>
@@ -17,5 +14,4 @@
 
     <color name="colorYukselenDark">#303F9F</color>
     <color name="colorYukselenPrimary">#3F51B5</color>
-
 </resources>
