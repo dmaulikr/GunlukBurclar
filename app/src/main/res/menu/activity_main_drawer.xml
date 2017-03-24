@@ -40,24 +40,19 @@
     <item android:title="Ekstralar">
         <menu>
             <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_slider_about"
+                android:title="@string/nav_text_about" />
+
+            <item
                 android:id="@+id/nav_puanla"
                 android:icon="@drawable/ic_slider_rate"
                 android:title="@string/nav_text_puanla"/>
 
             <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/ic_slider_about"
-                android:title="@string/nav_text_about"/>
-
-            <item
                 android:id="@+id/nav_beta"
                 android:icon="@drawable/ic_slider_beta"
                 android:title="@string/nav_text_beta"/>
-
-            <item
-                android:id="@+id/nav_version"
-                android:enabled="false"
-                android:title="@string/nav_text_version"/>
         </menu>
     </item>
 

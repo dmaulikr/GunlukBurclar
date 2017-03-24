@@ -169,12 +169,7 @@ public class MainActivity extends AppCompatActivity {
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if (isLoggedIn()) {
-                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                    startActivity(intent);
-                } else {
-                    //Do nothing
-                }*/
+                Toast.makeText(getApplicationContext(), getString(R.string.nav_text_version), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -498,7 +493,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-//
+              /*  Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

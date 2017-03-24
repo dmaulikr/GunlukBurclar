@@ -1,5 +1,6 @@
 package org.uusoftware.burclar;
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -14,8 +15,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
@@ -24,6 +26,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import java.util.Calendar;
+import java.util.Random;
 
 public class FragmentThird extends Fragment {
 
@@ -33,16 +36,8 @@ public class FragmentThird extends Fragment {
     Context mContext;
     TextView txt;
     ImageView imagebutton;
-    Spinner spinner1;
     boolean premium;
-
-    String[] strings = {"21 Mart–19 Nisan", "20 Nisan–20 Mayıs", "21 Mayıs–21 Haziran",
-            "22 Haziran–22 Temmuz", "23 Temmuz–22 Ağustos", "23 Ağustos–22 Eylül",
-            "23 Eylül–22 Ekim", "23 Ekim–21 Kasım", "23 Kasım–21 Aralık",
-            "22 Aralık–19 Ocak", "20 Ocak–18 Şubat", "19 Şubat–20 Mart"};
-    int images[] = {R.drawable.burc_koc, R.drawable.burc_boga, R.drawable.burc_ikizler, R.drawable.burc_yengec,
-            R.drawable.burc_aslan, R.drawable.burc_basak, R.drawable.burc_terazi, R.drawable.burc_akrep,
-            R.drawable.burc_yay, R.drawable.burc_oglak, R.drawable.burc_kova, R.drawable.burc_balik};
+    ImageView imagesburc[] = new ImageView[12];
     Intent intent;
     Calendar mcurrentTime;
     int hour, minute;
@@ -57,9 +52,7 @@ public class FragmentThird extends Fragment {
 
         // Premium & Facebook Audience Network
         premium = MainActivity.premium;
-        if (premium) {
-            //Do nothing
-        } else {
+        if (!premium) {
             RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
             adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
             AdSettings.addTestDevice("25100dd41a6642a625d348086dbd18bb");
@@ -82,28 +75,78 @@ public class FragmentThird extends Fragment {
         // Intent
         intent = new Intent(getActivity(), YukselenBurcActivity.class);
 
-      /*  // spinner1
-        spinner1 = (Spinner) rootView.findViewById(R.id.spinner1);
-        spinner1.setAdapter(new SpinnerAdapter(getActivity(), R.layout.spinner_row, strings));
-        spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapter, View v, int position, long lng) {
-                burc = position;
+        // ChooseBurc
+        imagesburc[0] = (ImageView) rootView.findViewById(R.id.burc1);
+        imagesburc[1] = (ImageView) rootView.findViewById(R.id.burc2);
+        imagesburc[2] = (ImageView) rootView.findViewById(R.id.burc3);
+        imagesburc[3] = (ImageView) rootView.findViewById(R.id.burc4);
+        imagesburc[4] = (ImageView) rootView.findViewById(R.id.burc5);
+        imagesburc[5] = (ImageView) rootView.findViewById(R.id.burc6);
+        imagesburc[6] = (ImageView) rootView.findViewById(R.id.burc7);
+        imagesburc[7] = (ImageView) rootView.findViewById(R.id.burc8);
+        imagesburc[8] = (ImageView) rootView.findViewById(R.id.burc9);
+        imagesburc[9] = (ImageView) rootView.findViewById(R.id.burc10);
+        imagesburc[10] = (ImageView) rootView.findViewById(R.id.burc11);
+        imagesburc[11] = (ImageView) rootView.findViewById(R.id.burc12);
+
+        //onClickListener for Kadın
+        View.OnClickListener buttonListener = new View.OnClickListener() {
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.burc1:
+                        burc = 0;
+                        break;
+                    case R.id.burc2:
+                        burc = 1;
+                        break;
+                    case R.id.burc3:
+                        burc = 2;
+                        break;
+                    case R.id.burc4:
+                        burc = 3;
+                        break;
+                    case R.id.burc5:
+                        burc = 4;
+                        break;
+                    case R.id.burc6:
+                        burc = 5;
+                        break;
+                    case R.id.burc7:
+                        burc = 6;
+                        break;
+                    case R.id.burc8:
+                        burc = 7;
+                        break;
+                    case R.id.burc9:
+                        burc = 8;
+                        break;
+                    case R.id.burc10:
+                        burc = 9;
+                        break;
+                    case R.id.burc11:
+                        burc = 10;
+                        break;
+                    case R.id.burc12:
+                        burc = 11;
+                        break;
+                }
+
+                for (int i = 0; i < 12; i++) {
+                    imagesburc[i].setAlpha(0.33f);
+                }
+
+                v.setAlpha(1.0f);
+                imagebutton.setAlpha(1.0f);
             }
+        };
 
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-
-            }
-        });
-
-        // EditText for time
-        txt = (TextView) rootView.findViewById(R.id.textView2);
+        // ChooseTime
+        txt = (TextView) rootView.findViewById(R.id.textClock);
         mcurrentTime = Calendar.getInstance();
         hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         minute = mcurrentTime.get(Calendar.MINUTE);
         txt.setText(pad(hour) + ":" + pad(minute));
-        txt.setOnClickListener(new OnClickListener() {
+        txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog mTimePicker;
@@ -143,19 +186,28 @@ public class FragmentThird extends Fragment {
             }
         });
 
-        imagebutton = (ImageView) rootView.findViewById(R.id.imageView1);
-        imagebutton.setOnClickListener(new OnClickListener() {
+        //Set Click Listeners
+        for (int i = 0; i < 12; i++) {
+            imagesburc[i].setOnClickListener(buttonListener);
+        }
+
+        imagebutton = (ImageView) rootView.findViewById(R.id.imageViewButton);
+        imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendIntent();
-                if (premium) {
-                    startActivity(intent);
+                if (imagebutton.getAlpha() == 1.0f) {
+                    if (premium) {
+                        startActivity(intent);
+                    } else {
+                        showAds();
+                    }
                 } else {
-                    showAds();
+                    Toast.makeText(getActivity().getApplicationContext(), "Lütfen burcunuzu ve doğum saatini giriniz...", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-*/
+
         return rootView;
     }
 
@@ -496,8 +548,10 @@ public class FragmentThird extends Fragment {
     }
 
     public void showAds() {
+        Random generator = new Random();
+        int random = generator.nextInt(2);
         if (MainActivity.interstitial2 != null) {
-            if (MainActivity.interstitial2.isLoaded()) {
+            if (MainActivity.interstitial2.isLoaded() && random == 1) {
                 MainActivity.interstitial2.show();
                 startActivity(intent);
             } else {

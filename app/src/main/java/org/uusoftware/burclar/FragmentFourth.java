@@ -1,5 +1,6 @@
 package org.uusoftware.burclar;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.facebook.ads.AdSettings;
@@ -19,7 +22,9 @@ import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class FragmentFourth extends Fragment {
 
@@ -42,7 +47,7 @@ public class FragmentFourth extends Fragment {
         } else {
             RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
             adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("25100dd41a6642a625d348086dbd18bb");
+            AdSettings.addTestDevice("bfe5e795d34fe79746ff9fa33c0ee5ed");
             adViewContainer.addView(adView);
             adView.loadAd();
         }
@@ -58,9 +63,9 @@ public class FragmentFourth extends Fragment {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        /*intent = new Intent(getActivity(), CinAstrolojisiActivity.class);
-        imagebutton = (ImageView) rootView.findViewById(R.id.imageView2);
-        imagebutton.setOnClickListener(new OnClickListener() {
+        intent = new Intent(getActivity(), CinAstrolojisiActivity.class);
+        ImageView imagebutton = (ImageView) rootView.findViewById(R.id.imageViewButton);
+        imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -80,11 +85,11 @@ public class FragmentFourth extends Fragment {
                 }, mcurrentTime.get(Calendar.YEAR), mcurrentTime.get(Calendar.MONTH),
                         mcurrentTime.get(Calendar.DAY_OF_MONTH));
                 datePicker.setTitle("Tarih Seçiniz");
-                datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Ayarla", datePicker);
+                datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Seç", datePicker);
                 datePicker.setButton(DatePickerDialog.BUTTON_NEGATIVE, "İptal", datePicker);
                 datePicker.show();
             }
-        });*/
+        });
 
         return rootView;
     }
@@ -423,8 +428,10 @@ public class FragmentFourth extends Fragment {
     }
 
     public void showAds() {
+        Random generator = new Random();
+        int random = generator.nextInt(2);
         if (MainActivity.interstitial2 != null) {
-            if (MainActivity.interstitial2.isLoaded()) {
+            if (MainActivity.interstitial2.isLoaded() && random == 1) {
                 MainActivity.interstitial2.show();
                 startActivity(intent);
             } else {

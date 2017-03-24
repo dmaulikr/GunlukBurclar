@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_main">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adFacebook">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:background="#45000000"
+            android:padding="3dp"
+            android:text="Çin astrolojisi, Latin astrolojisi gibi insanı 12 değişik burç ve sembollerle tanımlar ve kişinin burcunu bulmak için doğum tarihi kullanılır. Latin astrolojisi yıldız sistemleri ile ilgiliyken, Çin astrolojisi hayvanlar halkasından meydana gelmektedir.\n\nYıllık burçlardan oluşan Çin astrolojisinde her yıl bir hayvan sembolü ile temsil edilir. \n\nErkek ve dişi kutupların simgelenmesi ile açıklanan iki zıt güç Yin ve Yang olarak adlandırılır. İki temel gücün temsilcileri ise Güneş ve Ay olarak belirtilir. Bu iki temel güce tahta, ateş, toprak, metal ve su elementleri de eklenerek Çin astrolojisinin temel yapısı oluşur."
+            android:textColor="#fff"
+            android:textSize="16sp"
+            app:layout_heightPercent="77.5%"
+            app:layout_marginTopPercent="5%"
+            app:layout_widthPercent="80%" />
+
+        <ImageView
+            android:id="@+id/imageViewButton"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="12.5%"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="75%"
+            app:srcCompat="@drawable/button_cinastrolojisi" />
+    </android.support.percent.PercentRelativeLayout>
 
     <RelativeLayout
         android:id="@+id/adFacebook"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

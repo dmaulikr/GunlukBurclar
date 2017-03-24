@@ -88,7 +88,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
-                    coloredBars(Color.argb(255 - verticalOffset / 2, 233, 30, 99), Color.argb(255 - verticalOffset / 2, 233, 30, 99));
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 48, 63, 159), Color.argb(255 - verticalOffset / 2, 233, 30, 99));
                 }
             }
         });
@@ -125,14 +125,12 @@ public class BurcUyumuActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 if (!webview.getTitle().isEmpty()) {
                     percent = Integer.parseInt(webview.getTitle());
-                    textView.setText("% " + percent);
+                    String text = "%" + percent;
+                    textView.setText(text);
                     progressView.setProgress((float) percent);
                 }
             }
         });
-
-        //Picasso.with(this).load("https://scontent.xx.fbcdn.net/v/t1.0-9/12650815_1698116557126597_2219973308969176500_n.jpg?oh=4df93c33ece15e0dbd05745b1eefa491&oe=593AAFBE").into(background);
-        background.setBackgroundResource(R.drawable.background_material);
     }
 
     @Override

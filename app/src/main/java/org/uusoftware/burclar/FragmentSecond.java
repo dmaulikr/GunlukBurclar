@@ -23,6 +23,8 @@ import com.facebook.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import java.util.Random;
+
 public class FragmentSecond extends Fragment {
 
     Window window;
@@ -234,8 +236,10 @@ public class FragmentSecond extends Fragment {
     }
 
     public void showAds() {
+        Random generator = new Random();
+        int random = generator.nextInt(2);
         if (MainActivity.interstitial2 != null) {
-            if (MainActivity.interstitial2.isLoaded()) {
+            if (MainActivity.interstitial2.isLoaded() && random == 1) {
                 MainActivity.interstitial2.show();
                 startActivity(intent);
             } else {

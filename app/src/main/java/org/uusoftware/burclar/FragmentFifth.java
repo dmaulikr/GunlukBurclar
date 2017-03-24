@@ -62,7 +62,7 @@ public class FragmentFifth extends Fragment {
             image.setBackgroundColor(Color.parseColor("#A24F73"));
         }
 
-        WebView myWebView = (WebView) v.findViewById(R.id.webView1);
+        WebView myWebView = (WebView) v.findViewById(R.id.webView0);
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         myWebView.loadUrl(link);
 

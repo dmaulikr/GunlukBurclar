@@ -75,7 +75,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
-                    coloredBars(Color.argb(255 - verticalOffset / 2, 255, 87, 34), Color.argb(255 - verticalOffset / 2, 255, 87, 34));
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 255, 87, 34), Color.argb(255 - verticalOffset / 2, 63, 81, 181));
                 }
             }
         });
@@ -92,44 +92,56 @@ public class YukselenBurcActivity extends AppCompatActivity {
 
         ImageView image = (ImageView) findViewById(R.id.burc_header);
         WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
-        link = "http://uusoftware.org/gunlukburclar/yukselenburc" + selectedburc + ".html";
+        link = "http://uusoftware.org/gunlukburclar/burcyorumlari/" + selectedburc + ".html";
 
-        if (selectedburc == "koc") {
+        if (selectedburc.contains("koc")) {
             image.setImageResource(R.drawable.burc_koc);
             burcName = "Koç";
-        } else if (selectedburc == "boga") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#341A47"));
+        } else if (selectedburc.contains("boga")) {
             image.setImageResource(R.drawable.burc_boga);
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#3C224F"));
             burcName = "Boğa";
-        } else if (selectedburc == "ikizler") {
+        } else if (selectedburc.contains("ikizler")) {
             image.setImageResource(R.drawable.burc_ikizler);
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#442B55"));
             burcName = "İkizler";
-        } else if (selectedburc == "yengec") {
+        } else if (selectedburc.contains("yengec")) {
             image.setImageResource(R.drawable.burc_yengec);
             burcName = "Yengeç";
-        } else if (selectedburc == "aslan") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#6A3667"));
+        } else if (selectedburc.contains("aslan")) {
             image.setImageResource(R.drawable.burc_aslan);
             burcName = "Aslan";
-        } else if (selectedburc == "basak") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#5F3A6E"));
+        } else if (selectedburc.contains("basak")) {
             image.setImageResource(R.drawable.burc_basak);
             burcName = "Başak";
-        } else if (selectedburc == "terazi") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#614379"));
+        } else if (selectedburc.contains("terazi")) {
             image.setImageResource(R.drawable.burc_terazi);
             burcName = "Terazi";
-        } else if (selectedburc == "akrep") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#7C3E75"));
+        } else if (selectedburc.contains("akrep")) {
             image.setImageResource(R.drawable.burc_akrep);
             burcName = "Akrep";
-        } else if (selectedburc == "yay") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#82396A"));
+        } else if (selectedburc.contains("yay")) {
             image.setImageResource(R.drawable.burc_yay);
             burcName = "Yay";
-        } else if (selectedburc == "oglak") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#8F4073"));
+        } else if (selectedburc.contains("oglak")) {
             image.setImageResource(R.drawable.burc_oglak);
             burcName = "Oğlak";
-        } else if (selectedburc == "kova") {
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#C55C73"));
+        } else if (selectedburc.contains("kova")) {
             image.setImageResource(R.drawable.burc_kova);
             burcName = "Kova";
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#BC4F6C"));
         } else {
             image.setImageResource(R.drawable.burc_balik);
             burcName = "Balık";
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#A24F73"));
         }
 
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
