@@ -1,6 +1,6 @@
 package org.uusoftware.burclar;
 
-import android.content.Context;
+import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,8 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -20,8 +25,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     Window window;
     Toolbar toolbar;
-    SharedPreferences.Editor editor;
     SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    boolean premium, alarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,68 @@ public class SettingsActivity extends AppCompatActivity {
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
         prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
-        editor = getSharedPreferences("Preferences", Context.MODE_PRIVATE).edit();
+        editor = prefs.edit();
+        premium = MainActivity.premium;
+        alarm = prefs.getBoolean("Alarm", true);
+
+        Switch alarmSwitch = (Switch) findViewById(R.id.mySwitch);
+
+        if (alarm) {
+            alarmSwitch.setChecked(true);
+        } else {
+            alarmSwitch.setChecked(false);
+        }
+
+        alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    editor.putBoolean("Alarm", true);
+                } else {
+                    editor.putBoolean("Alarm", false);
+                }
+            }
+        });
+
+        final TextView textViewClock = (TextView) findViewById(R.id.textViewClockText);
+        final int alarmHour = prefs.getInt("alarmHour", 10);
+        final int alarmMinute = prefs.getInt("alarmMinute", 0);
+        textViewClock.setText(pad(alarmHour) + ":" + pad(alarmMinute));
+        textViewClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (premium) {
+                    TimePickerDialog mTimePicker;
+                    mTimePicker = new TimePickerDialog(SettingsActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                            editor.putInt("alarmHour", selectedHour);
+                            editor.putInt("alarmMinute", selectedMinute);
+                            textViewClock.setText(pad(selectedHour) + ":" + pad(selectedMinute));
+                        }
+                    }, alarmHour, alarmMinute, true);
+                    mTimePicker.setTitle("Bildirim saatini seçiniz");
+                    mTimePicker.show();
+                } else {
+                    Toast.makeText(SettingsActivity.this, R.string.only_premium, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        TextView textViewVersion = (TextView) findViewById(R.id.textViewVersionInfo);
+        if (premium) {
+            textViewVersion.setText(R.string.version_premium);
+        } else {
+            textViewVersion.setText(R.string.version_standart);
+        }
+    }
+
+    public String pad(int input) {
+        if (input >= 10) {
+            return String.valueOf(input);
+        } else {
+            return "0" + String.valueOf(input);
+        }
     }
 
     public void coloredBars(int color1, int color2) {
@@ -73,7 +140,7 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_save:
-                editor.commit();
+                editor.apply();
                 Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
                 finish();
                 return true;

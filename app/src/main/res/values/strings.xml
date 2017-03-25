@@ -32,7 +32,10 @@
     <string name="notification_hour">Bildirim saati:</string>
     <string name="default_hour">10:00</string>
     <string name="version">Sürüm:</string>
+    <string name="version_standart">Günlük Burçlar - Standart</string>
+    <string name="version_premium">Günlük Burçlar - Premium</string>
     <string name="settings_save">Kaydet</string>
+    <string name="only_premium">Sadece premium sürüme sahip kullanıcılar bildirim saatini değiştirebilir&#8230;</string>
     <string name="settings_saved">Ayarlarınız kaydedildi&#8230;</string>
     <string name="copyright">Copyright © 2017 U&amp;U Software</string>
 

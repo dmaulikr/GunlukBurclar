@@ -17,11 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"></android.support.v7.widget.Toolbar>
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#f5f5f5"
@@ -32,32 +32,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".SettingsActivity">
 
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/mySwitch"
-            android:layout_below="@+id/mySwitch"
-            android:layout_marginTop="30dp"
-            android:text="@string/version"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#212121"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView1"
-            android:layout_alignTop="@+id/textView1"
-            android:layout_marginLeft="25dp"
-            android:layout_toRightOf="@+id/textView1"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#212121"
-            android:textSize="16sp" />
-
         <Switch
             android:id="@+id/mySwitch"
             android:layout_width="wrap_content"
@@ -66,8 +40,56 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/notification"
-            android:textColor="#212121"
-            android:textSize="20sp" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#212121" />
+
+        <TextView
+            android:id="@+id/textViewClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mySwitch"
+            android:layout_below="@+id/mySwitch"
+            android:layout_marginTop="30dp"
+            android:text="@string/notification_hour"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#212121" />
+
+        <TextView
+            android:id="@+id/textViewClockText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewClock"
+            android:layout_alignTop="@+id/textViewClock"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/textViewClock"
+            android:gravity="center"
+            android:text="@string/default_hour"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#212121" />
+
+        <TextView
+            android:id="@+id/textViewVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mySwitch"
+            android:layout_below="@+id/textViewClock"
+            android:layout_marginTop="30dp"
+            android:text="@string/version"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#212121" />
+
+        <TextView
+            android:id="@+id/textViewVersionInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewVersion"
+            android:layout_alignTop="@+id/textViewVersion"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/textViewVersion"
+            android:gravity="center"
+            android:text="@string/version_standart"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#212121" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -76,7 +98,7 @@
             android:layout_above="@+id/textViewPrivacy"
             android:layout_alignLeft="@+id/textViewPrivacy"
             android:layout_alignStart="@+id/textViewPrivacy"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/ic_privacy" />
 
         <ImageButton
@@ -99,8 +121,5 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
             android:textSize="9sp" />
-
     </RelativeLayout>
-
-
 </android.support.design.widget.CoordinatorLayout>

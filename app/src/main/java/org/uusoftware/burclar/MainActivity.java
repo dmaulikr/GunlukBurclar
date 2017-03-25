@@ -48,9 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean premium = false;
     static InterstitialAd interstitial, interstitial2;
-    SharedPreferences prefs;
     boolean doubleBackToExitPressedOnce = false;
-
+    SharedPreferences prefs;
     PendingIntent pendingIntent;
     IInAppBillingService mService;
     ServiceConnection mServiceConn;
@@ -60,62 +59,10 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
 
-   /* CallbackManager callbackmanager;
-    LoginButton loginButton;*/
-
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
         folder.mkdirs();
     }
-
-   /* public void FacebookLogin() {
-        callbackmanager = CallbackManager.Factory.create();
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("public_profile");
-        callbackmanager = CallbackManager.Factory.create();
-        loginButton.registerCallback(callbackmanager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Bundle params = new Bundle();
-                params.putString("fields", "id,email,gender,cover,picture.type(large)");
-                new GraphRequest(AccessToken.getCurrentAccessToken(), "me", params, HttpMethod.GET,
-                        new GraphRequest.Callback() {
-                            @Override
-                            public void onCompleted(GraphResponse response) {
-                                if (response != null) {
-                                    try {
-                                        JSONObject data = response.getJSONObject();
-                                        if (data.has("picture")) {
-                                            String profilePicUrl = data.getJSONObject("picture").getJSONObject("data").getString("url");
-                                            CircleImageView profileImage = (CircleImageView) findViewById(R.id.profile_image);
-                                            Picasso.with(MainActivity.this)
-                                                    .load(profilePicUrl)
-                                                    .into(profileImage);
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                        }).executeAsync();
-            }
-
-            @Override
-            public void onCancel() {
-                //Do nothing
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                Log.d("hata", exception.toString());
-            }
-        });
-    }
-
-    public boolean isLoggedIn() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        return accessToken != null;
-    }*/
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -249,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
         //Check user have a premium
-        premium = prefs.getBoolean("Premium", false);
         InAppBilling();
 
         //ColoredBars
@@ -270,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void AppRater() {
         RateThisApp.onStart(this);
-        RateThisApp.showRateDialogIfNeeded(this);
         RateThisApp.Config config = new RateThisApp.Config(3, 5);
         config.setTitle(R.string.rate_title);
         config.setMessage(R.string.rate_message);
@@ -278,9 +223,11 @@ public class MainActivity extends AppCompatActivity {
         config.setNoButtonText(R.string.rate_no);
         config.setCancelButtonText(R.string.rate_later);
         RateThisApp.init(config);
+        RateThisApp.showRateDialogIfNeeded(this);
     }
 
     private void InAppBilling() {
+        premium = prefs.getBoolean("Premium", false);
         mServiceConn = new ServiceConnection() {
             @Override
             public void onServiceDisconnected(ComponentName name) {
@@ -339,6 +286,33 @@ public class MainActivity extends AppCompatActivity {
                 Integer.valueOf(0), Integer.valueOf(0));
     }
 
+    public void AlarmManager() {
+        boolean alarm = prefs.getBoolean("Alarm", true);
+        if (alarm) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+            Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+            Calendar calendar = Calendar.getInstance();
+
+            int alarmHour = prefs.getInt("alarmHour", 10);
+            int alarmMinute = prefs.getInt("alarmMinute", 0);
+
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.set(Calendar.HOUR_OF_DAY, alarmHour);
+            calendar2.set(Calendar.MINUTE, alarmMinute);
+
+            if (calendar.getTimeInMillis() < calendar2.getTimeInMillis()) {
+                alarmManager.setInexactRepeating(AlarmManager.RTC, calendar2.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, pendingIntent);
+            } else {
+                alarmManager.setInexactRepeating(AlarmManager.RTC, 1000 * 60 * 60 * 24 + calendar2.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, pendingIntent);
+            }
+        }
+    }
+
     public void AdMob() {
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
         interstitial = new InterstitialAd(this);
@@ -386,28 +360,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         interstitial2.loadAd(adRequest);
-    }
-
-    public void AlarmManager() {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-        Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        int hourofday = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-
-        if (hourofday < 10) {
-            alarmManager.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pendingIntent);
-        } else {
-            alarmManager.setInexactRepeating(AlarmManager.RTC, 1000 * 60 * 60 * 24 + calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
     }
 
     public void coloredBars(int color1, int color2) {

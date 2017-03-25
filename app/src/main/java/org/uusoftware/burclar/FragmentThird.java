@@ -52,8 +52,10 @@ public class FragmentThird extends Fragment {
 
         // Premium & Facebook Audience Network
         premium = MainActivity.premium;
-        if (!premium) {
-            RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
+        RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
+        if (premium) {
+            adViewContainer.setVisibility(View.GONE);
+        } else {
             adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
             AdSettings.addTestDevice("25100dd41a6642a625d348086dbd18bb");
             adViewContainer.addView(adView);
