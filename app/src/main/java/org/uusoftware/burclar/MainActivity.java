@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -158,9 +160,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_premium:
                         try {
                             buyPremium();
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        } catch (SendIntentException e) {
+                        } catch (RemoteException | SendIntentException e) {
                             e.printStackTrace();
                         }
                         return true;
@@ -170,13 +170,22 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent4);
                         return true;
                     case R.id.nav_about:
-                        //Web sitesini chromeview olarak gösterecez
+                        //Hakkımızda
+                        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                        CustomTabsIntent customTabsIntent = builder.build();
+                        builder.enableUrlBarHiding();
+                        builder.setShowTitle(true);
+                        builder.setToolbarColor(Color.parseColor("#212121"));
+                        customTabsIntent.launchUrl(MainActivity.this, Uri.parse("http://uusoftware.org/hakkimizda"));
                         return true;
                     case R.id.nav_beta:
                         //BETA
-                        //BURAYI da chromeview yapalım
-                        Intent intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
-                        startActivity(intent5);
+                        CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
+                        CustomTabsIntent customTabsIntent2 = builder2.build();
+                        builder2.enableUrlBarHiding();
+                        builder2.setShowTitle(true);
+                        builder2.setToolbarColor(Color.parseColor("#212121"));
+                        customTabsIntent2.launchUrl(MainActivity.this, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
                         return true;
                     default:
                         Toast.makeText(getApplicationContext(), "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_LONG).show();

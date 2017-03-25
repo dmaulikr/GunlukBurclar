@@ -25,7 +25,6 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +52,6 @@ public class BurcUyumuActivity extends AppCompatActivity {
     CircularProgressView progressView;
     WebView webview;
     int percent;
-    ImageView background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,10 +113,10 @@ public class BurcUyumuActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.textView);
         progressView = (CircularProgressView) findViewById(R.id.progressBar);
-        background = (ImageView) findViewById(R.id.imageView);
 
         webview = (WebView) findViewById(R.id.webView);
         webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webview.getSettings().setJavaScriptEnabled(true);
         webview.loadUrl("http://uusoftware.org/gunlukburclar/burcuyumu/" + burcKadin + burcErkek + ".html");
         webview.setWebViewClient(new WebViewClient() {
             @Override

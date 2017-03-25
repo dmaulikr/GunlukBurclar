@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="#fafafa"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -17,17 +17,12 @@
             android:id="@+id/collapsing_header"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/gradient_burcuyumu"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/gradient_burcuyumu" />
 
             <com.github.rahatarmanahmed.cpv.CircularProgressView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/progressBar"
@@ -68,7 +63,7 @@
             android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#f5f5f5" />
+            android:background="#fafafa" />
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
