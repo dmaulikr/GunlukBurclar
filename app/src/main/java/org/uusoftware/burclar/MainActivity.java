@@ -1,6 +1,5 @@
 package org.uusoftware.burclar;
 
-import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -19,7 +17,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -49,11 +46,8 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final int REQUEST_ID_PERMISSION = 1;
     public static boolean premium = false;
     static InterstitialAd interstitial, interstitial2;
-    private static String[] PERMISSION = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE};
     SharedPreferences prefs;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -225,15 +219,15 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_puanla:
                         //PUANLA
-                        Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=org.uusoftware.burclar"));
+                        Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.uusoftware.burclar"));
                         startActivity(intent4);
                         return true;
                     case R.id.nav_about:
-                        Intent intent3 = new Intent(MainActivity.this, AboutUsActivity.class);
-                        startActivity(intent3);
+                        //Web sitesini chromeview olarak gösterecez
                         return true;
                     case R.id.nav_beta:
                         //BETA
+                        //BURAYI da chromeview yapalım
                         Intent intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
                         startActivity(intent5);
                         return true;
@@ -257,9 +251,6 @@ public class MainActivity extends AppCompatActivity {
         //Check user have a premium
         premium = prefs.getBoolean("Premium", false);
         InAppBilling();
-
-        // Create Günlük Burçlar folder
-        verifyStoragePermissions();
 
         //ColoredBars
         window = this.getWindow();
@@ -419,20 +410,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void verifyStoragePermissions() {
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
-            int permission = ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            if (permission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(MainActivity.this, PERMISSION, REQUEST_ID_PERMISSION);
-            } else {
-                createFolder();
-            }
-        } else {
-            createFolder();
-        }
-    }
-
     public void coloredBars(int color1, int color2) {
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -466,24 +443,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_ID_PERMISSION: {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    createFolder();
-                    Toast.makeText(this, "Ayarlarınız kaydedildi...", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_LONG)
-                            .show();
-                }
-                break;
-            }
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_menu, menu);
         return true;
@@ -493,8 +452,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-              /*  Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

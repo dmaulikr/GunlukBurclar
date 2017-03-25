@@ -1,6 +1,7 @@
 package org.uusoftware.burclar;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -19,21 +20,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     Window window;
     Toolbar toolbar;
-
-    String str1 = "http://uusoftware.org";
-    String str2 = "https://www.facebook.com/uusoftware";
-    String str3 = "https://twitter.com/uusoftware1";
-    String str4 = "https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
-    String str5 = "https://www.youtube.com/channel/UCpzVBPCN4XSJt8sL5u8X_FQ";
-    String str6 = "https://plus.google.com/115518080824239135242";
-
-    ImageView image1, image2, image3, image4, image5, image6;
-    Intent intent1, intent2, intent3, intent4, intent5, intent6;
+    SharedPreferences.Editor editor;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aboutus);
+        setContentView(R.layout.activity_settings);
 
         //StatusBar
         window = this.getWindow();
@@ -48,58 +41,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Analytics
         Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
-        t.setScreenName("Hakkımızda");
+        t.setScreenName("Ayarlar");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-      /*  // Initializing
-        image1 = (ImageView) findViewById(R.id.imageViewWebsite);
-        image2 = (ImageView) findViewById(R.id.footerFacebook);
-        image3 = (ImageView) findViewById(R.id.footerTwitter);
-        image4 = (ImageView) findViewById(R.id.footerGooglePlay);
-        image5 = (ImageView) findViewById(R.id.footerYoutube);
-        image6 = (ImageView) findViewById(R.id.footerGooglePlus);
-
-        OnClickListener buttonListener = new OnClickListener() {
-
-            public void onClick(final View v) {
-                switch (v.getId()) {
-                    case R.id.imageViewWebsite:
-                        intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse(str1));
-                        startActivity(intent1);
-                        break;
-                    case R.id.footerFacebook:
-                        intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse(str2));
-                        startActivity(intent2);
-                        break;
-                    case R.id.footerTwitter:
-                        intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse(str3));
-                        startActivity(intent3);
-                        break;
-                    case R.id.footerGooglePlay:
-                        intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse(str4));
-                        startActivity(intent4);
-                        break;
-                    case R.id.footerYoutube:
-                        intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse(str5));
-                        startActivity(intent5);
-                        break;
-                    case R.id.footerGooglePlus:
-                        intent6 = new Intent(Intent.ACTION_VIEW, Uri.parse(str6));
-                        startActivity(intent6);
-                        break;
-                }
-
-            }
-        };
-
-        image1.setOnClickListener(buttonListener);
-        image2.setOnClickListener(buttonListener);
-        image3.setOnClickListener(buttonListener);
-        image4.setOnClickListener(buttonListener);
-        image5.setOnClickListener(buttonListener);
-        image6.setOnClickListener(buttonListener);
-        */
+        prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
+        editor = getSharedPreferences("Preferences", Context.MODE_PRIVATE).edit();
     }
 
     public void coloredBars(int color1, int color2) {
@@ -115,6 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_save, menu);
         return true;
     }
 
@@ -122,6 +70,11 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                finish();
+                return true;
+            case R.id.action_save:
+                editor.commit();
+                Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
                 finish();
                 return true;
             default:
