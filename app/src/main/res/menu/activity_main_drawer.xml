@@ -2,61 +2,57 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:title="Astroloji">
-            <menu>
-                <item
-                    android:id="@+id/nav_home"
-                    android:icon="@drawable/ic_slider_home"
-                    android:title="@string/nav_text_home" />
-                <item
-                    android:id="@+id/nav_uyum"
-                    android:icon="@drawable/ic_slider_uyum"
-                    android:title="@string/nav_text_uyum" />
-                <item
-                    android:id="@+id/nav_yukselen"
-                    android:icon="@drawable/ic_slider_yukselen"
-                    android:title="@string/nav_text_yukselen" />
-                <item
-                    android:id="@+id/nav_cin"
-                    android:icon="@drawable/ic_slider_cin"
-                    android:title="@string/nav_text_cin" />
-            </menu>
-        </item>
-
-        <item android:title="Size özel">
-            <menu>
-                <item
-                    android:id="@+id/nav_favoriler"
-                    android:icon="@drawable/ic_slider_favorites"
-                    android:title="@string/nav_text_favoriler" />
-                <item
-                    android:id="@+id/nav_help"
-                    android:icon="@drawable/ic_slider_help"
-                    android:title="@string/nav_text_help" />
-                <item
-                    android:id="@+id/nav_premium"
-                    android:icon="@drawable/ic_slider_premium"
-                    android:title="@string/nav_text_premium" />
-            </menu>
-        </item>
-
-        <item android:title="Ekstralar">
-            <menu>
-                <item
-                    android:id="@+id/nav_about"
-                    android:icon="@drawable/ic_slider_about"
-                    android:title="@string/nav_text_about" />
-
-                <item
-                    android:id="@+id/nav_puanla"
-                    android:icon="@drawable/ic_slider_rate"
-                    android:title="@string/nav_text_puanla" />
-
-                <item
-                    android:id="@+id/nav_beta"
-                    android:icon="@drawable/ic_slider_beta"
-                    android:title="@string/nav_text_beta" />
-            </menu>
-        </item>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_slider_home"
+            android:title="@string/nav_text_home" />
+        <item
+            android:id="@+id/nav_uyum"
+            android:icon="@drawable/ic_slider_uyum"
+            android:title="@string/nav_text_uyum" />
+        <item
+            android:id="@+id/nav_yukselen"
+            android:icon="@drawable/ic_slider_yukselen"
+            android:title="@string/nav_text_yukselen" />
+        <item
+            android:id="@+id/nav_cin"
+            android:icon="@drawable/ic_slider_cin"
+            android:title="@string/nav_text_cin" />
     </group>
+
+    <item android:title="Size özel">
+        <menu>
+            <item
+                android:id="@+id/nav_favoriler"
+                android:icon="@drawable/ic_slider_favorites"
+                android:title="@string/nav_text_favoriler" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_slider_help"
+                android:title="@string/nav_text_help" />
+            <item
+                android:id="@+id/nav_premium"
+                android:icon="@drawable/ic_slider_premium"
+                android:title="@string/nav_text_premium" />
+        </menu>
+    </item>
+
+    <item android:title="Ekstralar">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_slider_about"
+                android:title="@string/nav_text_about" />
+
+            <item
+                android:id="@+id/nav_puanla"
+                android:icon="@drawable/ic_slider_rate"
+                android:title="@string/nav_text_puanla" />
+
+            <item
+                android:id="@+id/nav_beta"
+                android:icon="@drawable/ic_slider_beta"
+                android:title="@string/nav_text_beta" />
+        </menu>
+    </item>
 </menu>

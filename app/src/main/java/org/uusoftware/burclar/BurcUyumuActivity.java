@@ -86,7 +86,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
-                    coloredBars(Color.argb(255 - verticalOffset / 2, 48, 63, 159), Color.argb(255 - verticalOffset / 2, 233, 30, 99));
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 194, 21, 91), Color.argb(255 - verticalOffset / 2, 233, 30, 99));
                 }
             }
         });

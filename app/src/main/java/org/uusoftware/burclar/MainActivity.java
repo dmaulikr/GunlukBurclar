@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AdMob() {
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("FBD4B60FBD19C916398DB53B16F09D17").build();
         interstitial = new InterstitialAd(this);
         interstitial.setAdUnitId("ca-app-pub-1576175228836763/3285097730");
         interstitial.setAdListener(new AdListener() {
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AdMob2() {
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("0A83AF9337EAE655A7B29C5B61372D84").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("FBD4B60FBD19C916398DB53B16F09D17").build();
         interstitial2 = new InterstitialAd(this);
         interstitial2.setAdUnitId("ca-app-pub-1576175228836763/8253556135");
         interstitial2.setAdListener(new AdListener() {

@@ -75,7 +75,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
-                    coloredBars(Color.argb(255 - verticalOffset / 2, 255, 87, 34), Color.argb(255 - verticalOffset / 2, 63, 81, 181));
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 230, 74, 25), Color.argb(255 - verticalOffset / 2, 255, 87, 34));
                 }
             }
         });

@@ -62,7 +62,7 @@ public class SecondActivity extends AppCompatActivity {
             adViewContainer.setVisibility(View.GONE);
         } else {
             adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("25100dd41a6642a625d348086dbd18bb");
+            AdSettings.addTestDevice("bfe5e795d34fe79746ff9fa33c0ee5ed");
             adViewContainer.addView(adView);
             adView.loadAd();
         }

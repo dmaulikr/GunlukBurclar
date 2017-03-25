@@ -79,7 +79,7 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
                 } else if (verticalOffset == 0) {
                     coloredBars(Color.TRANSPARENT, Color.TRANSPARENT);
                 } else {
-                    coloredBars(Color.argb(255 - verticalOffset / 2, 56, 142, 60), Color.argb(255 - verticalOffset / 2, 56, 142, 60));
+                    coloredBars(Color.argb(255 - verticalOffset / 2, 56, 142, 60), Color.argb(255 - verticalOffset / 2, 76, 175, 80));
                 }
             }
         });
