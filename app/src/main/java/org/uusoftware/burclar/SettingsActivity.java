@@ -2,8 +2,13 @@ package org.uusoftware.burclar;
 
 import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -57,13 +63,17 @@ public class SettingsActivity extends AppCompatActivity {
         alarm = prefs.getBoolean("Alarm", true);
 
         Switch alarmSwitch = (Switch) findViewById(R.id.mySwitch);
-
         if (alarm) {
             alarmSwitch.setChecked(true);
         } else {
             alarmSwitch.setChecked(false);
         }
-
+        if (premium) {
+            alarmSwitch.setEnabled(true);
+        } else {
+            alarmSwitch.setEnabled(false);
+            Toast.makeText(SettingsActivity.this, R.string.only_premium, Toast.LENGTH_LONG).show();
+        }
         alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -82,30 +92,64 @@ public class SettingsActivity extends AppCompatActivity {
         textViewClock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (premium) {
-                    TimePickerDialog mTimePicker;
-                    mTimePicker = new TimePickerDialog(SettingsActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            editor.putInt("alarmHour", selectedHour);
-                            editor.putInt("alarmMinute", selectedMinute);
-                            textViewClock.setText(pad(selectedHour) + ":" + pad(selectedMinute));
-                        }
-                    }, alarmHour, alarmMinute, true);
-                    mTimePicker.setTitle("Bildirim saatini seçiniz");
-                    mTimePicker.show();
-                } else {
-                    Toast.makeText(SettingsActivity.this, R.string.only_premium, Toast.LENGTH_SHORT).show();
-                }
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(SettingsActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        editor.putInt("alarmHour", selectedHour);
+                        editor.putInt("alarmMinute", selectedMinute);
+                        textViewClock.setText(pad(selectedHour) + ":" + pad(selectedMinute));
+                    }
+                }, alarmHour, alarmMinute, true);
+                mTimePicker.setTitle("Bildirim saatini seçiniz");
+                mTimePicker.show();
             }
         });
 
-        TextView textViewVersion = (TextView) findViewById(R.id.textViewVersionInfo);
+        TextView textViewAccount = (TextView) findViewById(R.id.textViewAccountInfo);
         if (premium) {
-            textViewVersion.setText(R.string.version_premium);
+            textViewAccount.setText(R.string.account_premium);
         } else {
-            textViewVersion.setText(R.string.version_standart);
+            textViewAccount.setText(R.string.account_standart);
         }
+
+        TextView textViewVersion = (TextView) findViewById(R.id.textViewVersionInfo);
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String version = pInfo.versionName;
+        textViewVersion.setText("v" + version);
+
+        ImageView privacy = (ImageView) findViewById(R.id.imageButton);
+        privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Privacy
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
+                builder.enableUrlBarHiding();
+                builder.setShowTitle(true);
+                builder.setToolbarColor(Color.parseColor("#212121"));
+                customTabsIntent.launchUrl(SettingsActivity.this, Uri.parse("http://uusoftware.org/privacy"));
+            }
+        });
+
+        ImageView beta = (ImageView) findViewById(R.id.imageButton2);
+        beta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Privacy
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
+                builder.enableUrlBarHiding();
+                builder.setShowTitle(true);
+                builder.setToolbarColor(Color.parseColor("#212121"));
+                customTabsIntent.launchUrl(SettingsActivity.this, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
+            }
+        });
     }
 
     public String pad(int input) {

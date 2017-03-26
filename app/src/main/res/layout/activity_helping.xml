@@ -28,7 +28,6 @@
         android:background="#fafafa"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".HelpingActivity">
-
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -70,11 +70,36 @@
             android:textColor="#212121" />
 
         <TextView
-            android:id="@+id/textViewVersion"
+            android:id="@+id/textViewAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/mySwitch"
             android:layout_below="@+id/textViewClock"
+            android:layout_marginTop="30dp"
+            android:alpha="0.87"
+            android:text="@string/account"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#212121" />
+
+        <TextView
+            android:id="@+id/textViewAccountInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textViewAccount"
+            android:layout_alignTop="@+id/textViewAccount"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/textViewAccount"
+            android:gravity="center"
+            android:text="@string/account_standart"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#212121" />
+
+        <TextView
+            android:id="@+id/textViewVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mySwitch"
+            android:layout_below="@+id/textViewAccount"
             android:layout_marginTop="30dp"
             android:alpha="0.87"
             android:text="@string/version"
@@ -90,7 +115,7 @@
             android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/textViewVersion"
             android:gravity="center"
-            android:text="@string/version_standart"
+            android:text="v3.0"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#212121" />
 
