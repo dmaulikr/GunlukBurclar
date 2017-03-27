@@ -75,7 +75,7 @@ public class SecondActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        coloredBars(ContextCompat.getColor(this, R.color.colorYorumDark), ContextCompat.getColor(this, R.color.colorYorumPrimary));
+        coloredBars(ContextCompat.getColor(this, R.color.colorMainDark), ContextCompat.getColor(this, R.color.colorMainPrimary));
 
         // Analytics
         Tracker t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
@@ -93,31 +93,30 @@ public class SecondActivity extends AppCompatActivity {
         pagertabstrip = (PagerTitleStrip) findViewById(R.id.pager_title_strip);
         String selectedburc = SecondActivity.burcid;
         if (selectedburc.contains("koc")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#341A47"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#1E88E5"));
         } else if (selectedburc.contains("boga")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#3C224F"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#1E88E5"));
         } else if (selectedburc.contains("ikizler")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#442B55"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#1E88E5"));
         } else if (selectedburc.contains("yengec")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#6A3667"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("aslan")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#5F3A6E"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("basak")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#614379"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("terazi")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#7C3E75"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("akrep")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#82396A"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("yay")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#8F4073"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("oglak")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#C55C73"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#311B92"));
         } else if (selectedburc.contains("kova")) {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#BC4F6C"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#311B92"));
         } else {
-            pagertabstrip.setBackgroundColor(Color.parseColor("#A24F73"));
+            pagertabstrip.setBackgroundColor(Color.parseColor("#311B92"));
         }
-
     }
 
     @Override

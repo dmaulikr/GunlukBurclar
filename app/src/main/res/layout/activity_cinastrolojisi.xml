@@ -18,7 +18,7 @@
             android:id="@+id/collapsing_header"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#284568"
+            android:background="@drawable/background_cin"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
@@ -48,12 +48,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/adFacebook"
+        android:background="#fafafa"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <WebView
             android:id="@+id/webViewGeneral"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="#fafafa" />
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton

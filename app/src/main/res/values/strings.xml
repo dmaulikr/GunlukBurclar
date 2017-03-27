@@ -36,7 +36,7 @@
     <string name="account_standart">Günlük Burçlar - Standart</string>
     <string name="account_premium">Günlük Burçlar - Premium</string>
     <string name="settings_save">Kaydet</string>
-    <string name="only_premium">Sadece premium sürüme sahip kullanıcılar bildirim saatini değiştirebilir&#8230;</string>
+    <string name="only_premium">Sadece premium sürüme sahip kullanıcılar bildirim ayarını değiştirebilir&#8230;</string>
     <string name="settings_saved">Ayarlarınız kaydedildi&#8230;</string>
     <string name="copyright">Copyright © 2017 U&amp;U Software</string>
 

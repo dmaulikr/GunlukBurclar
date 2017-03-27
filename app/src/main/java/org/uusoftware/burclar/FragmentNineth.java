@@ -26,40 +26,40 @@ public class FragmentNineth extends Fragment {
 
         if (selectedburc.contains("koc")) {
             image.setImageResource(R.drawable.burc_koc);
-            image.setBackgroundColor(Color.parseColor("#341A47"));
+            image.setBackgroundColor(Color.parseColor("#1E88E5"));
         } else if (selectedburc.contains("boga")) {
             image.setImageResource(R.drawable.burc_boga);
-            image.setBackgroundColor(Color.parseColor("#3C224F"));
+            image.setBackgroundColor(Color.parseColor("#1E88E5"));
         } else if (selectedburc.contains("ikizler")) {
             image.setImageResource(R.drawable.burc_ikizler);
-            image.setBackgroundColor(Color.parseColor("#442B55"));
+            image.setBackgroundColor(Color.parseColor("#1E88E5"));
         } else if (selectedburc.contains("yengec")) {
             image.setImageResource(R.drawable.burc_yengec);
-            image.setBackgroundColor(Color.parseColor("#6A3667"));
+            image.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("aslan")) {
             image.setImageResource(R.drawable.burc_aslan);
-            image.setBackgroundColor(Color.parseColor("#5F3A6E"));
+            image.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("basak")) {
             image.setImageResource(R.drawable.burc_basak);
-            image.setBackgroundColor(Color.parseColor("#614379"));
+            image.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("terazi")) {
             image.setImageResource(R.drawable.burc_terazi);
-            image.setBackgroundColor(Color.parseColor("#7C3E75"));
+            image.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("akrep")) {
             image.setImageResource(R.drawable.burc_akrep);
-            image.setBackgroundColor(Color.parseColor("#82396A"));
+            image.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("yay")) {
             image.setImageResource(R.drawable.burc_yay);
-            image.setBackgroundColor(Color.parseColor("#8F4073"));
+            image.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("oglak")) {
             image.setImageResource(R.drawable.burc_oglak);
-            image.setBackgroundColor(Color.parseColor("#C55C73"));
+            image.setBackgroundColor(Color.parseColor("#311B92"));
         } else if (selectedburc.contains("kova")) {
             image.setImageResource(R.drawable.burc_kova);
-            image.setBackgroundColor(Color.parseColor("#BC4F6C"));
+            image.setBackgroundColor(Color.parseColor("#311B92"));
         } else {
             image.setImageResource(R.drawable.burc_balik);
-            image.setBackgroundColor(Color.parseColor("#A24F73"));
+            image.setBackgroundColor(Color.parseColor("#311B92"));
         }
 
         WebView myWebView = (WebView) v.findViewById(R.id.webView1);

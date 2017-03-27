@@ -26,6 +26,7 @@
             android:id="@+id/imageViewButton"
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
+            android:padding="1dp"
             app:layout_heightPercent="12.5%"
             app:layout_marginTopPercent="2.5%"
             app:layout_widthPercent="75%"

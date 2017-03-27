@@ -3,15 +3,12 @@
     <color name="colorMainDark">#000000</color>
     <color name="colorMainPrimary">#212121</color>
 
-    <color name="colorYorumDark">#303F9F</color>
-    <color name="colorYorumPrimary">#3F51B5</color>
-
     <color name="colorUyumDark">#c2185b</color>
     <color name="colorUyumPrimary">#E91E63</color>
 
-    <color name="colorCinDark">#388E3C</color>
-    <color name="colorCinPrimary">#4CAF50</color>
-
     <color name="colorYukselenDark">#E64A19</color>
     <color name="colorYukselenPrimary">#FF5722</color>
+
+    <color name="colorCinDark">#388E3C</color>
+    <color name="colorCinPrimary">#4CAF50</color>
 </resources>

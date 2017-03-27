@@ -97,51 +97,51 @@ public class YukselenBurcActivity extends AppCompatActivity {
         if (selectedburc.contains("koc")) {
             image.setImageResource(R.drawable.burc_koc);
             burcName = "Koç";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#341A47"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#1E88E5"));
         } else if (selectedburc.contains("boga")) {
             image.setImageResource(R.drawable.burc_boga);
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#3C224F"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#1E88E5"));
             burcName = "Boğa";
         } else if (selectedburc.contains("ikizler")) {
             image.setImageResource(R.drawable.burc_ikizler);
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#442B55"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#1E88E5"));
             burcName = "İkizler";
         } else if (selectedburc.contains("yengec")) {
             image.setImageResource(R.drawable.burc_yengec);
             burcName = "Yengeç";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#6A3667"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("aslan")) {
             image.setImageResource(R.drawable.burc_aslan);
             burcName = "Aslan";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#5F3A6E"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("basak")) {
             image.setImageResource(R.drawable.burc_basak);
             burcName = "Başak";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#614379"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#3949AB"));
         } else if (selectedburc.contains("terazi")) {
             image.setImageResource(R.drawable.burc_terazi);
             burcName = "Terazi";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#7C3E75"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("akrep")) {
             image.setImageResource(R.drawable.burc_akrep);
             burcName = "Akrep";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#82396A"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("yay")) {
             image.setImageResource(R.drawable.burc_yay);
             burcName = "Yay";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#8F4073"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#512DA8"));
         } else if (selectedburc.contains("oglak")) {
             image.setImageResource(R.drawable.burc_oglak);
             burcName = "Oğlak";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#C55C73"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#311B92"));
         } else if (selectedburc.contains("kova")) {
             image.setImageResource(R.drawable.burc_kova);
             burcName = "Kova";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#BC4F6C"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#311B92"));
         } else {
             image.setImageResource(R.drawable.burc_balik);
             burcName = "Balık";
-            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#A24F73"));
+            collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#311B92"));
         }
 
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
