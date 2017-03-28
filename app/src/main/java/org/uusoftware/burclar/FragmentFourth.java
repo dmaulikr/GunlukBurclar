@@ -432,8 +432,8 @@ public class FragmentFourth extends Fragment {
         int random = generator.nextInt(2);
         if (MainActivity.interstitial2 != null) {
             if (MainActivity.interstitial2.isLoaded() && random == 1) {
-                MainActivity.interstitial2.show();
                 startActivity(intent);
+                MainActivity.interstitial2.show();
             } else {
                 startActivity(intent);
             }

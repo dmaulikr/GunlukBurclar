@@ -6,14 +6,13 @@ android {
 
     defaultConfig {
         applicationId "org.uusoftware.burclar"
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 25
-        versionCode 36
+        versionCode 38
         versionName "3.1 Beta"
     }
     buildTypes {
         release {
-            debuggable false
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

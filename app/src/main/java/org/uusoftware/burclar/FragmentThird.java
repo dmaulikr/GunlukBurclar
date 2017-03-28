@@ -554,8 +554,8 @@ public class FragmentThird extends Fragment {
         int random = generator.nextInt(2);
         if (MainActivity.interstitial2 != null) {
             if (MainActivity.interstitial2.isLoaded() && random == 1) {
-                MainActivity.interstitial2.show();
                 startActivity(intent);
+                MainActivity.interstitial2.show();
             } else {
                 startActivity(intent);
             }
@@ -582,38 +582,4 @@ public class FragmentThird extends Fragment {
         }
         super.onDestroy();
     }
-
-   /* public class SpinnerAdapter extends ArrayAdapter<String> {
-
-        public SpinnerAdapter(Context context, int textViewResourceId, String[] objects) {
-            super(context, textViewResourceId, objects);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View row = inflater.inflate(R.layout.spinner_row, parent, false);
-
-            TextView text = (TextView) row.findViewById(R.id.textView2);
-            text.setText(strings[position]);
-
-            ImageView icon = (ImageView) row.findViewById(R.id.imageView1);
-            icon.setImageResource(images[position]);
-            return row;
-        }
-
-        @Override
-        public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View row2 = inflater.inflate(R.layout.spinner_dropdown, parent, false);
-
-            TextView text2 = (TextView) row2.findViewById(R.id.textView2);
-            text2.setText(strings[position]);
-
-            ImageView icon2 = (ImageView) row2.findViewById(R.id.imageView2);
-            icon2.setImageResource(images[position]);
-
-            return row2;
-        }
-    }*/
 }
