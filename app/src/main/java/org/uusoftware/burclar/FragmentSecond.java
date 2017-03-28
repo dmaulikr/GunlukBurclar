@@ -17,9 +17,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.facebook.ads.AdSettings;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -31,6 +34,7 @@ public class FragmentSecond extends Fragment {
     Context mContext;
     boolean premium;
     ActionBar actionbar;
+    View rootView;
 
     Intent intent;
     ImageView clickButton;
@@ -38,23 +42,48 @@ public class FragmentSecond extends Fragment {
     ImageView imageserkek[] = new ImageView[12];
 
     //Facebook Audience Network
-    private AdView adView;
+    RelativeLayout adViewContainer;
+    private AdView bannerFacebook;
+    private com.google.android.gms.ads.AdView bannerAdmob;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_second, container, false);
+        rootView = inflater.inflate(R.layout.fragment_second, container, false);
 
-        // Premium & Facebook Audience Network
+        // Premium & Ads
         premium = MainActivity.premium;
-        RelativeLayout adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
+
+        adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
+        bannerAdmob = (com.google.android.gms.ads.AdView) rootView.findViewById(R.id.adView);
+
         if (premium) {
             adViewContainer.setVisibility(View.GONE);
+            bannerAdmob.setVisibility(View.GONE);
         } else {
-            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("bfe5e795d34fe79746ff9fa33c0ee5ed");
-            adViewContainer.addView(adView);
-            adView.loadAd();
+            bannerFacebook = new AdView(getActivity(), getString(R.string.banner_facebook), AdSize.BANNER_HEIGHT_50);
+            adViewContainer.addView(bannerFacebook);
+            bannerFacebook.setAdListener(new AdListener() {
+                @Override
+                public void onError(Ad ad, AdError adError) {
+                    // Ad error callback
+                    adViewContainer.setVisibility(View.GONE);
+                    AdRequest adRequest = new AdRequest.Builder().build();
+                    bannerAdmob.loadAd(adRequest);
+                }
+
+                @Override
+                public void onAdLoaded(Ad ad) {
+                    // Ad loaded callback
+                    bannerAdmob.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAdClicked(Ad ad) {
+                    // Ad clicked callback
+                }
+            });
+            bannerFacebook.loadAd();
         }
 
         /* Colored bars */
@@ -250,14 +279,6 @@ public class FragmentSecond extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
-    }
-
     public void coloredBars(int color1, int color2) {
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -267,5 +288,16 @@ public class FragmentSecond extends Fragment {
         } else {
             actionbar.setBackgroundDrawable(new ColorDrawable(color2));
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (bannerFacebook != null) {
+            bannerFacebook.destroy();
+        }
+        if (bannerAdmob != null) {
+            bannerAdmob.destroy();
+        }
+        super.onDestroy();
     }
 }

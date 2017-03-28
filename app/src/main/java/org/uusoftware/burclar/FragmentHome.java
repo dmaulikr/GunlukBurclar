@@ -15,9 +15,12 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.facebook.ads.AdSettings;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -29,25 +32,50 @@ public class FragmentHome extends Fragment {
     boolean premium;
     Window window;
     ActionBar actionbar;
+    View v;
 
     //Facebook Audience Network
-    private AdView adView;
+    RelativeLayout adViewContainer;
+    private AdView bannerFacebook;
+    private com.google.android.gms.ads.AdView bannerAdmob;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        View v = inflater.inflate(R.layout.fragment_home, container, false);
-
-        // Premium & Facebook Audience Network
+        // Premium & Ads
         premium = MainActivity.premium;
-        RelativeLayout adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
+
+        adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
+        bannerAdmob = (com.google.android.gms.ads.AdView) v.findViewById(R.id.adView);
+
         if (premium) {
             adViewContainer.setVisibility(View.GONE);
+            bannerAdmob.setVisibility(View.GONE);
         } else {
-            adView = new com.facebook.ads.AdView(getActivity(), "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("bfe5e795d34fe79746ff9fa33c0ee5ed");
-            adViewContainer.addView(adView);
-            adView.loadAd();
+            bannerFacebook = new AdView(getActivity(), getString(R.string.banner_facebook), AdSize.BANNER_HEIGHT_50);
+            adViewContainer.addView(bannerFacebook);
+            bannerFacebook.setAdListener(new AdListener() {
+                @Override
+                public void onError(Ad ad, AdError adError) {
+                    // Ad error callback
+                    adViewContainer.setVisibility(View.GONE);
+                    AdRequest adRequest = new AdRequest.Builder().build();
+                    bannerAdmob.loadAd(adRequest);
+                }
+
+                @Override
+                public void onAdLoaded(Ad ad) {
+                    // Ad loaded callback
+                    bannerAdmob.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAdClicked(Ad ad) {
+                    // Ad clicked callback
+                }
+            });
+            bannerFacebook.loadAd();
         }
 
         /* Colored bars */
@@ -168,8 +196,11 @@ public class FragmentHome extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
+        if (bannerFacebook != null) {
+            bannerFacebook.destroy();
+        }
+        if (bannerAdmob != null) {
+            bannerAdmob.destroy();
         }
         super.onDestroy();
     }

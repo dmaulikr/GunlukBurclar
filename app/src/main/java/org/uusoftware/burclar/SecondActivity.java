@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,9 +22,12 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.facebook.ads.AdSettings;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -47,24 +49,50 @@ public class SecondActivity extends AppCompatActivity {
     Window window;
     Toolbar toolbar;
     boolean premium;
+
     //Facebook Audience Network
-    private AdView adView;
+    RelativeLayout adViewContainer;
+    private AdView bannerFacebook;
+    private com.google.android.gms.ads.AdView bannerAdmob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        // Premium & Facebook Audience Network
+        // Premium & Ads
         premium = MainActivity.premium;
-        RelativeLayout adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
+
+        adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
+        bannerAdmob = (com.google.android.gms.ads.AdView) findViewById(R.id.adView);
+
         if (premium) {
             adViewContainer.setVisibility(View.GONE);
+            bannerAdmob.setVisibility(View.GONE);
         } else {
-            adView = new com.facebook.ads.AdView(this, "155235578298611_155235834965252", AdSize.BANNER_HEIGHT_50);
-            AdSettings.addTestDevice("bfe5e795d34fe79746ff9fa33c0ee5ed");
-            adViewContainer.addView(adView);
-            adView.loadAd();
+            bannerFacebook = new AdView(SecondActivity.this, getString(R.string.banner_facebook), AdSize.BANNER_HEIGHT_50);
+            adViewContainer.addView(bannerFacebook);
+            bannerFacebook.setAdListener(new AdListener() {
+                @Override
+                public void onError(Ad ad, AdError adError) {
+                    // Ad error callback
+                    adViewContainer.setVisibility(View.GONE);
+                    AdRequest adRequest = new AdRequest.Builder().build();
+                    bannerAdmob.loadAd(adRequest);
+                }
+
+                @Override
+                public void onAdLoaded(Ad ad) {
+                    // Ad loaded callback
+                    bannerAdmob.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAdClicked(Ad ad) {
+                    // Ad clicked callback
+                }
+            });
+            bannerFacebook.loadAd();
         }
 
         //StatusBar
@@ -180,9 +208,9 @@ public class SecondActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(color1);
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         }
     }
 
@@ -224,8 +252,11 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
+        if (bannerFacebook != null) {
+            bannerFacebook.destroy();
+        }
+        if (bannerAdmob != null) {
+            bannerAdmob.destroy();
         }
         super.onDestroy();
     }

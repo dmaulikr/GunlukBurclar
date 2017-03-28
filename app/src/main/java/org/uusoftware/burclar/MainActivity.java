@@ -9,7 +9,6 @@ import android.content.IntentSender.SendIntentException;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,9 +47,9 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static boolean premium = false;
+    public static boolean premium;
     static InterstitialAd interstitial, interstitial2;
-    boolean doubleBackToExitPressedOnce = false;
+    boolean doubleBackToExitPressedOnce;
     SharedPreferences prefs;
     PendingIntent pendingIntent;
     IInAppBillingService mService;
@@ -79,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //ColoredBars
+        window = this.getWindow();
+        coloredBars(ContextCompat.getColor(this, R.color.colorMainDark), ContextCompat.getColor(this, R.color.colorMainPrimary));
+
         // Initializing Drawer Layout and ActionBarToggle
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -93,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 // Code here will be triggered once the drawer openes as we dont want anything to happen so we leave this blank
                 super.onDrawerOpened(drawerView);
-                //FacebookLogin();
             }
         };
 
@@ -201,15 +203,10 @@ public class MainActivity extends AppCompatActivity {
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-        //SharedPreferences
-        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-
         //Check user have a premium
         InAppBilling();
-
-        //ColoredBars
-        window = this.getWindow();
-        coloredBars(ContextCompat.getColor(this, R.color.colorMainDark), ContextCompat.getColor(this, R.color.colorMainPrimary));
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        premium = prefs.getBoolean("Premium", false);
 
         // AppRater
         AppRater();
@@ -236,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void InAppBilling() {
-        premium = prefs.getBoolean("Premium", false);
         mServiceConn = new ServiceConnection() {
             @Override
             public void onServiceDisconnected(ComponentName name) {
@@ -265,13 +261,11 @@ public class MainActivity extends AppCompatActivity {
         if (ownedItems.getInt("RESPONSE_CODE") == 0) {
             ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
             if (ownedSkus.contains("premium")) {
-                premium = true;
                 prefs.edit().putBoolean("Premium", true).apply();
 
                 MenuItem item = navigationView.getMenu().findItem(R.id.nav_premium);
                 item.setTitle(R.string.nav_text_premium2);
             } else {
-                premium = false;
                 prefs.edit().putBoolean("Premium", false).apply();
                 AdMob();
 
@@ -291,8 +285,8 @@ public class MainActivity extends AppCompatActivity {
         Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), "premium", "inapp",
                 "/tYMgwhg1DVikb4R4iLNAO5pNj/QWh19+vwajyUFbAyw93xVnDkeTZFdhdSdJ8M");
         PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
-        startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), Integer.valueOf(0),
-                Integer.valueOf(0), Integer.valueOf(0));
+        startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), 0,
+                0, 0);
     }
 
     public void AlarmManager() {
@@ -376,9 +370,9 @@ public class MainActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(color1);
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         }
     }
 
@@ -400,7 +394,6 @@ public class MainActivity extends AppCompatActivity {
                 prefs.edit().putBoolean("Premium", false).apply();
             }
         }
-        // callbackmanager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -170,9 +169,9 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(color1);
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         }
     }
 

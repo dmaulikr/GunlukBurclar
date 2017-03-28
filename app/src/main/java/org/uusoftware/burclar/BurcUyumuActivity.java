@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -122,7 +121,11 @@ public class BurcUyumuActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 if (!webview.getTitle().isEmpty()) {
-                    percent = Integer.parseInt(webview.getTitle());
+                    try {
+                        percent = Integer.parseInt(webview.getTitle());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
                     String text = "%" + percent;
                     textView.setText(text);
                     progressView.setProgress((float) percent);
@@ -193,9 +196,9 @@ public class BurcUyumuActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(color1);
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         } else {
-            toolbar.setBackgroundDrawable(new ColorDrawable(color2));
+            toolbar.setBackgroundColor(color2);
         }
     }
 
