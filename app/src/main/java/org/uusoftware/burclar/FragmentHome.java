@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -32,8 +33,6 @@ public class FragmentHome extends Fragment {
     boolean premium;
     Window window;
     ActionBar actionbar;
-    View v;
-
     //Facebook Audience Network
     RelativeLayout adViewContainer;
     private AdView bannerFacebook;
@@ -41,7 +40,7 @@ public class FragmentHome extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_home, container, false);
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Premium & Ads
         premium = MainActivity.premium;
@@ -59,6 +58,7 @@ public class FragmentHome extends Fragment {
                 @Override
                 public void onError(Ad ad, AdError adError) {
                     // Ad error callback
+                    Toast.makeText(getActivity(), "Feys yüklenemedi", Toast.LENGTH_SHORT).show();
                     adViewContainer.setVisibility(View.GONE);
                     AdRequest adRequest = new AdRequest.Builder().build();
                     bannerAdmob.loadAd(adRequest);

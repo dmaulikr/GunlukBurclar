@@ -37,12 +37,13 @@ public class FragmentThird extends Fragment {
     Window window;
     ActionBar actionbar;
     Context mContext;
-    TextView txt;
     ImageView imagebutton;
     boolean premium;
     ImageView imagesburc[] = new ImageView[12];
     Intent intent;
-    View rootView;
+    int hour, minute;
+    TextView txt;
+    Calendar mcurrentTime;
 
     //Facebook Audience Network
     RelativeLayout adViewContainer;
@@ -52,7 +53,7 @@ public class FragmentThird extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.fragment_second, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_third, container, false);
 
         // Premium & Ads
         premium = MainActivity.premium;
@@ -70,6 +71,7 @@ public class FragmentThird extends Fragment {
                 @Override
                 public void onError(Ad ad, AdError adError) {
                     // Ad error callback
+                    Toast.makeText(getActivity(), "Feys yüklenemedi", Toast.LENGTH_SHORT).show();
                     adViewContainer.setVisibility(View.GONE);
                     AdRequest adRequest = new AdRequest.Builder().build();
                     bannerAdmob.loadAd(adRequest);
@@ -118,7 +120,7 @@ public class FragmentThird extends Fragment {
         imagesburc[10] = (ImageView) rootView.findViewById(R.id.burc11);
         imagesburc[11] = (ImageView) rootView.findViewById(R.id.burc12);
 
-        //onClickListener for Kadın
+        //onClickListener for Burc
         View.OnClickListener buttonListener = new View.OnClickListener() {
             public void onClick(View v) {
                 switch (v.getId()) {
@@ -171,9 +173,9 @@ public class FragmentThird extends Fragment {
 
         // ChooseTime
         txt = (TextView) rootView.findViewById(R.id.textClock);
-        Calendar mcurrentTime = Calendar.getInstance();
-        final int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        final int minute = mcurrentTime.get(Calendar.MINUTE);
+        mcurrentTime = Calendar.getInstance();
+        hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        minute = mcurrentTime.get(Calendar.MINUTE);
         txt.setText(pad(hour) + ":" + pad(minute));
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
