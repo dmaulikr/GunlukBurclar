@@ -4,6 +4,9 @@
     <string name="banner_admob">ca-app-pub-1576175228836763/1808364538</string>
     <string name="banner_facebook">155235578298611_155235834965252</string>
 
+    <string name="interstitial_admob">ca-app-pub-1576175228836763/3285097730</string>
+    <string name="interstitial_facebook">155235578298611_199351377220364</string>
+
     <string name="app_name">Günlük Burçlar</string>
     <string name="action_share">Paylaş</string>
     <string name="action_settings">Ayarlar</string>

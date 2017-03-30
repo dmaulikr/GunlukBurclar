@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -93,6 +94,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
         WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
         link = "http://uusoftware.org/gunlukburclar/burcyorumlari/" + selectedburc + ".html";
 
+        assert selectedburc != null;
         if (selectedburc.contains("koc")) {
             image.setImageResource(R.drawable.burc_koc);
             burcName = "Koç";
@@ -183,7 +185,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_EXTERNAL_STORAGE: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {

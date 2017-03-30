@@ -14,7 +14,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -58,7 +57,6 @@ public class FragmentHome extends Fragment {
                 @Override
                 public void onError(Ad ad, AdError adError) {
                     // Ad error callback
-                    Toast.makeText(getActivity(), "Feys yüklenemedi", Toast.LENGTH_SHORT).show();
                     adViewContainer.setVisibility(View.GONE);
                     AdRequest adRequest = new AdRequest.Builder().build();
                     bannerAdmob.loadAd(adRequest);
@@ -170,15 +168,23 @@ public class FragmentHome extends Fragment {
 
     public void showAds() {
         Random generator = new Random();
-        int random = generator.nextInt(2);
-        if (MainActivity.interstitial != null) {
-            if (MainActivity.interstitial.isLoaded() && random == 1) {
+        int random = generator.nextInt(10);
+        if (random % 2 == 0) {
+            //No luck he will see the ads
+            if (MainActivity.facebookInterstitial.isAdLoaded()) {
+                //Facebook ads loaded he will see Facebook
                 startActivity(intent);
-                MainActivity.interstitial.show();
+                MainActivity.facebookInterstitial.show();
+            } else if (MainActivity.admobInterstitial.isLoaded()) {
+                //Facebook ads doesnt loaded he will see AdMob
+                startActivity(intent);
+                MainActivity.admobInterstitial.show();
             } else {
+                //Both ads doesn't loaded.
                 startActivity(intent);
             }
         } else {
+            //Lucky guy...
             startActivity(intent);
         }
     }

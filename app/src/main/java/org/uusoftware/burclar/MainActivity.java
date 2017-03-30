@@ -33,9 +33,12 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.kobakei.ratethisapp.RateThisApp;
 
 import org.uusoftware.burclar.receiver.AlarmReceiver;
@@ -48,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static boolean premium;
-    static InterstitialAd interstitial, interstitial2;
+    static InterstitialAd facebookInterstitial;
+    static com.google.android.gms.ads.InterstitialAd admobInterstitial;
     boolean doubleBackToExitPressedOnce;
     SharedPreferences prefs;
     PendingIntent pendingIntent;
@@ -237,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 mService = null;
-                AdMob();
+                AudienceNetwork();
             }
 
             @Override
@@ -267,14 +271,14 @@ public class MainActivity extends AppCompatActivity {
                 item.setTitle(R.string.nav_text_premium2);
             } else {
                 prefs.edit().putBoolean("Premium", false).apply();
-                AdMob();
+                AudienceNetwork();
 
                 MenuItem item = navigationView.getMenu().findItem(R.id.nav_premium);
                 item.setTitle(R.string.nav_text_premium);
                 item.setIcon(R.drawable.ic_slider_premium);
             }
         } else {
-            AdMob();
+            AudienceNetwork();
         }
     }
 
@@ -316,36 +320,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void AdMob() {
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("FBD4B60FBD19C916398DB53B16F09D17").build();
-        interstitial = new InterstitialAd(this);
-        interstitial.setAdUnitId("ca-app-pub-1576175228836763/3285097730");
-        interstitial.setAdListener(new AdListener() {
+    //First try to load Audience Network, fails load AdMob
+    public void AudienceNetwork() {
+        facebookInterstitial = new InterstitialAd(this, getString(R.string.interstitial_facebook));
+        facebookInterstitial.setAdListener(new InterstitialAdListener() {
             @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                AdMob2();
+            public void onInterstitialDisplayed(Ad ad) {
+                // Interstitial displayed callback
             }
 
             @Override
-            public void onAdClosed() {
-                super.onAdClosed();
+            public void onInterstitialDismissed(Ad ad) {
+                // Interstitial dismissed callback
+                AudienceNetwork();
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                // Ad error callback
                 AdMob();
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                super.onAdFailedToLoad(errorCode);
+            public void onAdLoaded(Ad ad) {
+                // Show the ad when it's done loading.
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+                // Ad clicked callback
             }
         });
-        interstitial.loadAd(adRequest);
+        facebookInterstitial.loadAd();
     }
 
-    public void AdMob2() {
+    public void AdMob() {
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("FBD4B60FBD19C916398DB53B16F09D17").build();
-        interstitial2 = new InterstitialAd(this);
-        interstitial2.setAdUnitId("ca-app-pub-1576175228836763/8253556135");
-        interstitial2.setAdListener(new AdListener() {
+        admobInterstitial = new com.google.android.gms.ads.InterstitialAd(this);
+        admobInterstitial.setAdUnitId(getString(R.string.interstitial_admob));
+        admobInterstitial.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
@@ -354,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                AdMob2();
+                AudienceNetwork();
             }
 
             @Override
@@ -362,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
                 super.onAdFailedToLoad(errorCode);
             }
         });
-        interstitial2.loadAd(adRequest);
+        admobInterstitial.loadAd(adRequest);
     }
 
     public void coloredBars(int color1, int color2) {
@@ -489,6 +502,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         if (mServiceConn != null) {
             unbindService(mServiceConn);
+        }
+        if (facebookInterstitial != null) {
+            facebookInterstitial.destroy();
         }
     }
 }
