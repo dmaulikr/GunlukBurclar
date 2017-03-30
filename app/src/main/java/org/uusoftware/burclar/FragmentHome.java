@@ -171,11 +171,11 @@ public class FragmentHome extends Fragment {
         int random = generator.nextInt(10);
         if (random % 2 == 0) {
             //No luck he will see the ads
-            if (MainActivity.facebookInterstitial.isAdLoaded()) {
+            if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
                 //Facebook ads loaded he will see Facebook
                 startActivity(intent);
                 MainActivity.facebookInterstitial.show();
-            } else if (MainActivity.admobInterstitial.isLoaded()) {
+            } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
                 //Facebook ads doesnt loaded he will see AdMob
                 startActivity(intent);
                 MainActivity.admobInterstitial.show();

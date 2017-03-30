@@ -27,7 +27,6 @@ import com.google.android.gms.analytics.Tracker;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
 public class FragmentFourth extends Fragment {
 
@@ -456,24 +455,17 @@ public class FragmentFourth extends Fragment {
     }
 
     public void showAds() {
-        Random generator = new Random();
-        int random = generator.nextInt(10);
-        if (random % 2 == 0) {
-            //No luck he will see the ads
-            if (MainActivity.facebookInterstitial.isAdLoaded()) {
-                //Facebook ads loaded he will see Facebook
-                startActivity(intent);
-                MainActivity.facebookInterstitial.show();
-            } else if (MainActivity.admobInterstitial.isLoaded()) {
-                //Facebook ads doesnt loaded he will see AdMob
-                startActivity(intent);
-                MainActivity.admobInterstitial.show();
-            } else {
-                //Both ads doesn't loaded.
-                startActivity(intent);
-            }
+        //No luck he will see the ads
+        if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
+            //Facebook ads loaded he will see Facebook
+            startActivity(intent);
+            MainActivity.facebookInterstitial.show();
+        } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
+            //Facebook ads doesnt loaded he will see AdMob
+            startActivity(intent);
+            MainActivity.admobInterstitial.show();
         } else {
-            //Lucky guy...
+            //Both ads doesn't loaded.
             startActivity(intent);
         }
     }
