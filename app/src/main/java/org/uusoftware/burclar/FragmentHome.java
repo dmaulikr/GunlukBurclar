@@ -33,6 +33,7 @@ public class FragmentHome extends Fragment {
     Window window;
     ActionBar actionbar;
     //Facebook Audience Network
+    RelativeLayout bannerLayout;
     RelativeLayout adViewContainer;
     private AdView bannerFacebook;
     private com.google.android.gms.ads.AdView bannerAdmob;
@@ -44,10 +45,12 @@ public class FragmentHome extends Fragment {
         // Premium & Ads
         premium = MainActivity.premium;
 
+        bannerLayout = (RelativeLayout) v.findViewById(R.id.bannerLayout);
         adViewContainer = (RelativeLayout) v.findViewById(R.id.adFacebook);
         bannerAdmob = (com.google.android.gms.ads.AdView) v.findViewById(R.id.adView);
 
         if (premium) {
+            bannerLayout.setVisibility(View.GONE);
             adViewContainer.setVisibility(View.GONE);
             bannerAdmob.setVisibility(View.GONE);
         } else {

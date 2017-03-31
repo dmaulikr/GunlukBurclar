@@ -39,6 +39,7 @@ public class FragmentSecond extends Fragment {
     ImageView imageserkek[] = new ImageView[12];
 
     //Facebook Audience Network
+    RelativeLayout bannerLayout;
     RelativeLayout adViewContainer;
     private AdView bannerFacebook;
     private com.google.android.gms.ads.AdView bannerAdmob;
@@ -55,6 +56,7 @@ public class FragmentSecond extends Fragment {
         bannerAdmob = (com.google.android.gms.ads.AdView) rootView.findViewById(R.id.adView);
 
         if (premium) {
+            bannerLayout.setVisibility(View.GONE);
             adViewContainer.setVisibility(View.GONE);
             bannerAdmob.setVisibility(View.GONE);
         } else {

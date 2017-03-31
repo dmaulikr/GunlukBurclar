@@ -51,6 +51,7 @@ public class SecondActivity extends AppCompatActivity {
     boolean premium;
 
     //Facebook Audience Network
+    RelativeLayout bannerLayout;
     RelativeLayout adViewContainer;
     private AdView bannerFacebook;
     private com.google.android.gms.ads.AdView bannerAdmob;
@@ -67,6 +68,7 @@ public class SecondActivity extends AppCompatActivity {
         bannerAdmob = (com.google.android.gms.ads.AdView) findViewById(R.id.adView);
 
         if (premium) {
+            bannerLayout.setVisibility(View.GONE);
             adViewContainer.setVisibility(View.GONE);
             bannerAdmob.setVisibility(View.GONE);
         } else {

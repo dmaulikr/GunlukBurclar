@@ -36,6 +36,7 @@ public class FragmentFourth extends Fragment {
     boolean premium;
 
     //Facebook Audience Network
+    RelativeLayout bannerLayout;
     RelativeLayout adViewContainer;
     private AdView bannerFacebook;
     private com.google.android.gms.ads.AdView bannerAdmob;
@@ -51,6 +52,7 @@ public class FragmentFourth extends Fragment {
         bannerAdmob = (com.google.android.gms.ads.AdView) rootView.findViewById(R.id.adView);
 
         if (premium) {
+            bannerLayout.setVisibility(View.GONE);
             adViewContainer.setVisibility(View.GONE);
             bannerAdmob.setVisibility(View.GONE);
         } else {
