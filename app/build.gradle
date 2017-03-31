@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "org.uusoftware.burclar"
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 25
-        versionCode 44
-        versionName "3.2 Beta"
+        versionCode 45
+        versionName "3.2"
     }
     buildTypes {
         release {
