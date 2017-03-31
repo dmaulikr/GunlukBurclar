@@ -58,6 +58,7 @@ public class FragmentThird extends Fragment {
         // Premium & Ads
         premium = MainActivity.premium;
 
+        bannerLayout = (RelativeLayout) rootView.findViewById(R.id.bannerLayout);
         adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
         bannerAdmob = (com.google.android.gms.ads.AdView) rootView.findViewById(R.id.adView);
 

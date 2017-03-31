@@ -64,6 +64,7 @@ public class SecondActivity extends AppCompatActivity {
         // Premium & Ads
         premium = MainActivity.premium;
 
+        bannerLayout = (RelativeLayout) findViewById(R.id.bannerLayout);
         adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
         bannerAdmob = (com.google.android.gms.ads.AdView) findViewById(R.id.adView);
 
