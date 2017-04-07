@@ -19,8 +19,8 @@
             android:text="Çin astrolojisi, Latin astrolojisi gibi insanı 12 değişik burç ve sembollerle tanımlar ve kişinin burcunu bulmak için doğum tarihi kullanılır. Latin astrolojisi yıldız sistemleri ile ilgiliyken, Çin astrolojisi hayvanlar halkasından meydana gelmektedir.\n\nYıllık burçlardan oluşan Çin astrolojisinde her yıl bir hayvan sembolü ile temsil edilir. \n\nErkek ve dişi kutupların simgelenmesi ile açıklanan iki zıt güç Yin ve Yang olarak adlandırılır. İki temel gücün temsilcileri ise Güneş ve Ay olarak belirtilir. Bu iki temel güce tahta, ateş, toprak, metal ve su elementleri de eklenerek Çin astrolojisinin temel yapısı oluşur."
             android:textColor="#fff"
             android:textSize="16sp"
-            app:layout_heightPercent="77.5%"
-            app:layout_marginTopPercent="5%"
+            app:layout_heightPercent="80%"
+            app:layout_marginTopPercent="2.5%"
             app:layout_widthPercent="80%" />
 
         <ImageView

@@ -152,7 +152,7 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_share, menu);
+        getMenuInflater().inflate(R.menu.menu_yorum, menu);
         return true;
     }
 
@@ -162,8 +162,11 @@ public class SecondActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.action_fav:
+                verifyStoragePermissions("addfavorite");
+                return true;
             case R.id.action_share:
-                verifyStoragePermissions();
+                verifyStoragePermissions("share");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -175,18 +178,65 @@ public class SecondActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    public void verifyStoragePermissions() {
+    public void verifyStoragePermissions(String operation) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (permission != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
             } else {
                 MainActivity.createFolder();
-                saveBitmap();
+                saveBitmap(operation);
             }
         } else {
-            saveBitmap();
+            saveBitmap(operation);
         }
+    }
+
+    public void saveBitmap(String operation) {
+        CharSequence now = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm", new Date());
+        String fileName = now + ".png";
+
+        try {
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile;
+            if (operation.contains("addfavorite")) {
+                imageFile = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Favoriler", fileName);
+            } else {
+                imageFile = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Paylaşılanlar", fileName);
+            }
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 70, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            if (operation.contains("share")) {
+                shareIt(fileName);
+            } else {
+                Toast.makeText(this, "Favorilerinize eklendi...", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        } catch (Throwable e) {
+            // Several error may come out with file handling or OOM
+            e.printStackTrace();
+        }
+    }
+
+    public void shareIt(String path) {
+        // Share
+        Uri myUri = Uri.parse("file://" + path);
+        String shareBody = "Günlük Burçlar Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_STREAM, myUri);
+        startActivity(Intent.createChooser(intent, "Paylaş..."));
     }
 
     @Override
@@ -215,42 +265,6 @@ public class SecondActivity extends AppCompatActivity {
         } else {
             toolbar.setBackgroundColor(color2);
         }
-    }
-
-    public void saveBitmap() {
-        CharSequence now = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm", new Date());
-        String fileName = now + ".png";
-
-        try {
-            // create bitmap screen capture
-            View v1 = getWindow().getDecorView().getRootView();
-            v1.setDrawingCacheEnabled(true);
-            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
-            v1.setDrawingCacheEnabled(false);
-
-            File imageFile = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar", fileName);
-            FileOutputStream outputStream = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 70, outputStream);
-            outputStream.flush();
-            outputStream.close();
-
-            shareIt(fileName);
-        } catch (Throwable e) {
-            // Several error may come out with file handling or OOM
-            e.printStackTrace();
-        }
-    }
-
-    public void shareIt(String path) {
-        // Share
-        Uri myUri = Uri.parse("file://" + path);
-        String shareBody = "Günlük Burçlar Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, shareBody);
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_STREAM, myUri);
-        startActivity(Intent.createChooser(intent, "Paylaş..."));
     }
 
     @Override

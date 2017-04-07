@@ -21,7 +21,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,104 +34,144 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".HelpingActivity">
 
-        <TextView
-            android:id="@+id/baslik"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="Sıkça Sorulan Sorular"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#212121" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/q1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/baslik"
-            android:layout_marginTop="30dp"
-            android:text="Beğendiğim yorumları nasıl favorilerime eklerim?"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#212121" />
+            <TextView
+                android:id="@+id/baslik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Sıkça Sorulan Sorular"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#212121" />
 
-        <TextView
-            android:id="@+id/a1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/q1"
-            android:layout_marginTop="10dp"
-            android:text="Yorum sayfalarında sağ üst köşedeki paylaş tuşuna basarak favorilerinize ekleyebilirsiniz. Paylaşmasanız dahi yorum favorilerinize otomatik olarak eklenir." />
+            <TextView
+                android:id="@+id/q1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/baslik"
+                android:layout_marginTop="30dp"
+                android:text="Favorilerime nasıl eklerim?"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#212121" />
 
-        <TextView
-            android:id="@+id/q2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/a1"
-            android:layout_marginTop="15dp"
-            android:text="Yorumu favorilerimden nasıl çıkarırım?"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#212121" />
+            <TextView
+                android:id="@+id/a1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/q1"
+                android:layout_marginTop="10dp"
+                android:text="Yorum sayfalarında sağ üst köşedeki yıldız butonuna basarak favorilerinize ekleyebilirsiniz." />
 
-        <TextView
-            android:id="@+id/a2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/q2"
-            android:layout_marginTop="10dp"
-            android:text="Favorileriniz Günlük Burçlar adlı klasörün içerisinde bulunmaktadır. Favorilerinizden çıkarmak istediğiniz yorumları silerek favorilerinizden çıkarabilirsiniz." />
+            <TextView
+                android:id="@+id/q2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/a1"
+                android:layout_marginTop="15dp"
+                android:text="Favorilerimden nasıl çıkarırım?"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#212121" />
 
-        <TextView
-            android:id="@+id/q3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/a2"
-            android:layout_marginTop="15dp"
-            android:text="Premium sürüm ile standart sürüm arasındaki fark ne?"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#212121" />
+            <TextView
+                android:id="@+id/a2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/q2"
+                android:layout_marginTop="10dp"
+                android:text="Sol menüden ulaşabileceğiniz favoriler sayfasından istediğiniz yorumu üzerine tıklayarak silebilirsiniz." />
 
-        <TextView
-            android:id="@+id/a3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/q3"
-            android:layout_marginTop="10dp"
-            android:text="Premium sürümde kullanıcılarımıza kesinlikle reklam göstermiyoruz. Ayrıca Premium sürüm kullanıcıları bildirim ayarını değiştirebilirler." />
+            <TextView
+                android:id="@+id/q3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/a2"
+                android:layout_marginTop="15dp"
+                android:text="Premium sürüm ile standart sürüm arasındaki fark ne?"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#212121" />
 
-        <TextView
-            android:id="@+id/q4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/a3"
-            android:layout_marginTop="15dp"
-            android:text="Sorunuma bu sayfada cevap bulamadım?"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#212121" />
+            <TextView
+                android:id="@+id/a3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/q3"
+                android:layout_marginTop="10dp"
+                android:text="Premium sürümde kullanıcılarımıza kesinlikle reklam göstermiyoruz. Ayrıca Premium sürüm kullanıcıları bildirim ayarını değiştirebilirler." />
 
-        <TextView
-            android:id="@+id/a4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/q4"
-            android:layout_marginTop="10dp"
-            android:text="Her türlü istek, öneri, şikayet ya da hata raporlarınızı contact@uusoftware.org adresine iletebilirsiniz." />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/q4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/a3"
+                android:layout_marginTop="15dp"
+                android:text="Daha önce paylaştıklarıma nasıl ulaşabilirim?"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#212121" />
+
+            <TextView
+                android:id="@+id/a4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/q4"
+                android:layout_marginTop="10dp"
+                android:text="Sol menüden ulaşabileceğiniz paylaşılanlar sayfasından daha önceden paylaştığınız yorumlara ulaşabilir, onları tekrar paylaşabilir ya da silebilirsiniz." />
+
+            <TextView
+                android:id="@+id/q5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/a4"
+                android:layout_marginTop="15dp"
+                android:text="Sorunuma bu sayfada cevap bulamadım?"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#212121" />
+
+            <TextView
+                android:id="@+id/a5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/q5"
+                android:layout_marginTop="10dp"
+                android:text="Her türlü istek, öneri, şikayet ya da hata raporlarınızı contact@uusoftware.org adresine iletebilirsiniz." />
+
+            <TextView
+                android:id="@+id/textViewPrivacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/a5"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:alpha="0.54"
+                android:text="@string/copyright"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:textSize="9sp" />
+        </RelativeLayout>
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

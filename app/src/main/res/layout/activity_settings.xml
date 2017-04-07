@@ -136,7 +136,7 @@
             android:layout_alignEnd="@+id/textViewPrivacy"
             android:layout_alignRight="@+id/textViewPrivacy"
             android:layout_alignTop="@+id/imageButton"
-            android:background="@drawable/ic_slider_beta" />
+            android:background="@drawable/ic_beta" />
 
         <TextView
             android:id="@+id/textViewPrivacy"

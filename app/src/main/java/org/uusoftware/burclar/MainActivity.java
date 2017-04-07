@@ -65,8 +65,11 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     public static void createFolder() {
-        File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
+        File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Favoriler");
         folder.mkdirs();
+
+        File folder2 = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Paylaşılanlar");
+        folder2.mkdirs();
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,9 +162,17 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
                         startActivity(intent);
                         return true;
-                    case R.id.nav_help:
-                        Intent intent2 = new Intent(MainActivity.this, HelpingActivity.class);
+                    case R.id.nav_paylasilanlar:
+                        Intent intent2 = new Intent(MainActivity.this, SharingsActivity.class);
                         startActivity(intent2);
+                        return true;
+                    case R.id.nav_help:
+                        Intent intent3 = new Intent(MainActivity.this, HelpingActivity.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.nav_settings:
+                        Intent intent4 = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent4);
                         return true;
                     case R.id.nav_premium:
                         try {
@@ -172,8 +183,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_puanla:
                         //PUANLA
-                        Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.uusoftware.burclar"));
-                        startActivity(intent4);
+                        Intent intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.uusoftware.burclar"));
+                        startActivity(intent5);
                         return true;
                     case R.id.nav_about:
                         //Hakkımızda
@@ -183,15 +194,6 @@ public class MainActivity extends AppCompatActivity {
                         builder.setShowTitle(true);
                         builder.setToolbarColor(Color.parseColor("#212121"));
                         customTabsIntent.launchUrl(MainActivity.this, Uri.parse("http://uusoftware.org/hakkimizda"));
-                        return true;
-                    case R.id.nav_beta:
-                        //BETA
-                        CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                        CustomTabsIntent customTabsIntent2 = builder2.build();
-                        builder2.enableUrlBarHiding();
-                        builder2.setShowTitle(true);
-                        builder2.setToolbarColor(Color.parseColor("#212121"));
-                        customTabsIntent2.launchUrl(MainActivity.this, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
                         return true;
                     default:
                         Toast.makeText(getApplicationContext(), "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_LONG).show();

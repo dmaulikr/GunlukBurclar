@@ -9,22 +9,23 @@
 
     <string name="app_name">Günlük Burçlar</string>
     <string name="action_share">Paylaş</string>
+    <string name="action_fav">Favorilere ekle</string>
     <string name="action_settings">Ayarlar</string>
     <string name="exit">Çıkmak için tekrar dokunun</string>
 
     <!-- Nav Drawer Menu Items -->
-    <string name="nav_text_profile">Profil</string>
     <string name="nav_text_home">Burç yorumları</string>
     <string name="nav_text_uyum">Burç uyumu</string>
     <string name="nav_text_yukselen">Yükselen burç</string>
     <string name="nav_text_cin">Çin astrolojisi</string>
     <string name="nav_text_favoriler">Favoriler</string>
+    <string name="nav_text_paylasilanlar">Paylaşılanlar</string>
     <string name="nav_text_help">Yardım</string>
+    <string name="nav_text_settings">Ayarlar</string>
     <string name="nav_text_premium">Premium sürüme geçin</string>
     <string name="nav_text_puanla">Uygulamayı puanla</string>
     <string name="nav_text_about">Hakkımızda</string>
-    <string name="nav_text_beta">Beta testine kaydolun</string>
-    <string name="nav_text_version"><small>Günlük Burçlar v3.2</small></string>
+    <string name="nav_text_version"><small>Günlük Burçlar v3.3</small></string>
     <string name="nav_text_premium2">Günlük Burçlar Premium</string>
 
     <!-- NavMenu Statues -->

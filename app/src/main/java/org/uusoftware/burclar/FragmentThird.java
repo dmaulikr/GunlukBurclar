@@ -37,7 +37,7 @@ public class FragmentThird extends Fragment {
     ActionBar actionbar;
     Context mContext;
     ImageView imagebutton;
-    boolean premium;
+    boolean premium, firstAd;
     ImageView imagesburc[] = new ImageView[12];
     Intent intent;
     int hour, minute;
@@ -580,18 +580,33 @@ public class FragmentThird extends Fragment {
     }
 
     public void showAds() {
-        //No luck he will see the ads
-        if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
-            //Facebook ads loaded he will see Facebook
-            startActivity(intent);
-            MainActivity.facebookInterstitial.show();
-        } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
-            //Facebook ads doesnt loaded he will see AdMob
-            startActivity(intent);
-            MainActivity.admobInterstitial.show();
+        if (!firstAd) {
+            firstAd = true;
+            if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
+                //Facebook ads loaded he will see Facebook
+                startActivity(intent);
+                MainActivity.facebookInterstitial.show();
+            } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
+                //Facebook ads doesnt loaded he will see AdMob
+                startActivity(intent);
+                MainActivity.admobInterstitial.show();
+            } else {
+                //Both ads doesn't loaded.
+                startActivity(intent);
+            }
         } else {
-            //Both ads doesn't loaded.
-            startActivity(intent);
+            if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
+                //Facebook ads loaded he will see Facebook
+                startActivity(intent);
+                MainActivity.facebookInterstitial.show();
+            } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
+                //Facebook ads doesnt loaded he will see AdMob
+                startActivity(intent);
+                MainActivity.admobInterstitial.show();
+            } else {
+                //Both ads doesn't loaded.
+                startActivity(intent);
+            }
         }
     }
 

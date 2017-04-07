@@ -136,7 +136,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_share, menu);
+        getMenuInflater().inflate(R.menu.menu_yorum, menu);
         return true;
     }
 

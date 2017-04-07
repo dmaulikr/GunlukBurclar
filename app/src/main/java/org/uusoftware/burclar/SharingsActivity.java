@@ -25,7 +25,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoritesActivity extends AppCompatActivity {
+public class SharingsActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     GridLayoutManager mLayoutManager;
@@ -40,7 +40,7 @@ public class FavoritesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorites);
+        setContentView(R.layout.activity_sharings);
 
         //StatusBar
         window = this.getWindow();
@@ -55,7 +55,7 @@ public class FavoritesActivity extends AppCompatActivity {
 
         // Analytics
         t = ((AnalyticsApplication) this.getApplication()).getDefaultTracker();
-        t.setScreenName("Favoriler");
+        t.setScreenName("Paylaşılanlar");
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
@@ -68,11 +68,11 @@ public class FavoritesActivity extends AppCompatActivity {
         options.inPreferredConfig = Config.RGB_565;
         options.inDither = true;
 
-        String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar/Favoriler";
+        String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar/Paylaşılanlar";
         File f = new File(path);
         File file[] = f.listFiles();
         if (file == null || file.length == 0) {
-            Toast.makeText(this, "Henüz favorilerinize hiç yorum eklememişsiniz.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Henüz hiç paylaşım yapmamışsınız.", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < file.length; i++) {
                 item = new FavoritesItem();
@@ -88,16 +88,6 @@ public class FavoritesActivity extends AppCompatActivity {
 
         // The number of Columns
         mLayoutManager = new GridLayoutManager(this, 2);
-        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(final int position) {
-                if ((position % 3) == 0) {
-                    return (2);
-                } else {
-                    return (1);
-                }
-            }
-        });
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 

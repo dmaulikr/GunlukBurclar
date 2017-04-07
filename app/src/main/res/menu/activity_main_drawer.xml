@@ -27,18 +27,26 @@
                 android:icon="@drawable/ic_slider_favorites"
                 android:title="@string/nav_text_favoriler" />
             <item
+                android:id="@+id/nav_paylasilanlar"
+                android:icon="@drawable/ic_share"
+                android:title="@string/nav_text_paylasilanlar" />
+            <item
                 android:id="@+id/nav_help"
                 android:icon="@drawable/ic_slider_help"
                 android:title="@string/nav_text_help" />
-            <item
-                android:id="@+id/nav_premium"
-                android:icon="@drawable/ic_slider_premium"
-                android:title="@string/nav_text_premium" />
         </menu>
     </item>
 
     <item android:title="Ekstralar">
         <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_slider_settings"
+                android:title="@string/nav_text_settings" />
+            <item
+                android:id="@+id/nav_premium"
+                android:icon="@drawable/ic_slider_premium"
+                android:title="@string/nav_text_premium" />
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_slider_about"
@@ -48,11 +56,6 @@
                 android:id="@+id/nav_puanla"
                 android:icon="@drawable/ic_slider_rate"
                 android:title="@string/nav_text_puanla" />
-
-            <item
-                android:id="@+id/nav_beta"
-                android:icon="@drawable/ic_slider_beta"
-                android:title="@string/nav_text_beta" />
         </menu>
     </item>
 </menu>
