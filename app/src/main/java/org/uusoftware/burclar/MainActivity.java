@@ -65,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     public static void createFolder() {
-        File folder0 = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
-        folder0.mkdir();
-
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Favoriler");
         folder.mkdirs();
 

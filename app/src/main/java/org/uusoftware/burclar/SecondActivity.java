@@ -188,6 +188,7 @@ public class SecondActivity extends AppCompatActivity {
                 saveBitmap(operation);
             }
         } else {
+            MainActivity.createFolder();
             saveBitmap(operation);
         }
     }
@@ -265,6 +266,13 @@ public class SecondActivity extends AppCompatActivity {
         } else {
             toolbar.setBackgroundColor(color2);
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     @Override
