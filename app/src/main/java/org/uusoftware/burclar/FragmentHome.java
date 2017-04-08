@@ -29,7 +29,7 @@ import java.util.Random;
 public class FragmentHome extends Fragment {
 
     Intent intent;
-    boolean premium, firstAd;
+    boolean premium;
     Window window;
     ActionBar actionbar;
     //Facebook Audience Network
@@ -170,14 +170,15 @@ public class FragmentHome extends Fragment {
     }
 
     public void showAds() {
-        if (!firstAd) {
-            firstAd = true;
+        if (!MainActivity.firstAd) {
             if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
                 //Facebook ads loaded he will see Facebook
+                MainActivity.firstAd = true;
                 startActivity(intent);
                 MainActivity.facebookInterstitial.show();
             } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
                 //Facebook ads doesnt loaded he will see AdMob
+                MainActivity.firstAd = true;
                 startActivity(intent);
                 MainActivity.admobInterstitial.show();
             } else {

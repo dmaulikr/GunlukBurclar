@@ -50,7 +50,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static boolean premium;
+    public static boolean premium, firstAd;
     static InterstitialAd facebookInterstitial;
     static com.google.android.gms.ads.InterstitialAd admobInterstitial;
     boolean doubleBackToExitPressedOnce;
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     public static void createFolder() {
+        File folder0 = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar");
+        folder0.mkdir();
+
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Favoriler");
         folder.mkdirs();
 

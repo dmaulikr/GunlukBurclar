@@ -127,6 +127,7 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
 
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         myWebView.loadUrl(link);
 
         //Floating action button

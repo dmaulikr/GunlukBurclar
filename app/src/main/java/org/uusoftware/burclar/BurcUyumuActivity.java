@@ -116,6 +116,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
         webview = (WebView) findViewById(R.id.webView);
         webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         webview.getSettings().setJavaScriptEnabled(true);
+        webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         webview.loadUrl("http://uusoftware.org/gunlukburclar/burcuyumu/" + burcKadin + burcErkek + ".html");
         webview.setWebViewClient(new WebViewClient() {
             @Override
