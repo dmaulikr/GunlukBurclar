@@ -170,15 +170,16 @@ public class FragmentHome extends Fragment {
     }
 
     public void showAds() {
-        if (!MainActivity.firstAd) {
+        Random generator = new Random();
+        int random = generator.nextInt(10);
+        if (random % 2 == 0) {
+            //No luck he will see the ads
             if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
                 //Facebook ads loaded he will see Facebook
-                MainActivity.firstAd = true;
                 startActivity(intent);
                 MainActivity.facebookInterstitial.show();
             } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
                 //Facebook ads doesnt loaded he will see AdMob
-                MainActivity.firstAd = true;
                 startActivity(intent);
                 MainActivity.admobInterstitial.show();
             } else {
@@ -186,26 +187,8 @@ public class FragmentHome extends Fragment {
                 startActivity(intent);
             }
         } else {
-            Random generator = new Random();
-            int random = generator.nextInt(10);
-            if (random % 2 == 0) {
-                //No luck he will see the ads
-                if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
-                    //Facebook ads loaded he will see Facebook
-                    startActivity(intent);
-                    MainActivity.facebookInterstitial.show();
-                } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
-                    //Facebook ads doesnt loaded he will see AdMob
-                    startActivity(intent);
-                    MainActivity.admobInterstitial.show();
-                } else {
-                    //Both ads doesn't loaded.
-                    startActivity(intent);
-                }
-            } else {
-                //Lucky guy...
-                startActivity(intent);
-            }
+            //Lucky guy...
+            startActivity(intent);
         }
     }
 

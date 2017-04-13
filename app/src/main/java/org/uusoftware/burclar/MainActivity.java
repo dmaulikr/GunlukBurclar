@@ -50,7 +50,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static boolean premium, firstAd;
+    public static boolean premium;
     static InterstitialAd facebookInterstitial;
     static com.google.android.gms.ads.InterstitialAd admobInterstitial;
     boolean doubleBackToExitPressedOnce;
@@ -375,6 +375,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 super.onAdFailedToLoad(errorCode);
+                AudienceNetwork();
             }
         });
         admobInterstitial.loadAd(adRequest);
