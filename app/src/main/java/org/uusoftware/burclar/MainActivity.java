@@ -131,29 +131,31 @@ public class MainActivity extends AppCompatActivity {
             // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-
                 //Closing drawer on item click
                 drawerLayout.closeDrawers();
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
+                        menuItem.setChecked(true);
                         Fragment fragment = new FragmentHome();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment, "Home").commit();
                         toolbar.setTitle(R.string.nav_text_home);
                         return true;
                     case R.id.nav_uyum:
+                        menuItem.setChecked(true);
                         Fragment fragment2 = new FragmentSecond();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment2, "Second").commit();
                         toolbar.setTitle(R.string.nav_text_uyum);
                         return true;
                     case R.id.nav_yukselen:
+                        menuItem.setChecked(true);
                         Fragment fragment3 = new FragmentThird();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment3, "Third").commit();
                         toolbar.setTitle(R.string.nav_text_yukselen);
                         return true;
                     case R.id.nav_cin:
+                        menuItem.setChecked(true);
                         Fragment fragment4 = new FragmentFourth();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment4, "Fourth").commit();
                         toolbar.setTitle(R.string.nav_text_cin);
