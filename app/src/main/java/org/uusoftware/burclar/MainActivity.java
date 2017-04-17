@@ -270,16 +270,9 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
             if (ownedSkus.contains("premium")) {
                 prefs.edit().putBoolean("Premium", true).apply();
-
-                MenuItem item = navigationView.getMenu().findItem(R.id.nav_premium);
-                item.setTitle(R.string.nav_text_premium2);
             } else {
                 prefs.edit().putBoolean("Premium", false).apply();
                 AudienceNetwork();
-
-                MenuItem item = navigationView.getMenu().findItem(R.id.nav_premium);
-                item.setTitle(R.string.nav_text_premium);
-                item.setIcon(R.drawable.ic_slider_premium);
             }
         } else {
             AudienceNetwork();
