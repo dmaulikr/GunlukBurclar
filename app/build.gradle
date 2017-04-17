@@ -8,8 +8,8 @@ android {
         applicationId "org.uusoftware.burclar"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 53
-        versionName "3.4"
+        versionCode 54
+        versionName "3.5"
     }
     buildTypes {
         release {
