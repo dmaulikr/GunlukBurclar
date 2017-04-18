@@ -14,17 +14,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.facebook.ads.Ad;
-import com.facebook.ads.AdError;
-import com.facebook.ads.AdListener;
-import com.facebook.ads.AdSize;
-import com.facebook.ads.AdView;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -37,18 +30,12 @@ public class FragmentThird extends Fragment {
     ActionBar actionbar;
     Context mContext;
     ImageView imagebutton;
-    boolean premium, firstAd;
+    boolean premium;
     ImageView imagesburc[] = new ImageView[12];
     Intent intent;
     int hour, minute;
     TextView txt;
     Calendar mcurrentTime;
-
-    //Facebook Audience Network
-    RelativeLayout bannerLayout;
-    RelativeLayout adViewContainer;
-    private AdView bannerFacebook;
-    private com.google.android.gms.ads.AdView bannerAdmob;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,40 +44,6 @@ public class FragmentThird extends Fragment {
 
         // Premium & Ads
         premium = MainActivity.premium;
-
-        bannerLayout = (RelativeLayout) rootView.findViewById(R.id.bannerLayout);
-        adViewContainer = (RelativeLayout) rootView.findViewById(R.id.adFacebook);
-        bannerAdmob = (com.google.android.gms.ads.AdView) rootView.findViewById(R.id.adView);
-
-        if (premium) {
-            bannerLayout.setVisibility(View.GONE);
-            adViewContainer.setVisibility(View.GONE);
-            bannerAdmob.setVisibility(View.GONE);
-        } else {
-            bannerFacebook = new AdView(getActivity(), getString(R.string.banner_facebook), AdSize.BANNER_HEIGHT_50);
-            adViewContainer.addView(bannerFacebook);
-            bannerFacebook.setAdListener(new AdListener() {
-                @Override
-                public void onError(Ad ad, AdError adError) {
-                    // Ad error callback
-                    adViewContainer.setVisibility(View.GONE);
-                    AdRequest adRequest = new AdRequest.Builder().build();
-                    bannerAdmob.loadAd(adRequest);
-                }
-
-                @Override
-                public void onAdLoaded(Ad ad) {
-                    // Ad loaded callback
-                    bannerAdmob.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onAdClicked(Ad ad) {
-                    // Ad clicked callback
-                }
-            });
-            bannerFacebook.loadAd();
-        }
 
         /* Colored bars */
         mContext = getActivity().getApplicationContext();
@@ -580,33 +533,17 @@ public class FragmentThird extends Fragment {
     }
 
     public void showAds() {
-        if (!firstAd) {
-            firstAd = true;
-            if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
-                //Facebook ads loaded he will see Facebook
-                startActivity(intent);
-                MainActivity.facebookInterstitial.show();
-            } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
-                //Facebook ads doesnt loaded he will see AdMob
-                startActivity(intent);
-                MainActivity.admobInterstitial.show();
-            } else {
-                //Both ads doesn't loaded.
-                startActivity(intent);
-            }
+        if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
+            //Facebook ads loaded he will see Facebook
+            startActivity(intent);
+            MainActivity.facebookInterstitial.show();
+        } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
+            //Facebook ads doesnt loaded he will see AdMob
+            startActivity(intent);
+            MainActivity.admobInterstitial.show();
         } else {
-            if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
-                //Facebook ads loaded he will see Facebook
-                startActivity(intent);
-                MainActivity.facebookInterstitial.show();
-            } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
-                //Facebook ads doesnt loaded he will see AdMob
-                startActivity(intent);
-                MainActivity.admobInterstitial.show();
-            } else {
-                //Both ads doesn't loaded.
-                startActivity(intent);
-            }
+            //Both ads doesn't loaded.
+            startActivity(intent);
         }
     }
 
@@ -619,16 +556,5 @@ public class FragmentThird extends Fragment {
         } else {
             actionbar.setBackgroundDrawable(new ColorDrawable(color2));
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (bannerFacebook != null) {
-            bannerFacebook.destroy();
-        }
-        if (bannerAdmob != null) {
-            bannerAdmob.destroy();
-        }
-        super.onDestroy();
     }
 }

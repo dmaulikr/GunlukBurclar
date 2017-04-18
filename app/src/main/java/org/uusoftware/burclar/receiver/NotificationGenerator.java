@@ -15,8 +15,8 @@ import org.uusoftware.burclar.SplashActivity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class NotificationGenerator {
-    public static void generateNotification(Context context) {
+class NotificationGenerator {
+    static void generateNotification(Context context) {
         Intent intent = new Intent(context, SplashActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);

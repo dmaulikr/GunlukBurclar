@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -26,7 +27,7 @@ public class SplashActivity extends Activity {
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         premium = prefs.getBoolean("Premium", false);
 
-        if (!premium) {
+        if (isNetworkConnected() && !premium) {
             AdMob();
             handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -81,5 +82,10 @@ public class SplashActivity extends Activity {
             }
         });
         admobInterstitial.loadAd(adRequest);
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
     }
 }

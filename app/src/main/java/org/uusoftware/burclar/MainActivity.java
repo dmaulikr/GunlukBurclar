@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.customtabs.CustomTabsIntent;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -30,11 +31,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
 import com.google.android.gms.ads.AdListener;
@@ -63,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+
+    RelativeLayout bannerLayout;
+    RelativeLayout adViewContainer;
+    private AdView bannerFacebook;
+    private com.google.android.gms.ads.AdView bannerAdmob;
 
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Favoriler");
@@ -273,9 +283,11 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 prefs.edit().putBoolean("Premium", false).apply();
                 AudienceNetwork();
+                loadBanner();
             }
         } else {
             AudienceNetwork();
+            loadBanner();
         }
     }
 
@@ -288,33 +300,6 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
         startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), 0,
                 0, 0);
-    }
-
-    public void AlarmManager() {
-        boolean alarm = prefs.getBoolean("Alarm", true);
-        if (alarm) {
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-            Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-            Calendar calendar = Calendar.getInstance();
-
-            int alarmHour = prefs.getInt("alarmHour", 10);
-            int alarmMinute = prefs.getInt("alarmMinute", 0);
-
-            Calendar calendar2 = Calendar.getInstance();
-            calendar2.set(Calendar.HOUR_OF_DAY, alarmHour);
-            calendar2.set(Calendar.MINUTE, alarmMinute);
-
-            if (calendar.getTimeInMillis() < calendar2.getTimeInMillis()) {
-                alarmManager.setInexactRepeating(AlarmManager.RTC, calendar2.getTimeInMillis(),
-                        AlarmManager.INTERVAL_DAY, pendingIntent);
-            } else {
-                alarmManager.setInexactRepeating(AlarmManager.RTC, 1000 * 60 * 60 * 24 + calendar2.getTimeInMillis(),
-                        AlarmManager.INTERVAL_DAY, pendingIntent);
-            }
-        }
     }
 
     //First try to load Audience Network, fails load AdMob
@@ -374,6 +359,73 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         admobInterstitial.loadAd(adRequest);
+    }
+
+    public void loadBanner() {
+        bannerLayout = (RelativeLayout) findViewById(R.id.bannerLayout);
+        adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
+        bannerAdmob = (com.google.android.gms.ads.AdView) findViewById(R.id.adView);
+
+        if (premium) {
+            bannerLayout.setVisibility(View.GONE);
+            adViewContainer.setVisibility(View.GONE);
+            bannerAdmob.setVisibility(View.GONE);
+            FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_container);
+            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) frameLayout.getLayoutParams();
+            params.bottomMargin = 0;
+            frameLayout.setLayoutParams(params);
+        } else {
+            bannerFacebook = new AdView(MainActivity.this, getString(R.string.banner_facebook), AdSize.BANNER_HEIGHT_50);
+            adViewContainer.addView(bannerFacebook);
+            bannerFacebook.setAdListener(new com.facebook.ads.AdListener() {
+                @Override
+                public void onError(Ad ad, AdError adError) {
+                    // Ad error callback
+                    adViewContainer.setVisibility(View.GONE);
+                    AdRequest adRequest = new AdRequest.Builder().build();
+                    bannerAdmob.loadAd(adRequest);
+                }
+
+                @Override
+                public void onAdLoaded(Ad ad) {
+                    // Ad loaded callback
+                    bannerAdmob.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAdClicked(Ad ad) {
+                    // Ad clicked callback
+                }
+            });
+            bannerFacebook.loadAd();
+        }
+    }
+
+    public void AlarmManager() {
+        boolean alarm = prefs.getBoolean("Alarm", true);
+        if (alarm) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+            Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+            Calendar calendar = Calendar.getInstance();
+
+            int alarmHour = prefs.getInt("alarmHour", 10);
+            int alarmMinute = prefs.getInt("alarmMinute", 0);
+
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.set(Calendar.HOUR_OF_DAY, alarmHour);
+            calendar2.set(Calendar.MINUTE, alarmMinute);
+
+            if (calendar.getTimeInMillis() < calendar2.getTimeInMillis()) {
+                alarmManager.setInexactRepeating(AlarmManager.RTC, calendar2.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, pendingIntent);
+            } else {
+                alarmManager.setInexactRepeating(AlarmManager.RTC, 1000 * 60 * 60 * 24 + calendar2.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, pendingIntent);
+            }
+        }
     }
 
     public void coloredBars(int color1, int color2) {
@@ -503,6 +555,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (facebookInterstitial != null) {
             facebookInterstitial.destroy();
+        }
+        if (bannerFacebook != null) {
+            bannerFacebook.destroy();
+        }
+        if (bannerAdmob != null) {
+            bannerAdmob.destroy();
         }
     }
 }
