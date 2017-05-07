@@ -158,19 +158,6 @@
                 android:layout_below="@+id/q5"
                 android:layout_marginTop="10dp"
                 android:text="Her türlü istek, öneri, şikayet ya da hata raporlarınızı contact@uusoftware.org adresine iletebilirsiniz." />
-
-            <TextView
-                android:id="@+id/textViewPrivacy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/a5"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:alpha="0.54"
-                android:text="@string/copyright"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#000000"
-                android:textSize="9sp" />
         </RelativeLayout>
     </ScrollView>
 

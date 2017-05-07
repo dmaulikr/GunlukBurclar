@@ -132,7 +132,7 @@ public class SettingsActivity extends AppCompatActivity {
                 builder.enableUrlBarHiding();
                 builder.setShowTitle(true);
                 builder.setToolbarColor(Color.parseColor("#212121"));
-                customTabsIntent.launchUrl(SettingsActivity.this, Uri.parse("http://uusoftware.org/privacy"));
+                customTabsIntent.launchUrl(SettingsActivity.this, Uri.parse("http://uusoftware.org/privacy.html"));
             }
         });
 
@@ -140,7 +140,7 @@ public class SettingsActivity extends AppCompatActivity {
         beta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Privacy
+                //Beta
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
                 builder.enableUrlBarHiding();

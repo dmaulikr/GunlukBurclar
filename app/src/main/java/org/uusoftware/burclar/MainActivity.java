@@ -195,14 +195,14 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.uusoftware.burclar"));
                         startActivity(intent4);
                         return true;
-                    case R.id.nav_about:
-                        //Hakkımızda
+                    case R.id.nav_beta:
+                        //Beta
                         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                         CustomTabsIntent customTabsIntent = builder.build();
                         builder.enableUrlBarHiding();
                         builder.setShowTitle(true);
                         builder.setToolbarColor(Color.parseColor("#212121"));
-                        customTabsIntent.launchUrl(MainActivity.this, Uri.parse("http://uusoftware.org/hakkimizda"));
+                        customTabsIntent.launchUrl(MainActivity.this, Uri.parse("https://play.google.com/apps/testing/org.uusoftware.burclar"));
                         return true;
                     default:
                         Toast.makeText(getApplicationContext(), "Bir hata oluştu! Lütfen daha sonra tekrar deneyiniz...", Toast.LENGTH_LONG).show();
