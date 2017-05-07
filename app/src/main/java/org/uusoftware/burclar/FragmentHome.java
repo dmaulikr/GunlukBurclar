@@ -1,6 +1,8 @@
 package org.uusoftware.burclar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,8 +18,6 @@ import android.widget.ImageView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-
-import java.util.Random;
 
 public class FragmentHome extends Fragment {
 
@@ -124,24 +124,34 @@ public class FragmentHome extends Fragment {
     }
 
     public void showAds() {
-        Random generator = new Random();
-        int random = generator.nextInt(10);
-        if (random % 2 == 0) {
-            //No luck he will see the ads
-            if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
-                //Facebook ads loaded he will see Facebook
-                startActivity(intent);
-                MainActivity.facebookInterstitial.show();
-            } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
-                //Facebook ads doesnt loaded he will see AdMob
-                startActivity(intent);
-                MainActivity.admobInterstitial.show();
-            } else {
-                //Both ads doesn't loaded.
-                startActivity(intent);
-            }
+        SharedPreferences prefs = getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+
+        int count = prefs.getInt("AdsCount", 0);
+        long lastShowTime = prefs.getLong("LastShowTime", 0);
+
+        if (((System.currentTimeMillis() - lastShowTime) / 1000) >= 30 || count < 3) {
+            mediationNetworks();
+            prefs.edit().putInt("AdsCount", 1).apply();
+            prefs.edit().putLong("LastShowTime", 1).apply();
         } else {
-            //Lucky guy...
+            startActivity(intent);
+        }
+
+        prefs.edit().putInt("AdsCount", count + 1).apply();
+        prefs.edit().putLong("LastShowTime", System.currentTimeMillis()).apply();
+    }
+
+    public void mediationNetworks() {
+        if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
+            //Facebook ads loaded he will see Facebook
+            startActivity(intent);
+            MainActivity.facebookInterstitial.show();
+        } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
+            //Facebook ads doesnt loaded he will see AdMob
+            startActivity(intent);
+            MainActivity.admobInterstitial.show();
+        } else {
+            //Both ads doesn't loaded.
             startActivity(intent);
         }
     }

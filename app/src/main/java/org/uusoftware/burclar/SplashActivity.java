@@ -38,7 +38,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 3500);
+            }, 3000);
         } else {
             handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -48,7 +48,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 1750);
+            }, 1500);
         }
     }
 
@@ -60,9 +60,7 @@ public class SplashActivity extends Activity {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                if (timeover) {
-                    // Do nothing
-                } else {
+                if (!timeover) {
                     handler.removeCallbacksAndMessages(null);
                     admobInterstitial.show();
                 }

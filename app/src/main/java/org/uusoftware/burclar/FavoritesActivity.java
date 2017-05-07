@@ -74,10 +74,10 @@ public class FavoritesActivity extends AppCompatActivity {
         if (file == null || file.length == 0) {
             Toast.makeText(this, "Henüz favorilerinize hiç yorum eklememişsiniz.", Toast.LENGTH_SHORT).show();
         } else {
-            for (int i = 0; i < file.length; i++) {
+            for (File aFile : file) {
                 item = new FavoritesItem();
-                item.setThumbnail(BitmapFactory.decodeFile(file[i].getAbsolutePath(), options));
-                item.setTitle(file[i].getName());
+                item.setThumbnail(BitmapFactory.decodeFile(aFile.getAbsolutePath(), options));
+                item.setTitle(aFile.getName());
                 feedsList.add(item);
             }
         }

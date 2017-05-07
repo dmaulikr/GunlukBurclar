@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
             // This method will trigger on item Click of navigation menu
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 //Closing drawer on item click
                 drawerLayout.closeDrawers();
 
@@ -182,10 +183,6 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(MainActivity.this, HelpingActivity.class);
                         startActivity(intent3);
                         return true;
-                    case R.id.nav_settings:
-                        Intent intent4 = new Intent(MainActivity.this, SettingsActivity.class);
-                        startActivity(intent4);
-                        return true;
                     case R.id.nav_premium:
                         try {
                             buyPremium();
@@ -195,8 +192,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_puanla:
                         //PUANLA
-                        Intent intent5 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.uusoftware.burclar"));
-                        startActivity(intent5);
+                        Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.uusoftware.burclar"));
+                        startActivity(intent4);
                         return true;
                     case R.id.nav_about:
                         //Hakkımızda
@@ -278,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle ownedItems = mService.getPurchases(3, getPackageName(), "inapp", null);
         if (ownedItems.getInt("RESPONSE_CODE") == 0) {
             ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+            assert ownedSkus != null;
             if (ownedSkus.contains("premium")) {
                 prefs.edit().putBoolean("Premium", true).apply();
             } else {
@@ -298,42 +296,48 @@ public class MainActivity extends AppCompatActivity {
         Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), "premium", "inapp",
                 "/tYMgwhg1DVikb4R4iLNAO5pNj/QWh19+vwajyUFbAyw93xVnDkeTZFdhdSdJ8M");
         PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
+        assert pendingIntent != null;
         startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), 0,
                 0, 0);
     }
 
     //First try to load Audience Network, fails load AdMob
     public void AudienceNetwork() {
-        facebookInterstitial = new InterstitialAd(this, getString(R.string.interstitial_facebook));
-        facebookInterstitial.setAdListener(new InterstitialAdListener() {
-            @Override
-            public void onInterstitialDisplayed(Ad ad) {
-                // Interstitial displayed callback
-            }
+        int count = prefs.getInt("AdsCount", 0);
+        long lastShowTime = prefs.getLong("LastShowTime", 0);
 
-            @Override
-            public void onInterstitialDismissed(Ad ad) {
-                // Interstitial dismissed callback
-                AudienceNetwork();
-            }
+        if (((System.currentTimeMillis() - lastShowTime) / 1000) >= 30 || count < 3) {
+            facebookInterstitial = new InterstitialAd(this, getString(R.string.interstitial_facebook));
+            facebookInterstitial.setAdListener(new InterstitialAdListener() {
+                @Override
+                public void onInterstitialDisplayed(Ad ad) {
+                    // Interstitial displayed callback
+                }
 
-            @Override
-            public void onError(Ad ad, AdError adError) {
-                // Ad error callback
-                AdMob();
-            }
+                @Override
+                public void onInterstitialDismissed(Ad ad) {
+                    // Interstitial dismissed callback
+                    AudienceNetwork();
+                }
 
-            @Override
-            public void onAdLoaded(Ad ad) {
-                // Show the ad when it's done loading.
-            }
+                @Override
+                public void onError(Ad ad, AdError adError) {
+                    // Ad error callback
+                    AdMob();
+                }
 
-            @Override
-            public void onAdClicked(Ad ad) {
-                // Ad clicked callback
-            }
-        });
-        facebookInterstitial.loadAd();
+                @Override
+                public void onAdLoaded(Ad ad) {
+                    // Show the ad when it's done loading.
+                }
+
+                @Override
+                public void onAdClicked(Ad ad) {
+                    // Ad clicked callback
+                }
+            });
+            facebookInterstitial.loadAd();
+        }
     }
 
     public void AdMob() {

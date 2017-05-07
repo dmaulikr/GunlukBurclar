@@ -18,12 +18,12 @@ import org.uusoftware.burclar.model.FavoritesItem;
 import java.io.File;
 import java.util.List;
 
-public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {
+public class SharingsAdapter extends RecyclerView.Adapter<SharingsAdapter.ViewHolder> {
     private List<FavoritesItem> feedItemList;
     private Context mContext;
 
     // Get Uri
-    private String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar/Favoriler";
+    private String path = Environment.getExternalStorageDirectory().toString() + "/Günlük Burçlar/Paylaşılanlar";
     private File f = new File(path);
     private File file[] = f.listFiles();
 
@@ -35,14 +35,14 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             Uri photoURI = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".provider", file[position]);
 
             Intent intent = new Intent();
-            intent.setAction(android.content.Intent.ACTION_VIEW);
+            intent.setAction(Intent.ACTION_VIEW);
             intent.setDataAndType(photoURI, "image/*");
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             mContext.startActivity(intent);
         }
     };
 
-    public FavoritesAdapter(Context context, List<FavoritesItem> feedItemList) {
+    public SharingsAdapter(Context context, List<FavoritesItem> feedItemList) {
         this.feedItemList = feedItemList;
         this.mContext = context;
     }

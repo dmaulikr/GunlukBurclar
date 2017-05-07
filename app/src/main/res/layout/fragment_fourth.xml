@@ -10,25 +10,50 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_centerHorizontal="true"
-            android:background="#45000000"
-            android:padding="3dp"
-            android:text="Çin astrolojisi, Latin astrolojisi gibi insanı 12 değişik burç ve sembollerle tanımlar ve kişinin burcunu bulmak için doğum tarihi kullanılır. Latin astrolojisi yıldız sistemleri ile ilgiliyken, Çin astrolojisi hayvanlar halkasından meydana gelmektedir.\n\nYıllık burçlardan oluşan Çin astrolojisinde her yıl bir hayvan sembolü ile temsil edilir. \n\nErkek ve dişi kutupların simgelenmesi ile açıklanan iki zıt güç Yin ve Yang olarak adlandırılır. İki temel gücün temsilcileri ise Güneş ve Ay olarak belirtilir. Bu iki temel güce tahta, ateş, toprak, metal ve su elementleri de eklenerek Çin astrolojisinin temel yapısı oluşur."
+            android:id="@+id/textCin"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/cerceve"
+            android:gravity="center"
+            android:text="Çin Astrolojisi"
             android:textColor="#fff"
-            android:textSize="16sp"
-            app:layout_heightPercent="80%"
-            app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="80%" />
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_heightPercent="20%"
+            app:layout_marginLeftPercent="15%"
+            app:layout_marginTopPercent="5%"
+            app:layout_widthPercent="70%" />
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/textCin"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginTopPercent="5%"
+            app:layout_widthPercent="80%">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#45000000"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="Çin astrolojisi, Latin astrolojisi gibi insanı 12 değişik burç ve sembollerle tanımlar ve kişinin burcunu bulmak için doğum tarihi kullanılır. Latin astrolojisi yıldız sistemleri ile ilgiliyken, Çin astrolojisi hayvanlar halkasından meydana gelmektedir.\n\nYıllık burçlardan oluşan Çin astrolojisinde her yıl bir hayvan sembolü ile temsil edilir. \n\nErkek ve dişi kutupların simgelenmesi ile açıklanan iki zıt güç Yin ve Yang olarak adlandırılır. İki temel gücün temsilcileri ise Güneş ve Ay olarak belirtilir. Bu iki temel güce tahta, ateş, toprak, metal ve su elementleri de eklenerek Çin astrolojisinin temel yapısı oluşur."
+                android:textColor="#f1f1f1"
+                android:textSize="16sp" />
+        </ScrollView>
 
         <ImageView
             android:id="@+id/imageViewButton"
-            android:layout_below="@+id/textView1"
+            android:layout_below="@+id/scroll"
             android:layout_centerHorizontal="true"
-            android:padding="1dp"
-            app:layout_heightPercent="12.5%"
+            app:layout_heightPercent="15%"
             app:layout_marginTopPercent="2.5%"
-            app:layout_widthPercent="75%"
+            app:layout_widthPercent="70%"
             app:srcCompat="@drawable/button_cinastrolojisi" />
     </android.support.percent.PercentRelativeLayout>
 

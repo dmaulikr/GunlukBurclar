@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="Favoriler"
+        path="Günlük Burçlar/Favoriler/" />
+    <external-path
+        name="Paylaşılanlar"
+        path="Günlük Burçlar/Paylaşılanlar/" />
+</paths>

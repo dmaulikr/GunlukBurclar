@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import org.uusoftware.burclar.adapter.FavoritesAdapter;
+import org.uusoftware.burclar.adapter.SharingsAdapter;
 import org.uusoftware.burclar.model.FavoritesItem;
 
 import java.io.File;
@@ -74,16 +74,16 @@ public class SharingsActivity extends AppCompatActivity {
         if (file == null || file.length == 0) {
             Toast.makeText(this, "Henüz hiç paylaşım yapmamışsınız.", Toast.LENGTH_SHORT).show();
         } else {
-            for (int i = 0; i < file.length; i++) {
+            for (File aFile : file) {
                 item = new FavoritesItem();
-                item.setThumbnail(BitmapFactory.decodeFile(file[i].getAbsolutePath(), options));
-                item.setTitle(file[i].getName());
+                item.setThumbnail(BitmapFactory.decodeFile(aFile.getAbsolutePath(), options));
+                item.setTitle(aFile.getName());
                 feedsList.add(item);
             }
         }
 
         // Adapter
-        mAdapter = new FavoritesAdapter(this, feedsList);
+        mAdapter = new SharingsAdapter(this, feedsList);
         mRecyclerView.setAdapter(mAdapter);
 
         // The number of Columns
