@@ -125,20 +125,15 @@ public class FragmentHome extends Fragment {
 
     public void showAds() {
         SharedPreferences prefs = getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-
         int count = prefs.getInt("AdsCount", 0);
-        long lastShowTime = prefs.getLong("LastShowTime", 0);
 
-        if (((System.currentTimeMillis() - lastShowTime) / 1000) >= 30 || count < 3) {
+        if (count < 3) {
             mediationNetworks();
-            prefs.edit().putInt("AdsCount", 1).apply();
-            prefs.edit().putLong("LastShowTime", 1).apply();
+            prefs.edit().putInt("AdsCount", count + 1).apply();
+            prefs.edit().putLong("LastShowTime", System.currentTimeMillis()).apply();
         } else {
             startActivity(intent);
         }
-
-        prefs.edit().putInt("AdsCount", count + 1).apply();
-        prefs.edit().putLong("LastShowTime", System.currentTimeMillis()).apply();
     }
 
     public void mediationNetworks() {

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerTitleStrip;
@@ -93,6 +94,11 @@ public class SecondActivity extends AppCompatActivity {
                 @Override
                 public void onAdClicked(Ad ad) {
                     // Ad clicked callback
+                }
+
+                @Override
+                public void onLoggingImpression(Ad ad) {
+
                 }
             });
             bannerFacebook.loadAd();
@@ -241,7 +247,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_EXTERNAL_STORAGE: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {

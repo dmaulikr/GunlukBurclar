@@ -306,7 +306,12 @@ public class MainActivity extends AppCompatActivity {
         int count = prefs.getInt("AdsCount", 0);
         long lastShowTime = prefs.getLong("LastShowTime", 0);
 
-        if (((System.currentTimeMillis() - lastShowTime) / 1000) >= 30 || count < 3) {
+        if (((System.currentTimeMillis() - lastShowTime) / 1000) >= 30) {
+            prefs.edit().putInt("AdsCount", 0).apply();
+            count = 0;
+        }
+
+        if (count < 3) {
             facebookInterstitial = new InterstitialAd(this, getString(R.string.interstitial_facebook));
             facebookInterstitial.setAdListener(new InterstitialAdListener() {
                 @Override
@@ -334,6 +339,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onAdClicked(Ad ad) {
                     // Ad clicked callback
+                }
+
+                @Override
+                public void onLoggingImpression(Ad ad) {
+
                 }
             });
             facebookInterstitial.loadAd();
@@ -399,6 +409,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onAdClicked(Ad ad) {
                     // Ad clicked callback
+                }
+
+                @Override
+                public void onLoggingImpression(Ad ad) {
+
                 }
             });
             bannerFacebook.loadAd();

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "69258606284",
+    "firebase_url": "https://gunlukburclar-d8a70.firebaseio.com",
+    "project_id": "gunlukburclar-d8a70",
+    "storage_bucket": "gunlukburclar-d8a70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69258606284:android:b5912113708325e7",
+        "android_client_info": {
+          "package_name": "org.uusoftware.burclar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69258606284-cp8qhbcfdcso5e1c5uas84ru0243prfs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.uusoftware.burclar",
+            "certificate_hash": "5b09453cf70b113ce62b76412c8a23f3e7a73da3"
+          }
+        },
+        {
+          "client_id": "69258606284-uvemngcn6ohj418v7c2ikhlm4i6ma8ba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8xLF6bJvA3GvTIc0sOT8QCnkUflbuROc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69258606284-uvemngcn6ohj418v7c2ikhlm4i6ma8ba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
