@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static boolean premium;
+    public static int adCount;
     static InterstitialAd facebookInterstitial;
     static com.google.android.gms.ads.InterstitialAd admobInterstitial;
     boolean doubleBackToExitPressedOnce;
@@ -303,15 +304,7 @@ public class MainActivity extends AppCompatActivity {
 
     //First try to load Audience Network, fails load AdMob
     public void AudienceNetwork() {
-        int count = prefs.getInt("AdsCount", 0);
-        long lastShowTime = prefs.getLong("LastShowTime", 0);
-
-        if (((System.currentTimeMillis() - lastShowTime) / 1000) >= 30) {
-            prefs.edit().putInt("AdsCount", 0).apply();
-            count = 0;
-        }
-
-        if (count < 3) {
+        if (adCount < 3) {
             facebookInterstitial = new InterstitialAd(this, getString(R.string.interstitial_facebook));
             facebookInterstitial.setAdListener(new InterstitialAdListener() {
                 @Override

@@ -1,8 +1,6 @@
 package org.uusoftware.burclar;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -124,27 +122,16 @@ public class FragmentHome extends Fragment {
     }
 
     public void showAds() {
-        SharedPreferences prefs = getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-        int count = prefs.getInt("AdsCount", 0);
-
-        if (count < 3) {
-            mediationNetworks();
-            prefs.edit().putInt("AdsCount", count + 1).apply();
-            prefs.edit().putLong("LastShowTime", System.currentTimeMillis()).apply();
-        } else {
-            startActivity(intent);
-        }
-    }
-
-    public void mediationNetworks() {
         if (MainActivity.facebookInterstitial != null && MainActivity.facebookInterstitial.isAdLoaded()) {
             //Facebook ads loaded he will see Facebook
             startActivity(intent);
             MainActivity.facebookInterstitial.show();
+            MainActivity.adCount++;
         } else if (MainActivity.admobInterstitial != null && MainActivity.admobInterstitial.isLoaded()) {
             //Facebook ads doesnt loaded he will see AdMob
             startActivity(intent);
             MainActivity.admobInterstitial.show();
+            MainActivity.adCount++;
         } else {
             //Both ads doesn't loaded.
             startActivity(intent);

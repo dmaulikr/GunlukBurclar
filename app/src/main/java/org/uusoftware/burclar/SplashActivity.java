@@ -63,6 +63,7 @@ public class SplashActivity extends Activity {
                 if (!timeover) {
                     handler.removeCallbacksAndMessages(null);
                     admobInterstitial.show();
+                    MainActivity.adCount++;
                 }
             }
 
