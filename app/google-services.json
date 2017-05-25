@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "69258606284-etmrpstvs7kjtm280pjbi9ucmtes4136.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.uusoftware.burclar",
+            "certificate_hash": "8a4a6e6a3aa10c22101b3e6bdfa852ac4e63b0bc"
+          }
+        },
+        {
           "client_id": "69258606284-cp8qhbcfdcso5e1c5uas84ru0243prfs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

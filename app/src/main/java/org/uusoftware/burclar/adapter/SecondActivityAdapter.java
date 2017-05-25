@@ -12,7 +12,7 @@ import org.uusoftware.burclar.FragmentSixth;
 
 public class SecondActivityAdapter extends FragmentPagerAdapter {
 
-    Fragment fragment = null;
+    private Fragment fragment = null;
 
     public SecondActivityAdapter(FragmentManager fm) {
         super(fm);
