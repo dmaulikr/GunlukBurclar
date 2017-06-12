@@ -24,7 +24,7 @@
     <string name="nav_text_premium">Premium sürüme geçin</string>
     <string name="nav_text_puanla">Uygulamayı puanla</string>
     <string name="nav_text_beta">Beta sürüme geçin</string>
-    <string name="nav_text_version"><small>Günlük Burçlar v3.6</small></string>
+    <string name="nav_text_version"><small>Günlük Burçlar v3.7</small></string>
 
     <!-- NavMenu Statues -->
     <string name="navigation_drawer_open">Yan menü açıldı</string>
