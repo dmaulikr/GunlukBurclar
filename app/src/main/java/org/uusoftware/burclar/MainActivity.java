@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView bannerFacebook;
     private com.google.android.gms.ads.AdView bannerAdmob;
 
+    //This function calls after user give the sdcard permissions
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Favoriler");
         folder.mkdirs();
