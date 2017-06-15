@@ -38,7 +38,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 3500);
+            }, 3750);
         } else {
             handler = new Handler();
             handler.postDelayed(new Runnable() {
