@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent2);
                         return true;
                     case R.id.nav_help:
-                        Intent intent3 = new Intent(MainActivity.this, HelpingActivity.class);
+                        Intent intent3 = new Intent(MainActivity.this, FaqActivity.class);
                         startActivity(intent3);
                         return true;
                     case R.id.nav_premium:
@@ -255,6 +255,7 @@ public class MainActivity extends AppCompatActivity {
             public void onServiceDisconnected(ComponentName name) {
                 mService = null;
                 AudienceNetwork();
+                loadBanner();
             }
 
             @Override
@@ -280,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
             assert ownedSkus != null;
             if (ownedSkus.contains("premium")) {
                 prefs.edit().putBoolean("Premium", true).apply();
+                loadBanner();
             } else {
                 prefs.edit().putBoolean("Premium", false).apply();
                 AudienceNetwork();
@@ -378,10 +380,10 @@ public class MainActivity extends AppCompatActivity {
             bannerLayout.setVisibility(View.GONE);
             adViewContainer.setVisibility(View.GONE);
             bannerAdmob.setVisibility(View.GONE);
-            FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_container);
-            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) frameLayout.getLayoutParams();
+            FrameLayout layout = (FrameLayout) findViewById(R.id.frame_container);
+            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) layout.getLayoutParams();
             params.bottomMargin = 0;
-            frameLayout.setLayoutParams(params);
+            layout.setLayoutParams(params);
         } else {
             bannerFacebook = new AdView(MainActivity.this, getString(R.string.banner_facebook), AdSize.BANNER_HEIGHT_50);
             adViewContainer.addView(bannerFacebook);

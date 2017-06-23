@@ -35,7 +35,6 @@ public class FavoritesActivity extends AppCompatActivity {
     BitmapFactory.Options options;
     Window window;
     Toolbar toolbar;
-    private List<FavoritesItem> feedsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class FavoritesActivity extends AppCompatActivity {
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        feedsList = new ArrayList<>();
+        List<FavoritesItem> feedsList = new ArrayList<>();
 
         options = new BitmapFactory.Options();
         options.inJustDecodeBounds = false;

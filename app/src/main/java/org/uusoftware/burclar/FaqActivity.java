@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-public class HelpingActivity extends AppCompatActivity {
+public class FaqActivity extends AppCompatActivity {
 
     Window window;
     Toolbar toolbar;
@@ -20,7 +20,7 @@ public class HelpingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_helping);
+        setContentView(R.layout.activity_faq);
 
         //StatusBar
         window = this.getWindow();

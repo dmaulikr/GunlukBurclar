@@ -26,10 +26,10 @@ public class SplashActivity extends Activity {
 
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         premium = prefs.getBoolean("Premium", false);
+        handler = new Handler();
 
         if (isNetworkConnected() && !premium) {
             AdMob();
-            handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -40,7 +40,6 @@ public class SplashActivity extends Activity {
                 }
             }, 3750);
         } else {
-            handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -48,7 +47,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 1750);
+            }, 1500);
         }
     }
 
