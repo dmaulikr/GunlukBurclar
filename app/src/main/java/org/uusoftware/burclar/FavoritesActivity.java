@@ -87,16 +87,6 @@ public class FavoritesActivity extends AppCompatActivity {
 
         // The number of Columns
         mLayoutManager = new GridLayoutManager(this, 2);
-        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(final int position) {
-                if ((position % 3) == 0) {
-                    return (2);
-                } else {
-                    return (1);
-                }
-            }
-        });
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
