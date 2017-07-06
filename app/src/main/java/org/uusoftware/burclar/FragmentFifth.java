@@ -64,6 +64,7 @@ public class FragmentFifth extends Fragment {
 
         WebView myWebView = (WebView) v.findViewById(R.id.webView0);
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        myWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.loadUrl(link);
 

@@ -38,7 +38,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 3750);
+            }, 3500);
         } else {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -47,12 +47,12 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 1500);
+            }, 1750);
         }
     }
 
     public void AdMob() {
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("FBD4B60FBD19C916398DB53B16F09D17").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("1570E844A1342361F2C23869919CF823").build();
         admobInterstitial = new com.google.android.gms.ads.InterstitialAd(this);
         admobInterstitial.setAdUnitId(getString(R.string.interstitial_admob));
         admobInterstitial.setAdListener(new AdListener() {
@@ -61,22 +61,25 @@ public class SplashActivity extends Activity {
                 super.onAdLoaded();
                 if (!timeover) {
                     handler.removeCallbacksAndMessages(null);
-                    admobInterstitial.show();
                     MainActivity.adCount++;
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                    admobInterstitial.show();
                 }
             }
 
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
             }
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 super.onAdFailedToLoad(errorCode);
+                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
         admobInterstitial.loadAd(adRequest);

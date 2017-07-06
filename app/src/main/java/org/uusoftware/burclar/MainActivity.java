@@ -226,7 +226,8 @@ public class MainActivity extends AppCompatActivity {
         premium = prefs.getBoolean("Premium", false);
 
         // AppRater
-        AppRater();
+        RateThisApp.onCreate(this);
+        RateThisApp.showRateDialogIfNeeded(this);
 
         // AlarmManager
         AlarmManager();
@@ -235,18 +236,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
-    }
-
-    public void AppRater() {
-        RateThisApp.onStart(this);
-        RateThisApp.Config config = new RateThisApp.Config(3, 5);
-        config.setTitle(R.string.rate_title);
-        config.setMessage(R.string.rate_message);
-        config.setYesButtonText(R.string.rate_yes);
-        config.setNoButtonText(R.string.rate_no);
-        config.setCancelButtonText(R.string.rate_later);
-        RateThisApp.init(config);
-        RateThisApp.showRateDialogIfNeeded(this);
     }
 
     private void InAppBilling() {
@@ -347,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AdMob() {
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("FBD4B60FBD19C916398DB53B16F09D17").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("1570E844A1342361F2C23869919CF823").build();
         admobInterstitial = new com.google.android.gms.ads.InterstitialAd(this);
         admobInterstitial.setAdUnitId(getString(R.string.interstitial_admob));
         admobInterstitial.setAdListener(new AdListener() {
