@@ -20,8 +20,5 @@
         android:id="@+id/webView0"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView1"
-        android:background="@android:color/transparent" />
+        android:layout_below="@+id/imageView1" />
 </RelativeLayout>

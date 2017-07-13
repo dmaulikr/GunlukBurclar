@@ -8,11 +8,13 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -144,7 +145,6 @@ public class YukselenBurcActivity extends AppCompatActivity {
             collapsingToolbarLayout.setBackgroundColor(Color.parseColor("#311B92"));
         }
 
-        myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.loadUrl(link);
 
@@ -187,7 +187,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_EXTERNAL_STORAGE: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -220,7 +220,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
 
     public void saveBitmap(String operation) {
         CharSequence now = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm", new Date());
-        String fileName = now + ".png";
+        String fileName = now + ".jpg";
 
         try {
             // create bitmap screen capture
@@ -237,12 +237,12 @@ public class YukselenBurcActivity extends AppCompatActivity {
             }
 
             FileOutputStream outputStream = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 70, outputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
             outputStream.flush();
             outputStream.close();
 
             if (operation.contains("share")) {
-                shareIt(fileName);
+                shareIt(imageFile);
             } else {
                 Toast.makeText(this, "Favorilerinize eklendi...", Toast.LENGTH_SHORT)
                         .show();
@@ -253,14 +253,9 @@ public class YukselenBurcActivity extends AppCompatActivity {
         }
     }
 
-    public void shareIt(String path) {
-        // Share
-        Uri myUri = Uri.parse("file://" + path);
-        System.out.println(myUri);
-        String shareBody = "Yükselen burcum" + burcName + " çıktı. Seninki? https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+    public void shareIt(File newFile) {
+        Uri myUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", newFile);
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, shareBody);
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_STREAM, myUri);
         startActivity(Intent.createChooser(intent, "Paylaş..."));

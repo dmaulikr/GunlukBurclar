@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -201,7 +202,7 @@ public class SecondActivity extends AppCompatActivity {
 
     public void saveBitmap(String operation) {
         CharSequence now = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm", new Date());
-        String fileName = now + ".png";
+        String fileName = now + ".jpg";
 
         try {
             // create bitmap screen capture
@@ -218,12 +219,12 @@ public class SecondActivity extends AppCompatActivity {
             }
 
             FileOutputStream outputStream = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 70, outputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
             outputStream.flush();
             outputStream.close();
 
             if (operation.contains("share")) {
-                shareIt(fileName);
+                shareIt(imageFile);
             } else {
                 Toast.makeText(this, "Favorilerinize eklendi...", Toast.LENGTH_SHORT)
                         .show();
@@ -234,13 +235,9 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
-    public void shareIt(String path) {
-        // Share
-        Uri myUri = Uri.parse("file://" + path);
-        String shareBody = "Günlük Burçlar Google Play'de: https://play.google.com/store/apps/details?id=org.uusoftware.burclar";
+    public void shareIt(File newFile) {
+        Uri myUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", newFile);
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, shareBody);
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_STREAM, myUri);
         startActivity(Intent.createChooser(intent, "Paylaş..."));
