@@ -28,7 +28,7 @@
                 android:title="@string/nav_text_favoriler" />
             <item
                 android:id="@+id/nav_paylasilanlar"
-                android:icon="@drawable/ic_share"
+                android:icon="@drawable/ic_slider_sharings"
                 android:title="@string/nav_text_paylasilanlar" />
             <item
                 android:id="@+id/nav_help"
@@ -48,6 +48,11 @@
                 android:id="@+id/nav_puanla"
                 android:icon="@drawable/ic_slider_rate"
                 android:title="@string/nav_text_puanla" />
+
+            <item
+                android:id="@+id/nav_support"
+                android:icon="@drawable/ic_slider_support"
+                android:title="@string/nav_text_support" />
 
             <item
                 android:id="@+id/nav_beta"

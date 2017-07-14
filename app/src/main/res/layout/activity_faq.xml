@@ -91,7 +91,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/q2"
                 android:layout_marginTop="10dp"
-                android:text="Sol menüden ulaşabileceğiniz favoriler sayfasından istediğiniz yorumu üzerine tıklayarak silebilirsiniz." />
+                android:text="Favorileriniz cihazınızda Günlük Burçlar adlı klasörde depolanmaktadır. İlgili klasörden istediğiniz yorumu silerek favorilerinizden çıkarabilirsiniz." />
 
             <TextView
                 android:id="@+id/q3"
@@ -123,7 +123,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/a3"
                 android:layout_marginTop="15dp"
-                android:text="Daha önce paylaştıklarıma nasıl ulaşabilirim?"
+                android:text="Önceki paylaşımlarıma nasıl ulaşabilirim?"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#212121" />
 
@@ -135,7 +135,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/q4"
                 android:layout_marginTop="10dp"
-                android:text="Sol menüden ulaşabileceğiniz paylaşılanlar sayfasından daha önceden paylaştığınız yorumlara ulaşabilir, onları tekrar paylaşabilir ya da silebilirsiniz." />
+                android:text="Sol menüden ulaşabileceğiniz paylaşılanlar sayfasından daha önceden paylaştığınız yorumlara ulaşabilirsiniz. Paylaşımlarınız Günlük Burçlar adlı klasörde depolanmaktadır. İlgili klasörden istediğiniz yorumu silerek paylaşımlarınızdan çıkarabilirsiniz." />
 
             <TextView
                 android:id="@+id/q5"

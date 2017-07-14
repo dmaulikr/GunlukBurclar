@@ -38,7 +38,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 3500);
+            }, 4000);
         } else {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -47,7 +47,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 1750);
+            }, 2000);
         }
     }
 
@@ -64,8 +64,8 @@ public class SplashActivity extends Activity {
                     MainActivity.adCount++;
                     Intent i = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(i);
-                    finish();
                     admobInterstitial.show();
+                    finish();
                 }
             }
 
@@ -77,9 +77,6 @@ public class SplashActivity extends Activity {
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 super.onAdFailedToLoad(errorCode);
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
             }
         });
         admobInterstitial.loadAd(adRequest);

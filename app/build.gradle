@@ -8,7 +8,7 @@ android {
         applicationId "org.uusoftware.burclar"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 69
+        versionCode 70
         versionName "3.9"
     }
     buildTypes {
@@ -20,7 +20,6 @@ android {
     }
 }
 
-
 dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
@@ -30,8 +29,9 @@ dependencies {
     compile 'com.android.support:customtabs:25.3.1'
     compile 'com.facebook.android:audience-network-sdk:4.24.0'
     compile 'com.google.firebase:firebase-ads:11.0.2'
-    compile 'com.google.android.gms:play-services-analytics:11.0.2'
     compile 'com.google.firebase:firebase-messaging:11.0.2'
+    compile 'com.google.android.gms:play-services-analytics:11.0.2'
     compile 'io.github.kobakei:ratethisapp:1.2.0'
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
 }
+apply plugin: 'com.google.gms.google-services'

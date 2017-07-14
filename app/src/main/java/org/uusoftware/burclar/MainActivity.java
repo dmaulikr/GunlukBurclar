@@ -197,6 +197,14 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent4 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.uusoftware.burclar"));
                         startActivity(intent4);
                         return true;
+                    case R.id.nav_support:
+                        //PAYLAŞ
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Günlük Burçlar: Astroloji, burç uyumu, yükselen burç ve daha fazlası! https://play.google.com/store/apps/details?id=org.uusoftware.burclar");
+                        sendIntent.setType("text/plain");
+                        startActivity(Intent.createChooser(sendIntent, "Uygulamayı paylaş"));
+                        return true;
                     case R.id.nav_beta:
                         //Beta
                         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
