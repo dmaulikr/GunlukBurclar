@@ -38,7 +38,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 4000);
+            }, 5000);
         } else {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -47,7 +47,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }
-            }, 2000);
+            }, 2500);
         }
     }
 

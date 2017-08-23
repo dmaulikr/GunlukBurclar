@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         window = this.getWindow();
 
         //Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         premium = MainActivity.premium;
         alarm = prefs.getBoolean("Alarm", true);
 
-        Switch alarmSwitch = (Switch) findViewById(R.id.mySwitch);
+        Switch alarmSwitch = findViewById(R.id.mySwitch);
         if (alarm) {
             alarmSwitch.setChecked(true);
         } else {
@@ -84,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final TextView textViewClock = (TextView) findViewById(R.id.textViewClockText);
+        final TextView textViewClock = findViewById(R.id.textViewClockText);
         final int alarmHour = prefs.getInt("alarmHour", 10);
         final int alarmMinute = prefs.getInt("alarmMinute", 0);
         textViewClock.setText(pad(alarmHour) + ":" + pad(alarmMinute));
@@ -105,24 +105,24 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        TextView textViewAccount = (TextView) findViewById(R.id.textViewAccountInfo);
+        TextView textViewAccount = findViewById(R.id.textViewAccountInfo);
         if (premium) {
             textViewAccount.setText(R.string.account_premium);
         } else {
             textViewAccount.setText(R.string.account_standart);
         }
 
-        TextView textViewVersion = (TextView) findViewById(R.id.textViewVersionInfo);
+        TextView textViewVersion = findViewById(R.id.textViewVersionInfo);
         PackageInfo pInfo = null;
         try {
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        String version = pInfo.versionName;
+        String version = pInfo != null ? pInfo.versionName : null;
         textViewVersion.setText("v" + version);
 
-        ImageView privacy = (ImageView) findViewById(R.id.imageButton);
+        ImageView privacy = findViewById(R.id.imageButton);
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +136,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        ImageView beta = (ImageView) findViewById(R.id.imageButton2);
+        ImageView beta = findViewById(R.id.imageButton2);
         beta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

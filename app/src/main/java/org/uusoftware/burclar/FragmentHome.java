@@ -42,18 +42,18 @@ public class FragmentHome extends Fragment {
         t.enableAdvertisingIdCollection(true);
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
-        ImageView img = (ImageView) v.findViewById(R.id.imageView1);
-        ImageView img2 = (ImageView) v.findViewById(R.id.imageView2);
-        ImageView img3 = (ImageView) v.findViewById(R.id.imageView3);
-        ImageView img4 = (ImageView) v.findViewById(R.id.imageView4);
-        ImageView img5 = (ImageView) v.findViewById(R.id.imageView5);
-        ImageView img6 = (ImageView) v.findViewById(R.id.imageView6);
-        ImageView img7 = (ImageView) v.findViewById(R.id.imageView7);
-        ImageView img8 = (ImageView) v.findViewById(R.id.imageView8);
-        ImageView img9 = (ImageView) v.findViewById(R.id.imageView9);
-        ImageView img10 = (ImageView) v.findViewById(R.id.imageView10);
-        ImageView img11 = (ImageView) v.findViewById(R.id.imageView11);
-        ImageView img12 = (ImageView) v.findViewById(R.id.imageView12);
+        ImageView img = v.findViewById(R.id.imageView1);
+        ImageView img2 = v.findViewById(R.id.imageView2);
+        ImageView img3 = v.findViewById(R.id.imageView3);
+        ImageView img4 = v.findViewById(R.id.imageView4);
+        ImageView img5 = v.findViewById(R.id.imageView5);
+        ImageView img6 = v.findViewById(R.id.imageView6);
+        ImageView img7 = v.findViewById(R.id.imageView7);
+        ImageView img8 = v.findViewById(R.id.imageView8);
+        ImageView img9 = v.findViewById(R.id.imageView9);
+        ImageView img10 = v.findViewById(R.id.imageView10);
+        ImageView img11 = v.findViewById(R.id.imageView11);
+        ImageView img12 = v.findViewById(R.id.imageView12);
 
         OnClickListener buttonListener = new OnClickListener() {
 

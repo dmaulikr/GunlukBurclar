@@ -35,8 +35,7 @@ import java.util.Date;
 
 public class YukselenBurcActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     Window window;
     Toolbar toolbar;
@@ -54,19 +53,19 @@ public class YukselenBurcActivity extends AppCompatActivity {
         window = this.getWindow();
 
         //Collapsing Toolbar
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
+        collapsingToolbarLayout = findViewById(R.id.collapsing_header);
         collapsingToolbarLayout.setTitle("Yükselen burç");
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
         //Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Dynamic bar colors
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.Appbar);
+        AppBarLayout appBarLayout = findViewById(R.id.Appbar);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -90,8 +89,8 @@ public class YukselenBurcActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String selectedburc = extras.getString("burcid");
 
-        ImageView image = (ImageView) findViewById(R.id.burc_header);
-        WebView myWebView = (WebView) findViewById(R.id.webViewGeneral);
+        ImageView image = findViewById(R.id.burc_header);
+        WebView myWebView = findViewById(R.id.webViewGeneral);
         link = "http://uusoftware.org/gunlukburclar/burcyorumlari/" + selectedburc + ".html";
 
         assert selectedburc != null;
@@ -149,7 +148,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
         myWebView.loadUrl(link);
 
         //Floating action button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -20,7 +20,7 @@ public class FragmentFifth extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fifth, container, false);
 
         selectedburc = SecondActivity.burcid;
-        ImageView image = (ImageView) v.findViewById(R.id.imageView1);
+        ImageView image = v.findViewById(R.id.imageView1);
         link = "http://uusoftware.org/gunlukburclar/burcyorumlari/" + selectedburc + ".html";
 
         if (selectedburc.contains("koc")) {
@@ -61,7 +61,7 @@ public class FragmentFifth extends Fragment {
             image.setBackgroundColor(Color.parseColor("#311B92"));
         }
 
-        WebView myWebView = (WebView) v.findViewById(R.id.webView0);
+        WebView myWebView = v.findViewById(R.id.webView0);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.loadUrl(link);
 

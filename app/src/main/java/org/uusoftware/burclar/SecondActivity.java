@@ -43,8 +43,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     public static String burcid;
-    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     SecondActivityAdapter mSectionsPagerAdapter;
     PagerTitleStrip pagertabstrip;
     ViewPager mViewPager;
@@ -66,9 +65,9 @@ public class SecondActivity extends AppCompatActivity {
         // Premium & Ads
         premium = MainActivity.premium;
 
-        bannerLayout = (RelativeLayout) findViewById(R.id.bannerLayout);
-        adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-        bannerAdmob = (com.google.android.gms.ads.AdView) findViewById(R.id.adView);
+        bannerLayout = findViewById(R.id.bannerLayout);
+        adViewContainer = findViewById(R.id.adFacebook);
+        bannerAdmob = findViewById(R.id.adView);
 
         if (premium) {
             bannerLayout.setVisibility(View.GONE);
@@ -109,7 +108,7 @@ public class SecondActivity extends AppCompatActivity {
         window = this.getWindow();
 
         //Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -125,10 +124,10 @@ public class SecondActivity extends AppCompatActivity {
         burcid = extras.getString("burcid");
 
         mSectionsPagerAdapter = new SecondActivityAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        pagertabstrip = (PagerTitleStrip) findViewById(R.id.pager_title_strip);
+        pagertabstrip = findViewById(R.id.pager_title_strip);
         String selectedburc = SecondActivity.burcid;
         if (selectedburc.contains("koc")) {
             pagertabstrip.setBackgroundColor(Color.parseColor("#1E88E5"));

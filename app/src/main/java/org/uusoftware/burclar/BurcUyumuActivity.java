@@ -39,8 +39,7 @@ import java.util.Date;
 public class BurcUyumuActivity extends AppCompatActivity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     Window window;
     Toolbar toolbar;
@@ -65,19 +64,19 @@ public class BurcUyumuActivity extends AppCompatActivity {
         window = this.getWindow();
 
         //Collapsing Toolbar
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_header);
+        collapsingToolbarLayout = findViewById(R.id.collapsing_header);
         collapsingToolbarLayout.setTitle("Burç uyumu");
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
         //Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Dynamic bar colors
-        final AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.Appbar);
+        final AppBarLayout appBarLayout = findViewById(R.id.Appbar);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -92,7 +91,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
         });
 
         //Floating action button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,10 +110,10 @@ public class BurcUyumuActivity extends AppCompatActivity {
         burcKadin = extras.getString("kadinid");
         burcErkek = extras.getString("erkekid");
 
-        textView = (TextView) findViewById(R.id.textView);
-        progressView = (CircularProgressView) findViewById(R.id.progressBar);
+        textView = findViewById(R.id.textView);
+        progressView = findViewById(R.id.progressBar);
 
-        webview = (WebView) findViewById(R.id.webView);
+        webview = findViewById(R.id.webView);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.loadUrl("http://uusoftware.org/gunlukburclar/burcuyumu/" + burcKadin + burcErkek + ".html");
         webview.setWebViewClient(new WebViewClient() {

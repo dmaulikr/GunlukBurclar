@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private com.google.android.gms.ads.AdView bannerAdmob;
 
     //This function calls after user give the sdcard permissions
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void createFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Günlük Burçlar/Favoriler");
         folder.mkdirs();
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Initializing Toolbar and setting it as the actionbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //ColoredBars
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         coloredBars(ContextCompat.getColor(this, R.color.colorMainDark), ContextCompat.getColor(this, R.color.colorMainPrimary));
 
         // Initializing Drawer Layout and ActionBarToggle
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             @Override
@@ -120,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //Setting the actionbarToggle to drawer layout
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
 
         //Initializing NavigationView
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 
         //Add Navigation header and its ClickListener
         View headerView = getLayoutInflater().inflate(R.layout.nav_header, navigationView, false);
@@ -186,10 +187,14 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent3);
                         return true;
                     case R.id.nav_premium:
-                        try {
-                            buyPremium();
-                        } catch (RemoteException | SendIntentException e) {
-                            e.printStackTrace();
+                        if (!premium) {
+                            try {
+                                buyPremium();
+                            } catch (RemoteException | SendIntentException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Zaten daha önce premium sürüme geçmiş yapmışsınız...", Toast.LENGTH_LONG).show();
                         }
                         return true;
                     case R.id.nav_puanla:
@@ -369,15 +374,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadBanner() {
-        bannerLayout = (RelativeLayout) findViewById(R.id.bannerLayout);
-        adViewContainer = (RelativeLayout) findViewById(R.id.adFacebook);
-        bannerAdmob = (com.google.android.gms.ads.AdView) findViewById(R.id.adView);
+        bannerLayout = findViewById(R.id.bannerLayout);
+        adViewContainer = findViewById(R.id.adFacebook);
+        bannerAdmob = findViewById(R.id.adView);
 
         if (premium) {
             bannerLayout.setVisibility(View.GONE);
             adViewContainer.setVisibility(View.GONE);
             bannerAdmob.setVisibility(View.GONE);
-            FrameLayout layout = (FrameLayout) findViewById(R.id.frame_container);
+            FrameLayout layout = findViewById(R.id.frame_container);
             CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) layout.getLayoutParams();
             params.bottomMargin = 0;
             layout.setLayoutParams(params);
@@ -497,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {

@@ -47,7 +47,7 @@ public class FragmentFourth extends Fragment {
         t.send(new HitBuilders.ScreenViewBuilder().build());
 
         intent = new Intent(getActivity(), CinAstrolojisiActivity.class);
-        ImageView imagebutton = (ImageView) rootView.findViewById(R.id.imageViewButton);
+        ImageView imagebutton = rootView.findViewById(R.id.imageViewButton);
         imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +77,7 @@ public class FragmentFourth extends Fragment {
         return rootView;
     }
 
+    @SuppressWarnings("deprecation")
     public void findChineseHoroscope(Date date) {
         Date date1925b = new Date(1924, 1, 5);
         Date date2020a = new Date(2020, 0, 24);

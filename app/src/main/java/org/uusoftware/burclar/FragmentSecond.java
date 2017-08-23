@@ -55,35 +55,35 @@ public class FragmentSecond extends Fragment {
         intent = new Intent(getActivity(), BurcUyumuActivity.class);
 
         //ImagesKadın
-        imageskadin[0] = (ImageView) rootView.findViewById(R.id.kadin1);
-        imageskadin[1] = (ImageView) rootView.findViewById(R.id.kadin2);
-        imageskadin[2] = (ImageView) rootView.findViewById(R.id.kadin3);
-        imageskadin[3] = (ImageView) rootView.findViewById(R.id.kadin4);
-        imageskadin[4] = (ImageView) rootView.findViewById(R.id.kadin5);
-        imageskadin[5] = (ImageView) rootView.findViewById(R.id.kadin6);
-        imageskadin[6] = (ImageView) rootView.findViewById(R.id.kadin7);
-        imageskadin[7] = (ImageView) rootView.findViewById(R.id.kadin8);
-        imageskadin[8] = (ImageView) rootView.findViewById(R.id.kadin9);
-        imageskadin[9] = (ImageView) rootView.findViewById(R.id.kadin10);
-        imageskadin[10] = (ImageView) rootView.findViewById(R.id.kadin11);
-        imageskadin[11] = (ImageView) rootView.findViewById(R.id.kadin12);
+        imageskadin[0] = rootView.findViewById(R.id.kadin1);
+        imageskadin[1] = rootView.findViewById(R.id.kadin2);
+        imageskadin[2] = rootView.findViewById(R.id.kadin3);
+        imageskadin[3] = rootView.findViewById(R.id.kadin4);
+        imageskadin[4] = rootView.findViewById(R.id.kadin5);
+        imageskadin[5] = rootView.findViewById(R.id.kadin6);
+        imageskadin[6] = rootView.findViewById(R.id.kadin7);
+        imageskadin[7] = rootView.findViewById(R.id.kadin8);
+        imageskadin[8] = rootView.findViewById(R.id.kadin9);
+        imageskadin[9] = rootView.findViewById(R.id.kadin10);
+        imageskadin[10] = rootView.findViewById(R.id.kadin11);
+        imageskadin[11] = rootView.findViewById(R.id.kadin12);
 
         //ImagesErkek
-        imageserkek[0] = (ImageView) rootView.findViewById(R.id.erkek1);
-        imageserkek[1] = (ImageView) rootView.findViewById(R.id.erkek2);
-        imageserkek[2] = (ImageView) rootView.findViewById(R.id.erkek3);
-        imageserkek[3] = (ImageView) rootView.findViewById(R.id.erkek4);
-        imageserkek[4] = (ImageView) rootView.findViewById(R.id.erkek5);
-        imageserkek[5] = (ImageView) rootView.findViewById(R.id.erkek6);
-        imageserkek[6] = (ImageView) rootView.findViewById(R.id.erkek7);
-        imageserkek[7] = (ImageView) rootView.findViewById(R.id.erkek8);
-        imageserkek[8] = (ImageView) rootView.findViewById(R.id.erkek9);
-        imageserkek[9] = (ImageView) rootView.findViewById(R.id.erkek10);
-        imageserkek[10] = (ImageView) rootView.findViewById(R.id.erkek11);
-        imageserkek[11] = (ImageView) rootView.findViewById(R.id.erkek12);
+        imageserkek[0] = rootView.findViewById(R.id.erkek1);
+        imageserkek[1] = rootView.findViewById(R.id.erkek2);
+        imageserkek[2] = rootView.findViewById(R.id.erkek3);
+        imageserkek[3] = rootView.findViewById(R.id.erkek4);
+        imageserkek[4] = rootView.findViewById(R.id.erkek5);
+        imageserkek[5] = rootView.findViewById(R.id.erkek6);
+        imageserkek[6] = rootView.findViewById(R.id.erkek7);
+        imageserkek[7] = rootView.findViewById(R.id.erkek8);
+        imageserkek[8] = rootView.findViewById(R.id.erkek9);
+        imageserkek[9] = rootView.findViewById(R.id.erkek10);
+        imageserkek[10] = rootView.findViewById(R.id.erkek11);
+        imageserkek[11] = rootView.findViewById(R.id.erkek12);
 
         //ClickButton
-        clickButton = (ImageView) rootView.findViewById(R.id.imageViewButton);
+        clickButton = rootView.findViewById(R.id.imageViewButton);
 
         //onClickListener for Kadın
         OnClickListener buttonListener = new OnClickListener() {

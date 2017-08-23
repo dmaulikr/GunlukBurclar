@@ -61,18 +61,18 @@ public class FragmentThird extends Fragment {
         intent = new Intent(getActivity(), YukselenBurcActivity.class);
 
         // ChooseBurc
-        imagesburc[0] = (ImageView) rootView.findViewById(R.id.burc1);
-        imagesburc[1] = (ImageView) rootView.findViewById(R.id.burc2);
-        imagesburc[2] = (ImageView) rootView.findViewById(R.id.burc3);
-        imagesburc[3] = (ImageView) rootView.findViewById(R.id.burc4);
-        imagesburc[4] = (ImageView) rootView.findViewById(R.id.burc5);
-        imagesburc[5] = (ImageView) rootView.findViewById(R.id.burc6);
-        imagesburc[6] = (ImageView) rootView.findViewById(R.id.burc7);
-        imagesburc[7] = (ImageView) rootView.findViewById(R.id.burc8);
-        imagesburc[8] = (ImageView) rootView.findViewById(R.id.burc9);
-        imagesburc[9] = (ImageView) rootView.findViewById(R.id.burc10);
-        imagesburc[10] = (ImageView) rootView.findViewById(R.id.burc11);
-        imagesburc[11] = (ImageView) rootView.findViewById(R.id.burc12);
+        imagesburc[0] = rootView.findViewById(R.id.burc1);
+        imagesburc[1] = rootView.findViewById(R.id.burc2);
+        imagesburc[2] = rootView.findViewById(R.id.burc3);
+        imagesburc[3] = rootView.findViewById(R.id.burc4);
+        imagesburc[4] = rootView.findViewById(R.id.burc5);
+        imagesburc[5] = rootView.findViewById(R.id.burc6);
+        imagesburc[6] = rootView.findViewById(R.id.burc7);
+        imagesburc[7] = rootView.findViewById(R.id.burc8);
+        imagesburc[8] = rootView.findViewById(R.id.burc9);
+        imagesburc[9] = rootView.findViewById(R.id.burc10);
+        imagesburc[10] = rootView.findViewById(R.id.burc11);
+        imagesburc[11] = rootView.findViewById(R.id.burc12);
 
         //onClickListener for Burc
         View.OnClickListener buttonListener = new View.OnClickListener() {
@@ -126,7 +126,7 @@ public class FragmentThird extends Fragment {
         };
 
         // ChooseTime
-        txt = (TextView) rootView.findViewById(R.id.textClock);
+        txt = rootView.findViewById(R.id.textClock);
         mcurrentTime = Calendar.getInstance();
         hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         minute = mcurrentTime.get(Calendar.MINUTE);
@@ -176,7 +176,7 @@ public class FragmentThird extends Fragment {
             imagesburc[i].setOnClickListener(buttonListener);
         }
 
-        imagebutton = (ImageView) rootView.findViewById(R.id.imageViewButton);
+        imagebutton = rootView.findViewById(R.id.imageViewButton);
         imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
