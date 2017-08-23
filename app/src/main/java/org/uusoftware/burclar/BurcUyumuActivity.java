@@ -115,7 +115,7 @@ public class BurcUyumuActivity extends AppCompatActivity {
 
         webview = findViewById(R.id.webView);
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("http://uusoftware.org/gunlukburclar/burcuyumu/" + burcKadin + burcErkek + ".html");
+        webview.loadUrl("file:///android_asset/burcuyumu/" + burcKadin + burcErkek + ".html");
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {

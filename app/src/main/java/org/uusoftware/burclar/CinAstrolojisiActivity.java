@@ -94,7 +94,7 @@ public class CinAstrolojisiActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.cin_header);
         WebView myWebView = findViewById(R.id.webViewGeneral);
 
-        link = "http://uusoftware.org/gunlukburclar/cinastrolojisi/" + burc + ".html";
+        link = "file:///android_asset/cinastrolojisi/" + burc + ".html";
 
         if (burc.contains("fare")) {
             image.setImageResource(R.drawable.cin_fare);

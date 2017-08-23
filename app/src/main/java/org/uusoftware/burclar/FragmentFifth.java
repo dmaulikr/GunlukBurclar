@@ -21,7 +21,7 @@ public class FragmentFifth extends Fragment {
 
         selectedburc = SecondActivity.burcid;
         ImageView image = v.findViewById(R.id.imageView1);
-        link = "http://uusoftware.org/gunlukburclar/burcyorumlari/" + selectedburc + ".html";
+        link = "file:///android_asset/burcyorumlari/" + selectedburc + ".html";
 
         if (selectedburc.contains("koc")) {
             image.setImageResource(R.drawable.burc_koc);

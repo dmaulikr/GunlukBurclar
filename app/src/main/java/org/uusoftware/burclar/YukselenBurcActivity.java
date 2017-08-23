@@ -91,7 +91,7 @@ public class YukselenBurcActivity extends AppCompatActivity {
 
         ImageView image = findViewById(R.id.burc_header);
         WebView myWebView = findViewById(R.id.webViewGeneral);
-        link = "http://uusoftware.org/gunlukburclar/burcyorumlari/" + selectedburc + ".html";
+        link = "file:///android_asset/burcyorumlari/" + selectedburc + ".html";
 
         assert selectedburc != null;
         if (selectedburc.contains("koc")) {
